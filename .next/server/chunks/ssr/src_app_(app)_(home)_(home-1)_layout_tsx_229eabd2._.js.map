@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/francisco/Documents/code/wom-frontend-react/src/app/%28app%29/%28home%29/%28home-1%29/layout.tsx"],"sourcesContent":["import { ApplicationLayout } from '@/app/(app)/application-layout'\nimport { ReactNode } from 'react'\nimport { UserProvider } from '@/contexts/auth/user-context';\n\ninterface Props {\n  children: ReactNode\n}\n\nconst Layout: React.FC<Props> = ({ children }) => {\n  return (\n    <div\n      style={{\n        display: 'flex',\n        minHeight: '100vh',\n        alignItems: 'center',\n        justifyContent: 'center',\n        padding: '2rem'\n      }}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport default Layout\n"],"names":[],"mappings":";;;;;AAQA,MAAM,SAA0B,CAAC,EAAE,QAAQ,EAAE;IAC3C,qBACE,8OAAC;QACC,OAAO;YACL,SAAS;YACT,WAAW;YACX,YAAY;YACZ,gBAAgB;YAChB,SAAS;QACX;kBAEC;;;;;;AAGP;uCAEe","debugId":null}}]
+}

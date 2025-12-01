@@ -1,0 +1,151 @@
+/* [next]/internal/font/google/be_vietnam_pro_daddf9ba.module.css [app-client] (css) */
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HScJ286Rb0JcBaoUUU-s.e60a74bc.woff2") format("woff2");
+  unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HScJ287Rb0JcBaoUUU-s.9c81d283.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HScJ281Rb0JcBao-s.p.494405e0.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../media/QdVPSTAyLFyeg_IDWvOJmVES_Hw4BXoYZ7AjSh8-s.d53641d6.woff2") format("woff2");
+  unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../media/QdVPSTAyLFyeg_IDWvOJmVES_Hw5BXoYZ7AjSh8-s.e99f328b.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../media/QdVPSTAyLFyeg_IDWvOJmVES_Hw3BXoYZ7Aj-s.p.532b160c.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HTEJm86Rb0JcBaoUUU-s.06fd98e4.woff2") format("woff2");
+  unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HTEJm87Rb0JcBaoUUU-s.8e7210d0.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HTEJm81Rb0JcBao-s.p.7cbd8e0a.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HToIW86Rb0JcBaoUUU-s.feaa359e.woff2") format("woff2");
+  unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HToIW87Rb0JcBaoUUU-s.c20a0cd7.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HToIW81Rb0JcBao-s.p.e0e561b9.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HSMIG86Rb0JcBaoUUU-s.b3767fe8.woff2") format("woff2");
+  unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309, U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HSMIG87Rb0JcBaoUUU-s.05bb625c.woff2") format("woff2");
+  unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../media/QdVMSTAyLFyeg_IDWvOJmVES_HSMIG81Rb0JcBao-s.p.10582e9f.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Be Vietnam Pro Fallback;
+  src: local(Arial);
+  ascent-override: 90.61%;
+  descent-override: 24.01%;
+  line-gap-override: 0.0%;
+  size-adjust: 110.36%;
+}
+
+.be_vietnam_pro_daddf9ba-module__5IHXia__className {
+  font-family: Be Vietnam Pro, Be Vietnam Pro Fallback;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=%5Bnext%5D_internal_font_google_be_vietnam_pro_daddf9ba_module_css_f9ee138c._.single.css.map*/
