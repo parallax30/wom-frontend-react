@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 31, "column": 0}, "map": {"version":3,"sources":["file:///Users/francisco/Documents/code/wom-frontend-react/src/shared/link.tsx"],"sourcesContent":["'use client'\n\nimport * as Headless from '@headlessui/react'\nimport NextLink, { type LinkProps } from 'next/link'\nimport React, { forwardRef } from 'react'\n\nexport const Link = forwardRef(function Link(\n  props: LinkProps & React.ComponentPropsWithoutRef<'a'>,\n  ref: React.ForwardedRef<HTMLAnchorElement>\n) {\n  const closeHeadless = Headless.useClose()\n\n  return (\n    <Headless.DataInteractive>\n      <NextLink\n        {...props}\n        ref={ref}\n        onClick={(e) => {\n          if (props.onClick) {\n            props.onClick(e)\n          }\n          // Close the headlessui menu and aside\n          closeHeadless()\n        }}\n      />\n    </Headless.DataInteractive>\n  )\n})\n"],"names":[],"mappings":";;;;AAEA;AAAA;AACA;AACA;AAJA;;;;;AAMO,MAAM,qBAAO,CAAA,GAAA,qMAAA,CAAA,aAAU,AAAD,EAAE,SAAS,KACtC,KAAsD,EACtD,GAA0C;IAE1C,MAAM,gBAAgB,CAAA,GAAA,8KAAA,CAAA,WAAiB,AAAD;IAEtC,qBACE,8OAAC,yMAAA,CAAA,kBAAwB;kBACvB,cAAA,8OAAC,4JAAA,CAAA,UAAQ;YACN,GAAG,KAAK;YACT,KAAK;YACL,SAAS,CAAC;gBACR,IAAI,MAAM,OAAO,EAAE;oBACjB,MAAM,OAAO,CAAC;gBAChB;gBACA,sCAAsC;gBACtC;YACF;;;;;;;;;;;AAIR","debugId":null}}]
+}

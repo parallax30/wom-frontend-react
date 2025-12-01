@@ -1,0 +1,14 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/src/app/(auth)/signup/page": [
+      "static/media/QdVMSTAyLFyeg_IDWvOJmVES_HSMIG81Rb0JcBao-s.p.10582e9f.woff2",
+      "static/media/QdVMSTAyLFyeg_IDWvOJmVES_HToIW81Rb0JcBao-s.p.e0e561b9.woff2",
+      "static/media/QdVMSTAyLFyeg_IDWvOJmVES_HTEJm81Rb0JcBao-s.p.7cbd8e0a.woff2",
+      "static/media/QdVPSTAyLFyeg_IDWvOJmVES_Hw3BXoYZ7Aj-s.p.532b160c.woff2",
+      "static/media/QdVMSTAyLFyeg_IDWvOJmVES_HScJ281Rb0JcBao-s.p.494405e0.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}
