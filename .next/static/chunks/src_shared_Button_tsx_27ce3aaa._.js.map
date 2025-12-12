@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/francico/Documents/code/wom-frontend-react/src/shared/Button.tsx"],"sourcesContent":["\"use client\";\n\nimport React from \"react\";\nimport clsx from \"clsx\";\n\ninterface ButtonPrimaryProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  className?: string;\n}\n\nconst ButtonPrimary: React.FC<ButtonPrimaryProps> = ({ className, children, ...props }) => {\n  return (\n    <button\n      {...props}\n      className={clsx(\n        \"inline-flex h-11 w-full items-center justify-center rounded-full bg-primary-600 px-4 py-3 font-medium text-white transition-all hover:bg-primary-700 focus:outline-none disabled:bg-neutral-300 disabled:text-neutral-500\",\n        className\n      )}\n    >\n      {children}\n    </button>\n  );\n};\n\nexport default ButtonPrimary;\n"],"names":[],"mappings":";;;;AAGA;AAHA;;;AASA,MAAM,gBAA8C,CAAC,EAAE,SAAS,EAAE,QAAQ,EAAE,GAAG,OAAO;IACpF,qBACE,6LAAC;QACE,GAAG,KAAK;QACT,WAAW,CAAA,GAAA,wIAAA,CAAA,UAAI,AAAD,EACZ,6NACA;kBAGD;;;;;;AAGP;KAZM;uCAcS","debugId":null}}]
+}

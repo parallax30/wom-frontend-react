@@ -2,6 +2,12 @@
 
 import { createContext, useCallback, useEffect, useState } from 'react'
 
+// MUI imports
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
+
+// ---------------------------------------------------------
+
 interface ThemeContextValue {
   isDarkMode: boolean
   toggleDarkMode: () => void
@@ -15,61 +21,73 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [themeDir, setThemeDir] = useState<'rtl' | 'ltr'>('ltr')
 
-  // themeMode
+  // -----------------------------
+  // Handle Dark Mode
+  // -----------------------------
   useEffect(() => {
-    if (localStorage.getItem('theme') === 'dark-mode') {
+    const root = document.querySelector('html')
+    const storedTheme = localStorage.getItem('theme')
+
+    if (storedTheme === 'dark-mode') {
       setIsDarkMode(true)
-      const root = document.querySelector('html')
-      if (root && !root.classList.contains('dark')) {
-        root.classList.add('dark')
-      }
+      root?.classList.add('dark')
     } else {
       setIsDarkMode(false)
-      const root = document.querySelector('html')
-      if (root) {
-        root.classList.remove('dark')
-      }
+      root?.classList.remove('dark')
     }
   }, [])
 
-  // themeDir
+  // -----------------------------
+  // Handle Direction (RTL/LTR)
+  // -----------------------------
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      document.documentElement.getAttribute('dir') === 'rtl' ? setThemeDir('rtl') : setThemeDir('ltr')
+      const dir = document.documentElement.getAttribute('dir')
+      setThemeDir(dir === 'rtl' ? 'rtl' : 'ltr')
     }
   }, [])
 
-  // Update themeDir when it changes
-  // This ensures that the document's direction is set correctly
-  // when the themeDir state changes.
   useEffect(() => {
     if (typeof window !== 'undefined') {
       document.documentElement.setAttribute('dir', themeDir)
     }
   }, [themeDir])
 
-  // toggleDarkMode
-  // This function toggles the dark mode state and updates the localStorage
-  // and the HTML class accordingly
+  // -----------------------------
+  // Toggle Dark Mode
+  // -----------------------------
   const toggleDarkMode = useCallback((): void => {
+    const root = document.querySelector('html')
+
     if (localStorage.getItem('theme') === 'light-mode') {
       setIsDarkMode(true)
-      const root = document.querySelector('html')
-      if (root && !root.classList.contains('dark')) {
-        root.classList.add('dark')
-      }
+      root?.classList.add('dark')
       localStorage.setItem('theme', 'dark-mode')
     } else {
       setIsDarkMode(false)
-      const root = document.querySelector('html')
-      if (root) {
-        root.classList.remove('dark')
-      }
+      root?.classList.remove('dark')
       localStorage.setItem('theme', 'light-mode')
     }
   }, [])
 
-  //
+  // ---------------------------------------------------------
+  // MUI THEME CONFIGURATION — CERA PRO AS DEFAULT FONT
+  // ---------------------------------------------------------
+
+  const theme = createTheme({
+    direction: themeDir,
+    palette: {
+      mode: isDarkMode ? 'dark' : 'light',
+    },
+    typography: {
+      fontFamily: 'Cera Pro, sans-serif',
+    },
+  })
+
+  // ---------------------------------------------------------
+  // RETURN PROVIDERS
+  // ---------------------------------------------------------
+
   return (
     <ThemeContext.Provider
       value={{
@@ -79,7 +97,12 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
         setThemeDir,
       }}
     >
-      {children}
+      {/* Inject MUI Theme */}
+      <MuiThemeProvider theme={theme}>
+        {/* Normalize CSS + apply global font */}
+        <CssBaseline />
+        {children}
+      </MuiThemeProvider>
     </ThemeContext.Provider>
   )
 }

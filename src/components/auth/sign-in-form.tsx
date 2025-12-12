@@ -1,218 +1,320 @@
 "use client";
-import * as React from 'react';
-import RouterLink from 'next/link';
-import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
-import InputLabel from '@mui/material/InputLabel';
-import Link from '@mui/material/Link';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import { Eye as EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
-import { EyeSlash as EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
-import { Controller, useForm } from 'react-hook-form';
-import { z as zod } from 'zod';
+import * as React from "react";
+import { useRouter } from "next/navigation";
+import { Controller, useForm } from "react-hook-form";
+import { z as zod } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import NextImage from "next/image";
 
-import { paths } from '@/paths';
-import { authClient } from '@/lib/auth/custom/client';
-import { useUser } from '@/hooks/use-user';
-//import { DynamicLogo } from '@/components/core/logo';
-import { toast } from '@/components/core/toaster';
-import { logger } from '@/lib/default-logger';
 
-interface OAuthProvider {
-  id: 'google' | 'discord';
-  name: string;
-  logo: string;
-}
+import {
+  Box,
+  Button,
+  Stack,
+  Typography,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  OutlinedInput,
+  Link,
+  Checkbox,
+  FormControlLabel,
+  Alert,
+  Paper,
+  Dialog,
+} from "@mui/material";
 
-const oAuthProviders = [
-  //{ id: 'google', name: 'Google', logo: '/assets/logo-google.svg' },
-  //{ id: 'discord', name: 'Discord', logo: '/assets/logo-discord.svg' },
-] satisfies OAuthProvider[];
+import { paths } from "@/paths";
+import { authClient } from "@/lib/auth/custom/client";
+import { useUser } from "@/hooks/use-user";
+import { ForgotPasswordFlow } from "./ForgotPasswordFlow";
 
 const schema = zod.object({
-  email: zod.string().min(1, { message: 'Email is required' }).email(),
-  password: zod.string().min(1, { message: 'Password is required' }),
+  email: zod.string().email("Email is required"),
+  password: zod.string().min(1, "Password is required"),
+  accept: zod.boolean().refine(val => val === true, {
+    message: "You must accept the policies",
+  }),
 });
 
 type Values = zod.infer<typeof schema>;
 
-const defaultValues = { email: '', password: '' } satisfies Values;
-
-export function SignInForm(): React.JSX.Element {
+export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const router = useRouter();
-
-  console.log("CHECKSESSION STARTED");
   const { checkSession } = useUser();
-
-  const [showPassword, setShowPassword] = React.useState<boolean>();
-
-  const [isPending, setIsPending] = React.useState<boolean>(false);
 
   const {
     control,
     handleSubmit,
+    watch,
+    setValue,
     setError,
-    formState: { errors },
-  } = useForm<Values>({ defaultValues, resolver: zodResolver(schema) });
+    formState: { errors }
+  } = useForm<Values>({
+    resolver: zodResolver(schema),
+    defaultValues: { email: "", password: "", accept: false },
+  });
 
-  const onAuth = React.useCallback(async (providerId: OAuthProvider['id']): Promise<void> => {
+  const [isPending, setIsPending] = React.useState(false);
+
+  // Track if user reached bottom of scroll
+  const [hasReadPolicies, setHasReadPolicies] = React.useState(false);
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+
+  // Enable button only if all conditions are met
+  const email = watch("email");
+  const password = watch("password");
+  const accept = watch("accept");
+
+  const isButtonEnabled =
+    email.trim() !== "" &&
+    password.trim() !== "" &&
+    accept === true &&
+    hasReadPolicies;
+
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 5;
+    if (atBottom) setHasReadPolicies(true);
+  };
+
+  const onSubmit = async (values: Values) => {
     setIsPending(true);
 
-    const { error } = await authClient.signInWithOAuth({ provider: providerId });
+    //const { error } = await authClient.signInWithPassword(values);
 
-    if (error) {
-      setIsPending(false);
-      toast.error(error);
-      return;
-    }
+    //if (error) {
+    //  setError("root", { type: "server", message: error });
+    //  setIsPending(false);
+    //  return;
+    //}
 
-    setIsPending(false);
+    //await checkSession?.();
+    router.push(paths.portal);
+  };
 
-    // Redirect to OAuth provider
-  }, []);
+  const [open, setOpen] = React.useState(false);
 
-  const onSubmit = React.useCallback(
-    async (values: Values): Promise<void> => {
-      setIsPending(true);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
 
-      const { error } = await authClient.signInWithPassword(values);
+  const registerUrl = cms?.loginUrlLinkRegister;
+  const forgotPassUrl = cms?.loginUrlLinkForgotPass;
+  const agreementUrl = cms?.loginUrlLinkAgreement;
+  const agreementText = cms?.loginParagraphLeft[0].children[0].text; //TODO: falta texto de Confidentiality Agreement & Policies
 
-      if (error) {
-        setError('root', { type: 'server', message: error });
-        setIsPending(false);
-        return;
-      }
-
-      // Refresh the auth state
-      await checkSession?.();
-
-      router.push(paths.private.home); 
-    },
-    [checkSession, router, setError]
-  );
 
   return (
-    <Stack spacing={4}>
-      <div>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-block', fontSize: 0 }}>
-        {/* <img src={'/assets/logo_negro.png'} height={170} width={220} /> */ }
-        </Box>
-      </div>
-      <Stack spacing={1}>
-        <Typography variant="h5">Incia Sesión</Typography>
-        {/* <Typography color="text.secondary" variant="body2">
-          Don&apos;t have an account?{' '}
-          <Link component={RouterLink} href={paths.auth.custom.signUp} variant="subtitle2">
-            Sign up
-          </Link>
-        </Typography> */}
-      </Stack>
-      <Stack spacing={3}>
-        {/* <Stack spacing={2}>
-          {oAuthProviders.map(
-            (provider): React.JSX.Element => (
+    <Stack spacing={3} sx={{ width: "100%", maxWidth: 600, textAlign: "left" }}>
+      {/* Title */}
+      <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+        Login
+      </Typography>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={3}>
+
+
+          {/* EMAIL FIELD */}
+          <Controller
+            control={control}
+            name="email"
+            render={({ field }) => (
+              <FormControl fullWidth error={Boolean(errors.email)}>
+                <InputLabel>Email Address</InputLabel>
+                <OutlinedInput {...field} type="email" label="Email Address" />
+                {errors.email && (
+                  <FormHelperText>{errors.email.message}</FormHelperText>
+                )}
+              </FormControl>
+            )}
+          />
+
+
+          {/* PASSWORD + Forgot password */}
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography sx={{ fontWeight: 500 }}> </Typography>
+
+            <ForgotPasswordFlow />
+
+          </Box>
+          <Dialog
+            open={open}
+            onClose={handleCloseModal}
+            fullWidth
+            maxWidth="sm"
+            PaperProps={{
+              sx: {
+                borderRadius: 4,
+                p: 3,
+              },
+            }}
+          >
+            <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+              <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                New Password
+              </Typography>
+              <Button onClick={handleCloseModal} sx={{ minWidth: 0 }}>
+                ✕
+              </Button>
+            </Box>
+
+            {/* FORM FIELDS */}
+            <Box sx={{ mt: 1 }}>
+              <Typography sx={{ mb: 1 }}>Enter your OTP</Typography>
+              <OutlinedInput
+                fullWidth
+                placeholder="Code sent to your email"
+                sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
+              />
+
+              <Typography sx={{ mb: 1 }}>Enter your new password</Typography>
+              <OutlinedInput
+                fullWidth
+                type="password"
+                sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
+              />
+
+              <Typography sx={{ mb: 1 }}>Repeat your new password</Typography>
+              <OutlinedInput
+                fullWidth
+                type="password"
+                sx={{ background: "#fff", borderRadius: 2, mb: 4 }}
+              />
+            </Box>
+
+            {/* FOOTER BUTTONS */}
+            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
               <Button
-                color="secondary"
-                disabled={isPending}
-                endIcon={<Box alt="" component="img" height={24} src={provider.logo} width={24} />}
-                key={provider.id}
-                onClick={(): void => {
-                  onAuth(provider.id).catch(() => {
-                    // noop
-                  });
-                }}
                 variant="outlined"
+                onClick={handleCloseModal}
+                sx={{
+                  borderColor: "#A45CE8",
+                  color: "#000",
+                  fontWeight: 700,
+                  borderRadius: 2,
+                  px: 4,
+                }}
               >
-                Continue with {provider.name}
+                CLOSE
               </Button>
-            )
-          )}
-        </Stack>
-        <Divider>o</Divider> */ }
-        <Stack spacing={2}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={2}>
-              <Controller
-                control={control}
-                name="email"
-                render={({ field }) => (
-                  <FormControl error={Boolean(errors.email)}>
-                    <InputLabel>Correo Electrónico</InputLabel>
-                    <OutlinedInput {...field} type="email" />
-                    {errors.email ? <FormHelperText>{errors.email.message}</FormHelperText> : null}
-                  </FormControl>
-                )}
-              />
-              <Controller
-                control={control}
-                name="password"
-                render={({ field }) => (
-                  <FormControl error={Boolean(errors.password)}>
-                    <InputLabel>Contraseña</InputLabel>
-                    <OutlinedInput
-                      {...field}
-                      endAdornment={
-                        showPassword ? (
-                          <EyeIcon
-                            cursor="pointer"
-                            fontSize="var(--icon-fontSize-md)"
-                            onClick={(): void => {
-                              setShowPassword(false);
-                            }}
-                          />
-                        ) : (
-                          <EyeSlashIcon
-                            cursor="pointer"
-                            fontSize="var(--icon-fontSize-md)"
-                            onClick={(): void => {
-                              setShowPassword(true);
-                            }}
-                          />
-                        )
-                      }
-                      label="Password"
-                      type={showPassword ? 'text' : 'password'}
-                    />
-                    {errors.password ? <FormHelperText>{errors.password.message}</FormHelperText> : null}
-                  </FormControl>
-                )}
-              />
-              {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
-              <Button disabled={isPending} type="submit" variant="contained">
-                Entrar
+
+              <Button
+                variant="contained"
+                disabled
+                sx={{
+                  backgroundColor: "#F0D6EB",
+                  color: "#fff",
+                  fontWeight: 700,
+                  borderRadius: 2,
+                  px: 4,
+                }}
+              >
+                SEND
               </Button>
-            </Stack>
-          </form>
-          <div>
-            <Link component={RouterLink} href={paths.private.forgotPassword} variant="subtitle2">
-              Olvidó su contraseña?
-            </Link>
-          </div>
-          <div>
-            <Link component={RouterLink} href={paths.private.signup} variant="subtitle2">
-              Crea una cuenta
-            </Link>
-          </div>
+            </Box>
+          </Dialog>
+
+
+          <Controller
+            control={control}
+            name="password"
+            render={({ field }) => (
+              <FormControl fullWidth error={Boolean(errors.password)}>
+                <InputLabel>Password</InputLabel>
+                <OutlinedInput
+                  {...field}
+                  type="password"
+                  label="Password"
+                />
+                {errors.password && (
+                  <FormHelperText>{errors.password.message}</FormHelperText>
+                )}
+              </FormControl>
+            )}
+          />
+
+
+          {/* CONFIDENTIALITY AGREEMENT title */}
+          <Typography sx={{ fontWeight: 600, mt: 2 }}>
+            Confidentiality Agreement & Policies
+          </Typography>
+
+          {/* SCROLLABLE BOX */}
+          <Paper
+            variant="outlined"
+            sx={{
+              p: 2,
+              maxHeight: 170,
+              overflowY: "auto",
+              borderRadius: 2,
+            }}
+            ref={scrollRef}
+            onScroll={handleScroll}
+          >
+            <Typography sx={{ color: "text.secondary", fontSize: 14 }}>
+              {agreementText}
+            </Typography>
+          </Paper>
+
+          {/* Download LINK */}
+          <Link
+            href={agreementUrl}
+            target="_blank"
+            underline="hover"
+            sx={{ fontSize: 15, display: "flex", gap: 1, alignItems: "center" }}
+          >
+            <NextImage
+              src="/assets/register_icon.png"
+              width={20}
+              height={20}
+              alt="doc icon"
+            />
+            Download our Confidentiality Agreement & Policies Document
+          </Link>
+
+
+          {/* CHECKBOX */}
+          <Controller
+            control={control}
+            name="accept"
+            render={({ field }) => (
+              <FormControl error={Boolean(errors.accept)}>
+                <FormControlLabel
+                  control={<Checkbox {...field} checked={field.value} />}
+                  label="I accept the Confidentiality Agreement & Policies"
+                />
+                {errors.accept && (
+                  <FormHelperText>{errors.accept.message}</FormHelperText>
+                )}
+              </FormControl>
+            )}
+          />
+
+          {/* SUBMIT BUTTON */}
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            disabled={!isButtonEnabled || isPending}
+            sx={{
+              color: "#fff",
+              backgroundColor: isButtonEnabled ? "#E92070" : "#e5d1ee",
+              "&:hover": {
+                backgroundColor: isButtonEnabled ? "#c81c62" : "#e5d1ee",
+              },
+              height: 48,
+              fontWeight: 600,
+            }}
+          >
+            LOGIN
+          </Button>
+
+          {errors.root && <Alert severity="error">{errors.root.message}</Alert>}
         </Stack>
-      </Stack>
-      <Alert color="warning">
-        Cuenta provisoria{' '}
-        <Typography component="span" sx={{ fontWeight: 700 }} variant="inherit">
-          parallax@enerbosch.cl
-        </Typography>{' '}
-        con password{' '}
-        <Typography component="span" sx={{ fontWeight: 700 }} variant="inherit">
-          enerbosch.2024
-        </Typography>
-      </Alert>
+      </form>
     </Stack>
   );
 }

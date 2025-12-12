@@ -4,15 +4,11 @@ import { Be_Vietnam_Pro } from 'next/font/google'
 import ThemeProvider from './theme-provider'
 import { UserProvider } from '@/contexts/auth/user-context'
 
-const beVietnamPro = Be_Vietnam_Pro({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-})
+
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Ncmaz',
+    template: '',
     default: 'Ncmaz - Blog, News, Magazine template',
   },
   description: 'Ncmaz - Blog, News, Magazine template',
@@ -21,12 +17,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={beVietnamPro.className}>
+    <html lang="en">
       <body className="bg-white text-base text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200">
         <ThemeProvider>
-          <div><UserProvider>
-          {children}
-        </UserProvider></div>
+          <UserProvider>
+            {children}
+          </UserProvider>
         </ThemeProvider>
       </body>
     </html>

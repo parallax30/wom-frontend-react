@@ -1,25 +1,9 @@
-import { ApplicationLayout } from '@/app/(app)/application-layout'
-import { ReactNode } from 'react'
-import { UserProvider } from '@/contexts/auth/user-context';
+import { ReactNode } from "react";
 
-interface Props {
-  children: ReactNode
-}
-
-const Layout: React.FC<Props> = ({ children }) => {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        minHeight: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2rem'
-      }}
-    >
+    <div className="flex min-h-screen items-center justify-center p-8">
       {children}
     </div>
   );
 }
-
-export default Layout
