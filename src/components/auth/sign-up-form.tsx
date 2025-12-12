@@ -1,215 +1,242 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import RouterLink from 'next/link';
-import { useRouter } from 'next/navigation';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import Divider from '@mui/material/Divider';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormHelperText from '@mui/material/FormHelperText';
-import InputLabel from '@mui/material/InputLabel';
-import Link from '@mui/material/Link';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import { Controller, useForm } from 'react-hook-form';
-import { z as zod } from 'zod';
+import * as React from "react";
+import { useForm, Controller } from "react-hook-form";
+import {
+  Box,
+  Typography,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  OutlinedInput,
+  Select,
+  MenuItem,
+  Button,
+} from "@mui/material";
+import Image from "next/image";
 
-import { paths } from '@/paths';
-import { authClient } from '@/lib/auth/custom/client';
-import { useUser } from '@/hooks/use-user';
-import { DynamicLogo } from '@/components/core/logo';
-import { toast } from '@/components/core/toaster';
-
-interface OAuthProvider {
-  id: 'google' | 'discord';
+interface RegistrationValues {
   name: string;
-  logo: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  profession: string;
+  company: string;
+  message: string;
 }
 
-const oAuthProviders = [
-  { id: 'google', name: 'Google', logo: '/assets/logo-google.svg' },
-  { id: 'discord', name: 'Discord', logo: '/assets/logo-discord.svg' },
-] satisfies OAuthProvider[];
-
-const schema = zod.object({
-  firstName: zod.string().min(1, { message: 'First name is required' }),
-  lastName: zod.string().min(1, { message: 'Last name is required' }),
-  email: zod.string().min(1, { message: 'Email is required' }).email(),
-  password: zod.string().min(6, { message: 'Password should be at least 6 characters' }),
-  terms: zod.boolean().refine((value) => value, 'You must accept the terms and conditions'),
-});
-
-type Values = zod.infer<typeof schema>;
-
-const defaultValues = { firstName: '', lastName: '', email: '', password: '', terms: false } satisfies Values;
-
-export function SignUpForm(): React.JSX.Element {
-  const router = useRouter();
-
-  const { checkSession } = useUser();
-
-  const [isPending, setIsPending] = React.useState<boolean>(false);
-
+export function RegistrationForm(): React.JSX.Element {
   const {
     control,
     handleSubmit,
-    setError,
+    watch,
     formState: { errors },
-  } = useForm<Values>({ defaultValues, resolver: zodResolver(schema) });
-
-  const onAuth = React.useCallback(async (providerId: OAuthProvider['id']): Promise<void> => {
-    setIsPending(true);
-
-    const { error } = await authClient.signInWithOAuth({ provider: providerId });
-
-    if (error) {
-      setIsPending(false);
-      toast.error(error);
-      return;
-    }
-
-    setIsPending(false);
-
-    // Redirect to OAuth provider
-  }, []);
-
-  const onSubmit = React.useCallback(
-    async (values: Values): Promise<void> => {
-      setIsPending(true);
-
-      const { error } = await authClient.signUp(values);
-
-      if (error) {
-        setError('root', { type: 'server', message: error });
-        setIsPending(false);
-        return;
-      }
-
-      // Refresh the auth state
-      await checkSession?.();
-
-      // UserProvider, for this case, will not refresh the router
-      // After refresh, GuestGuard will handle the redirect
-      router.refresh();
+  } = useForm<RegistrationValues>({
+    defaultValues: {
+      name: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      profession: "",
+      company: "",
+      message: "",
     },
-    [checkSession, router, setError]
-  );
+  });
+
+  const all = watch();
+  const isEnabled =
+    all.name &&
+    all.lastName &&
+    all.email &&
+    all.phone &&
+    all.profession &&
+    all.company;
+
+  const onSubmit = (values: RegistrationValues) => {
+    console.log(values);
+  };
 
   return (
-    <Stack spacing={4}>
-      <div>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-block', fontSize: 0 }}>
-          <DynamicLogo colorDark="light" colorLight="dark" height={32} width={122} />
-        </Box>
-      </div>
-      <Stack spacing={1}>
-        <Typography variant="h5">Sign up</Typography>
-        <Typography color="text.secondary" variant="body2">
-          Already have an account?{' '}
-          <Link component={RouterLink} href={paths.auth.custom.signIn} variant="subtitle2">
-            Sign in
-          </Link>
-        </Typography>
-      </Stack>
-      <Stack spacing={3}>
-        <Stack spacing={2}>
-          {oAuthProviders.map(
-            (provider): React.JSX.Element => (
-              <Button
-                color="secondary"
-                disabled={isPending}
-                endIcon={<Box alt="" component="img" height={24} src={provider.logo} width={24} />}
-                key={provider.id}
-                onClick={(): void => {
-                  onAuth(provider.id).catch(() => {
-                    // noop
-                  });
-                }}
-                variant="outlined"
-              >
-                Continue with {provider.name}
-              </Button>
-            )
-          )}
-        </Stack>
-        <Divider>or</Divider>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={2}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        backgroundColor: "#EFF1F3",
+        px: { xs: 3, md: 10 },
+        py: 6,
+      }}
+    >
+      {/* LOGO */}
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <Image
+          src="/assets/wom_empresas_logo.png"
+          width={200}
+          height={100}
+          alt="WOM Empresas"
+        />
+      </Box>
+
+      {/* TITLE */}
+      <Typography variant="h4" sx={{ fontWeight: 700, mb: 4 }}>
+        Registration Request
+      </Typography>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* ---- CSS GRID (compatible con MUI v7) ---- */}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              md: "1fr 1fr",
+            },
+            gap: 4,
+          }}
+        >
+          {/* NAME */}
+          <FormControl fullWidth error={Boolean(errors.name)}>
+            <InputLabel>Name</InputLabel>
             <Controller
               control={control}
-              name="firstName"
+              name="name"
+              rules={{ required: "Required" }}
               render={({ field }) => (
-                <FormControl error={Boolean(errors.firstName)}>
-                  <InputLabel>First name</InputLabel>
-                  <OutlinedInput {...field} />
-                  {errors.firstName ? <FormHelperText>{errors.firstName.message}</FormHelperText> : null}
-                </FormControl>
+                <OutlinedInput {...field} label="Name" />
               )}
             />
+            {errors.name && (
+              <FormHelperText>{errors.name.message}</FormHelperText>
+            )}
+          </FormControl>
+
+          {/* LAST NAME */}
+          <FormControl fullWidth error={Boolean(errors.lastName)}>
+            <InputLabel>Last Name</InputLabel>
             <Controller
               control={control}
               name="lastName"
+              rules={{ required: "Required" }}
               render={({ field }) => (
-                <FormControl error={Boolean(errors.lastName)}>
-                  <InputLabel>Last name</InputLabel>
-                  <OutlinedInput {...field} />
-                  {errors.lastName ? <FormHelperText>{errors.lastName.message}</FormHelperText> : null}
-                </FormControl>
+                <OutlinedInput {...field} label="Last Name" />
               )}
             />
+            {errors.lastName && (
+              <FormHelperText>{errors.lastName.message}</FormHelperText>
+            )}
+          </FormControl>
+
+          {/* EMAIL */}
+          <FormControl fullWidth error={Boolean(errors.email)}>
+            <InputLabel>Email Address</InputLabel>
             <Controller
               control={control}
               name="email"
+              rules={{ required: "Required" }}
               render={({ field }) => (
-                <FormControl error={Boolean(errors.email)}>
-                  <InputLabel>Email address</InputLabel>
-                  <OutlinedInput {...field} type="email" />
-                  {errors.email ? <FormHelperText>{errors.email.message}</FormHelperText> : null}
-                </FormControl>
+                <OutlinedInput {...field} label="Email Address" />
               )}
             />
+            {errors.email && (
+              <FormHelperText>{errors.email.message}</FormHelperText>
+            )}
+          </FormControl>
+
+          {/* PHONE */}
+          <FormControl fullWidth error={Boolean(errors.phone)}>
+            <InputLabel>Phone</InputLabel>
             <Controller
               control={control}
-              name="password"
+              name="phone"
+              rules={{ required: "Required" }}
               render={({ field }) => (
-                <FormControl error={Boolean(errors.password)}>
-                  <InputLabel>Password</InputLabel>
-                  <OutlinedInput {...field} type="password" />
-                  {errors.password ? <FormHelperText>{errors.password.message}</FormHelperText> : null}
-                </FormControl>
+                <OutlinedInput {...field} label="Phone" />
               )}
             />
+            {errors.phone && (
+              <FormHelperText>{errors.phone.message}</FormHelperText>
+            )}
+          </FormControl>
+
+          {/* PROFESSION */}
+          <FormControl fullWidth error={Boolean(errors.profession)}>
+            <InputLabel>Profession</InputLabel>
             <Controller
               control={control}
-              name="terms"
+              name="profession"
+              rules={{ required: "Required" }}
               render={({ field }) => (
-                <div>
-                  <FormControlLabel
-                    control={<Checkbox {...field} />}
-                    label={
-                      <React.Fragment>
-                        I have read the <Link>terms and conditions</Link>
-                      </React.Fragment>
-                    }
+                <Select {...field} label="Profession">
+                  <MenuItem value="">Select</MenuItem>
+                  <MenuItem value="Developer">Developer</MenuItem>
+                  <MenuItem value="Engineer">Engineer</MenuItem>
+                  <MenuItem value="Manager">Manager</MenuItem>
+                  <MenuItem value="Other">Other</MenuItem>
+                </Select>
+              )}
+            />
+            {errors.profession && (
+              <FormHelperText>{errors.profession.message}</FormHelperText>
+            )}
+          </FormControl>
+
+          {/* COMPANY */}
+          <FormControl fullWidth error={Boolean(errors.company)}>
+            <InputLabel>Institution/Company</InputLabel>
+            <Controller
+              control={control}
+              name="company"
+              rules={{ required: "Required" }}
+              render={({ field }) => (
+                <OutlinedInput {...field} label="Institution/Company" />
+              )}
+            />
+            {errors.company && (
+              <FormHelperText>{errors.company.message}</FormHelperText>
+            )}
+          </FormControl>
+
+          {/* MESSAGE — full width */}
+          <Box sx={{ gridColumn: "1 / -1" }}>
+            <FormControl fullWidth>
+              <InputLabel shrink>Message</InputLabel>
+              <Controller
+                control={control}
+                name="message"
+                render={({ field }) => (
+                  <OutlinedInput
+                    {...field}
+                    multiline
+                    minRows={6}
+                    label="Message"
+                    placeholder="Optional"
                   />
-                  {errors.terms ? <FormHelperText error>{errors.terms.message}</FormHelperText> : null}
-                </div>
-              )}
-            />
-            {errors.root ? <Alert color="error">{errors.root.message}</Alert> : null}
-            <Button disabled={isPending} type="submit" variant="contained">
-              Create account
-            </Button>
-          </Stack>
-        </form>
-      </Stack>
-      <Alert color="warning">Created users are not persisted</Alert>
-    </Stack>
+                )}
+              />
+            </FormControl>
+          </Box>
+        </Box>
+
+        {/* SUBMIT BUTTON */}
+        <Box sx={{ textAlign: "center", mt: 4 }}>
+          <Button
+            type="submit"
+            disabled={!isEnabled}
+            sx={{
+              backgroundColor: isEnabled ? "#E92070" : "#E5D1EE",
+              color: "#fff",
+              px: 6,
+              py: 1.5,
+              fontWeight: 700,
+              width: { xs: "100%", md: 350 },
+              borderRadius: 2,
+              "&:hover": {
+                backgroundColor: isEnabled ? "#C81C62" : "#E5D1EE",
+              },
+            }}
+          >
+            REGISTER
+          </Button>
+        </Box>
+      </form>
+    </Box>
   );
 }

@@ -32,7 +32,7 @@ export interface Config {
 
 export const config = {
   site: {
-    name: 'Devias Kit Pro',
+    name: 'Wom - Inversors Portal',
     description: '',
     colorScheme: 'light',
     themeColor: '#090a0b',
