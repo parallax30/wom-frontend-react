@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: `${process.env.REACT_APP_API_URL}/api`,
+const api = axios.create({ 
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
 });
 
 // Interceptor para agregar token desde .env
 api.interceptors.request.use(
   (config) => {
-    const token = process.env.REACT_APP_API_TOKEN;
+    const token = process.env.NEXT_PUBLIC_API_TOKEN;
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

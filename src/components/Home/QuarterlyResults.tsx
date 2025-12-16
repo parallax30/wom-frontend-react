@@ -2,16 +2,7 @@
 
 import React from "react";
 import {
-MenuItem,
-UserInfo,
-HeroProps,
-DateBarProps,
 QuarterlyResultsProps,
-LatestNewsProps,
-UpcomingEventsProps,
-BondInformationProps,
-FooterProps,
-HomePageProps,
 } from "@/types/home.types";
 
 export function QuarterlyResults({ quarter, reports }: QuarterlyResultsProps) {
@@ -22,10 +13,10 @@ export function QuarterlyResults({ quarter, reports }: QuarterlyResultsProps) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {reports.map((r) => (
                     <div key={r.id} className="bg-[#CCC4D2] p-8 rounded-xl text-center shadow">
-                        <h4 className="font-bold mb-4">{r.title}</h4>
+                        <h4 className="font-bold mb-4">{r.homeFinancialCardTitle}</h4>
                         <img src={r.icon} className="h-16 mx-auto mb-4" />
-                        <a className="text-[#350A63] flex items-center justify-center gap-2 text-sm" href={r.downloadUrl}>
-                        <img src="/assets/note-icon.png" className="h-4" /> Download {r.title}
+                        <a className="text-[#350A63] flex items-center justify-center gap-2 text-sm" href={r.homeFinancialCardLinkUrl}>
+                        <img src="/assets/note-icon.png" className="h-4" /> {r.homeFinancialCardLinkText}
                         </a>
                     </div>
                 ))}

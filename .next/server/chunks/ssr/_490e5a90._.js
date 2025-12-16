@@ -330,7 +330,7 @@ function QuarterlyResults({ quarter, reports }) {
                 children: "Latest Quarterly Results"
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                lineNumber: 20,
+                lineNumber: 11,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -338,7 +338,7 @@ function QuarterlyResults({ quarter, reports }) {
                 children: quarter
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                lineNumber: 21,
+                lineNumber: 12,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -348,10 +348,10 @@ function QuarterlyResults({ quarter, reports }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                                 className: "font-bold mb-4",
-                                children: r.title
+                                children: r.homeFinancialCardTitle
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                                lineNumber: 25,
+                                lineNumber: 16,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -359,38 +359,38 @@ function QuarterlyResults({ quarter, reports }) {
                                 className: "h-16 mx-auto mb-4"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                                lineNumber: 26,
+                                lineNumber: 17,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                 className: "text-[#350A63] flex items-center justify-center gap-2 text-sm",
-                                href: r.downloadUrl,
+                                href: r.homeFinancialCardLinkUrl,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                         src: "/assets/note-icon.png",
                                         className: "h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                                        lineNumber: 28,
+                                        lineNumber: 19,
                                         columnNumber: 25
                                     }, this),
-                                    " Download ",
-                                    r.title
+                                    " ",
+                                    r.homeFinancialCardLinkText
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                                lineNumber: 27,
+                                lineNumber: 18,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, r.id, true, {
                         fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                        lineNumber: 24,
+                        lineNumber: 15,
                         columnNumber: 21
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                lineNumber: 22,
+                lineNumber: 13,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -400,18 +400,18 @@ function QuarterlyResults({ quarter, reports }) {
                     children: "VIEW ALL RESULTS"
                 }, void 0, false, {
                     fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                    lineNumber: 34,
+                    lineNumber: 25,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-                lineNumber: 33,
+                lineNumber: 24,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Home/QuarterlyResults.tsx",
-        lineNumber: 19,
+        lineNumber: 10,
         columnNumber: 9
     }, this);
 }
@@ -904,21 +904,21 @@ const Page = async ()=>{
                 user: data.user
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 196,
+                lineNumber: 198,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$Hero$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Hero"], {
                 image: data.heroImage
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 197,
+                lineNumber: 199,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$DateBar$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["DateBar"], {
                 date: data.today
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 198,
+                lineNumber: 200,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$QuarterlyResults$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["QuarterlyResults"], {
@@ -926,41 +926,41 @@ const Page = async ()=>{
                 reports: data.reports
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 199,
+                lineNumber: 201,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$LatestNews$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["LatestNews"], {
                 news: data.news
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 200,
+                lineNumber: 202,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$UpcomingEvents$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["UpcomingEvents"], {
                 events: data.events
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 201,
+                lineNumber: 203,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$BondInformation$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["BondInformation"], {
                 documents: data.documents
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 202,
+                lineNumber: 204,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$Footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Footer"], {
                 contact: data.contact
             }, void 0, false, {
                 fileName: "[project]/src/app/portal/page.tsx",
-                lineNumber: 203,
+                lineNumber: 205,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/portal/page.tsx",
-        lineNumber: 195,
+        lineNumber: 197,
         columnNumber: 5
     }, this);
 };

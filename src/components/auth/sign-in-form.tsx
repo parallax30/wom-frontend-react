@@ -41,7 +41,6 @@ type Values = zod.infer<typeof schema>;
 
 export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const router = useRouter();
-  const { checkSession } = useUser();
 
   const {
     control,
@@ -83,15 +82,18 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const onSubmit = async (values: Values) => {
     setIsPending(true);
 
-    //const { error } = await authClient.signInWithPassword(values);
+    const { error } = await authClient.signInWithPassword(values);
 
-    //if (error) {
-    //  setError("root", { type: "server", message: error });
-    //  setIsPending(false);
-    //  return;
-    //}
+    if (error) {
+      setError("root", { type: "server", message: error });
+      setIsPending(false);
+      return;
+    }
 
-    //await checkSession?.();
+    setIsPending(false);
+
+    console.log("Login successful, redirecting to portal...");
+
     router.push(paths.portal);
   };
 
@@ -100,8 +102,8 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
-  const registerUrl = cms?.loginUrlLinkRegister;
-  const forgotPassUrl = cms?.loginUrlLinkForgotPass;
+  const registerUrl = cms?.loginUrlLinkRegister;      //TODO: Esto no va porque es un modal
+  const forgotPassUrl = cms?.loginUrlLinkForgotPass;  //TODO: Esto no va porque es un modal
   const agreementUrl = cms?.loginUrlLinkAgreement;
   const agreementText = cms?.loginParagraphLeft[0].children[0].text; //TODO: falta texto de Confidentiality Agreement & Policies
 
@@ -255,7 +257,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             onScroll={handleScroll}
           >
             <Typography sx={{ color: "text.secondary", fontSize: 14 }}>
-              {agreementText}
+              {agreementText}{agreementText}{agreementText}
             </Typography>
           </Paper>
 

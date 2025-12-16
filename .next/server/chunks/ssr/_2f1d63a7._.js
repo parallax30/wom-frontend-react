@@ -94,9 +94,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$imag
 ;
 ;
 function SplitLayout({ children, cms }) {
-    const title = cms?.title ?? "About WOM";
-    const textBlocks = cms?.text ?? [];
-    const leftImage = cms?.leftImage?.url ? `${process.env.NEXT_PUBLIC_API_URL}${cms.leftImage.url}` : "/assets/about_wom_image.jpg";
+    const title = cms?.leftTitle ?? "About WOM";
+    // Texto del RichText de Strapi
+    const text = cms?.loginParagraphLeft[0].children[0].text;
+    // Imagen del CMS
+    const leftImage = cms?.leftImage?.url ? `${"TURBOPACK compile-time value", "http://34.69.55.168:1337"}${cms.leftImage.url}` : "/assets/about_wom_image.jpg";
+    //TODO: falta el logo (linea 49)
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
         sx: {
             display: "grid",
@@ -141,12 +144,12 @@ function SplitLayout({ children, cms }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/auth/split-layout.tsx",
-                                lineNumber: 42,
+                                lineNumber: 48,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/auth/split-layout.tsx",
-                            lineNumber: 41,
+                            lineNumber: 47,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -158,7 +161,7 @@ function SplitLayout({ children, cms }) {
                             children: title
                         }, void 0, false, {
                             fileName: "[project]/src/components/auth/split-layout.tsx",
-                            lineNumber: 52,
+                            lineNumber: 58,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -169,8 +172,8 @@ function SplitLayout({ children, cms }) {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                 src: leftImage,
                                 width: 570,
-                                height: 288,
-                                alt: "About WOM",
+                                height: 300,
+                                alt: title,
                                 style: {
                                     width: "100%",
                                     height: "auto",
@@ -178,12 +181,12 @@ function SplitLayout({ children, cms }) {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/src/components/auth/split-layout.tsx",
-                                lineNumber: 58,
+                                lineNumber: 64,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/auth/split-layout.tsx",
-                            lineNumber: 57,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -193,10 +196,10 @@ function SplitLayout({ children, cms }) {
                                 lineHeight: 1.7,
                                 whiteSpace: "pre-line"
                             },
-                            children: textBlocks.map((block)=>block.children?.map((c)=>c.text).join(" "))
+                            children: text
                         }, void 0, false, {
                             fileName: "[project]/src/components/auth/split-layout.tsx",
-                            lineNumber: 68,
+                            lineNumber: 74,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Stack$2f$Stack$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -211,7 +214,7 @@ function SplitLayout({ children, cms }) {
                                     children: "New User?"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/auth/split-layout.tsx",
-                                    lineNumber: 83,
+                                    lineNumber: 87,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Link$2f$Link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -224,7 +227,7 @@ function SplitLayout({ children, cms }) {
                                     children: "Register"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/auth/split-layout.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 88,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -234,66 +237,54 @@ function SplitLayout({ children, cms }) {
                                     alt: "Register icon"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/auth/split-layout.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 96,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/auth/split-layout.tsx",
-                            lineNumber: 82,
+                            lineNumber: 86,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/auth/split-layout.tsx",
-                    lineNumber: 38,
+                    lineNumber: 44,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/auth/split-layout.tsx",
-                lineNumber: 29,
+                lineNumber: 35,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                 sx: {
                     boxShadow: "var(--mui-shadows-8)",
                     display: "flex",
-                    flexDirection: "column"
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    p: 3
                 },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                     sx: {
-                        alignItems: "center",
-                        display: "flex",
-                        flexDirection: "column",
-                        flex: "1 1 auto",
-                        justifyContent: "center",
-                        p: 3
+                        maxWidth: "100%",
+                        width: "100%"
                     },
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                        sx: {
-                            maxWidth: "100%",
-                            width: "100%"
-                        },
-                        children: children
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/auth/split-layout.tsx",
-                        lineNumber: 111,
-                        columnNumber: 11
-                    }, this)
+                    children: children
                 }, void 0, false, {
                     fileName: "[project]/src/components/auth/split-layout.tsx",
-                    lineNumber: 101,
+                    lineNumber: 116,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/auth/split-layout.tsx",
-                lineNumber: 94,
+                lineNumber: 107,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/auth/split-layout.tsx",
-        lineNumber: 21,
+        lineNumber: 27,
         columnNumber: 5
     }, this);
 }
@@ -310,8 +301,9 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/config.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$auth$2f$sign$2d$in$2d$form$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/auth/sign-in-form.tsx [app-rsc] (ecmascript)");
-//import { GuestGuard } from '@/components/auth/guest-guard';
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$auth$2f$split$2d$layout$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/auth/split-layout.tsx [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$apiService$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/apiService.js [app-rsc] (ecmascript)");
+;
 ;
 ;
 ;
@@ -319,17 +311,24 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$auth$2f
 const metadata = {
     title: `Sign in | Custom | Auth | ${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$config$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["config"].site.name}`
 };
-function Page() {
+async function Page() {
     console.log("RENDER HOME PAGE");
+    const response = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$apiService$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getLogin"])({
+        populate: "*"
+    });
+    const cmsData = response?.data?.data;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$auth$2f$split$2d$layout$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["SplitLayout"], {
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$auth$2f$sign$2d$in$2d$form$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["SignInForm"], {}, void 0, false, {
+        cms: cmsData,
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$auth$2f$sign$2d$in$2d$form$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["SignInForm"], {
+            cms: cmsData
+        }, void 0, false, {
             fileName: "[project]/src/app/(app)/(home)/(home-1)/page.tsx",
-            lineNumber: 17,
+            lineNumber: 20,
             columnNumber: 10
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/(app)/(home)/(home-1)/page.tsx",
-        lineNumber: 16,
+        lineNumber: 19,
         columnNumber: 7
     }, this);
 }

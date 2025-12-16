@@ -10,19 +10,96 @@ import { Metadata } from 'next'
 import { HomePageData } from '@/types/home.types'
 import { Footer } from '@/components/Home/Footer'
 
+import { getHome } from "@/services/apiService";
+
+import { RichTextBlock, richTextToPlainText } from "@/utils/richText";
+
 export const metadata: Metadata = {
   title: 'Inversors Portal',
   description: 'Wom',
 }
 
-// -----------------------------------------------------------
-//  Emulación de llamada a API con submenús
-// -----------------------------------------------------------
 async function getHomeData(): Promise<HomePageData> {
-  // Simula llamada HTTP real
-  await new Promise(resolve => setTimeout(resolve, 300));
+
+  const response = await getHome({});
+  const cmsHomeData = response?.data?.data; 
+
+  const homeTitle1 = cmsHomeData.homeTitle1;
+  const homeTitle2 = cmsHomeData.homeTitle2;
+  const homeTitle3 = cmsHomeData.homeTitle3;
+  const homeTitle4 = cmsHomeData.homeTitle4;
+  const homeTItle1TextButton = cmsHomeData.homeTItle1TextButton;
+  const homeTItle1LinkUrlButton = cmsHomeData.homeTItle1LinkUrlButton;
+  const homeTItle2TextlButton = cmsHomeData.homeTItle2TextlButton;
+  const homeTItle2LinkUrlButton = cmsHomeData.homeTItle2LinkUrlButton;
+  const homeTItle3TextlButton = cmsHomeData.homeTItle3TextlButton
+  const homeTItle3LinkUrlButton = cmsHomeData.homeTItle3LinkUrlButton;
+
+
+  const reports = cmsHomeData.home_financial_cards.map(
+    (card: { homeFinancialCardTitle: any; homeFinancialCardLinkUrl: any; homeFinancialCardLinkText: any }, index: number) => ({
+      id: String(index + 1), // o card.id si quieres el de Strapi
+      homeFinancialCardTitle: card.homeFinancialCardTitle,
+      icon: "/assets/icons/money-icon.png",
+      homeFinancialCardLinkUrl: card.homeFinancialCardLinkUrl,
+      homeFinancialCardLinkText: card.homeFinancialCardLinkText,
+    })
+  );
+
+
+
+  const news = cmsHomeData.home_news_cards.map((card: { id: any; homeNewsCardTitle: any; omeNewsCardSummary: { children?: { text: string }[] }[] | undefined }) => ({
+    id: String(card.id),
+    title: card.homeNewsCardTitle,
+    icon: "/assets/icons/news-icon.png",
+    summary: richTextToPlainText(card.omeNewsCardSummary),
+    url: "card.homeNewsCardUrl",
+  }));
+
+  const homePrincipalImage = process.env.NEXT_PUBLIC_API_URL + cmsHomeData.homePrincipalImage.url;
+
+  const events = cmsHomeData.home_event_infos.map((event: { id: any; homeEventInfoTitle: any; homeEventInfoDate: string | number | Date; homeEventInfoSummary: RichTextBlock[] | undefined; homeEventInfoLinkText: any; homeEventInfoLinkUrl: any }) => ({
+    id: String(event.id),
+    title: event.homeEventInfoTitle,
+    date: new Date(event.homeEventInfoDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    summary: richTextToPlainText(event.homeEventInfoSummary),
+    linkText: event.homeEventInfoLinkText,
+    url: event.homeEventInfoLinkUrl,
+  }));
+
+  const documents = cmsHomeData.home_bond_documents.map((doc: { id: any; homeBondDocumentDate: string | number | Date; homeBondDocumentName: any; homeBondDocumentSummary: any; homeBondDocumentLinkUrl: any }) => ({
+    id: String(doc.id),
+    date: new Date(doc.homeBondDocumentDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    title: doc.homeBondDocumentName,
+    summary: richTextToPlainText(doc.homeBondDocumentSummary ?? []),
+    fileUrl: doc.homeBondDocumentLinkUrl,
+  }));
+
+  // Calcular el trimestre actual (p. ej. "Q3 - 2025") si la API no lo provee
+  const quarter = `Q${Math.floor(new Date().getMonth() / 3) + 1} - ${new Date().getFullYear()}`;
+
+
 
   return {
+
+    homeTitle1,
+    homeTitle2,
+    homeTitle3,
+    homeTitle4,
+    homeTItle1TextButton,
+    homeTItle1LinkUrlButton,
+    homeTItle2TextlButton,
+    homeTItle2LinkUrlButton,
+    homeTItle3TextlButton,
+    homeTItle3LinkUrlButton,
     // ---------------------
     // MENU SUPERIOR
     // ---------------------
@@ -73,7 +150,7 @@ async function getHomeData(): Promise<HomePageData> {
     // ---------------------
     // HERO
     // ---------------------
-    heroImage: "/assets/hero-image.png",
+    homePrincipalImage,
 
     // ---------------------
     // DATE BAR
@@ -88,91 +165,23 @@ async function getHomeData(): Promise<HomePageData> {
     // ---------------------
     // QUARTERLY RESULTS
     // ---------------------
-    quarter: "Q3 - 2025",
-    reports: [
-      {
-        id: "1",
-        title: "Financial Statements",
-        icon: "/assets/icons/money-icon.png",
-        downloadUrl: "#",
-      },
-      {
-        id: "2",
-        title: "Investor Presentation",
-        icon: "/assets/icons/bill-icon.png",
-        downloadUrl: "#",
-      },
-      {
-        id: "3",
-        title: "Earnings Release",
-        icon: "/assets/icons/book-icon.png",
-        downloadUrl: "#",
-      },
-    ],
+    quarter,
+    reports,
 
     // ---------------------
     // LATEST NEWS
     // ---------------------
-    news: [
-      {
-        id: "1",
-        title: "WOM reaches new subscriber record",
-        icon: "/assets/icons/news-icon.png",
-        summary: "The company achieved a new milestone with 7M users...",
-      },
-      {
-        id: "2",
-        title: "Expansion of 5G network continues",
-        icon: "/assets/icons/news-icon.png",
-        summary: "WOM expands their 5G coverage by 32% this quarter...",
-      },
-       {
-        id: "3",
-        title: "WOM reaches new subscriber record",
-        icon: "/assets/icons/news-icon.png",
-        summary: "The company achieved a new milestone with 7M users...",
-      },
-    ],
+    news,
 
     // ---------------------
     // UPCOMING EVENTS
     // ---------------------
-    events: [
-      {
-        id: "1",
-        title: "Earnings Call",
-        icon: "/assets/icons/calendar-icon.png",
-        date: "2025-12-10",
-        description: "Lorem ipsum dolor sit amet consectetur adipiscing elit facilisi venenatis praesent, a dapibus justo pharetra nullam risus ultricies phasellus gravida egestas natoque, laoreet enim lobortis cum facilisis nunc placerat dui mattis.",
-      },
-      {
-        id: "2",
-        title: "Annual General Meeting",
-        icon: "/assets/icons/calendar-icon.png",
-        date: "2026-02-14",
-        description: "Lorem ipsum dolor sit amet consectetur adipiscing elit facilisi venenatis praesent, a dapibus justo pharetra nullam risus ultricies phasellus gravida egestas natoque, laoreet enim lobortis cum facilisis nunc placerat dui mattis.",
-      },
-    ],
+    events,
 
     // ---------------------
     // BOND INFORMATION LIST
     // ---------------------
-    documents: [
-      {
-        id: "1",
-        date: "October 31, 2025",
-        title: "Bond 2025 Report",
-        summary: "Detailed report of bond activity",
-        fileUrl: "#",
-      },
-      {
-        id: "2",
-        date: "October 31, 2025",
-        title: "Bond Issuance Notice",
-        summary: "Information on the new bond issuance",
-        fileUrl: "#",
-      },
-    ],
+    documents,
 
     // ---------------------
     // FOOTER
@@ -180,7 +189,7 @@ async function getHomeData(): Promise<HomePageData> {
     contact: {
       email: "investors@wom.cl",
       phone: "+56 2 2753 1234",
-    },
+    } as const,
   };
 }
 
@@ -194,13 +203,13 @@ const Page = async () => {
   return (
     <div className="w-full font-sans text-[#2D1540]">
       <Navbar menuItems={data.menu} user={data.user} />
-      <Hero image={data.heroImage} />
+      <Hero image={data.homePrincipalImage} />
       <DateBar date={data.today} />
-      <QuarterlyResults quarter={data.quarter} reports={data.reports} />
-      <LatestNews news={data.news} />
-      <UpcomingEvents events={data.events} />
-      <BondInformation documents={data.documents} />
-      <Footer contact={data.contact} />
+      <QuarterlyResults quarter={data.quarter} reports={data.reports || []} />
+      <LatestNews news={data.news || []} />
+      <UpcomingEvents events={data.events || []} />
+      <BondInformation documents={data.documents || []} />
+      <Footer contact={data.contact || { email: "investors@wom.cl", phone: "+56 2 2753 1234" }} />
     </div>
   )
 }

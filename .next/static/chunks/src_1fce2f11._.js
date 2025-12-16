@@ -164,18 +164,43 @@ class AuthClient {
             error: 'Social authentication not implemented'
         };
     }
-    async signInWithPassword(params) {
-        const { email, password } = params;
-        // Make API request
-        // We do not handle the API, so we'll check if the credentials match with the hardcoded ones.
-        if (email !== 'parallax@enerbosch.cl' || password !== 'enerbosch.2024') {
+    async signInWithPassword({ email, password }) {
+        try {
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+            let data = null;
+            try {
+                data = await res.json();
+            } catch (e) {
+                console.error('Login returned non-JSON response');
+                return {
+                    error: 'Login failed'
+                };
+            }
+            if (!res.ok) {
+                return {
+                    error: data?.error ?? 'Invalid credentials'
+                };
+            }
+            // Server set httpOnly cookie; optionally cache user locally
+            try {
+                localStorage.setItem('strapi-user', JSON.stringify(data.user));
+            } catch (e) {}
+            return {};
+        } catch (e) {
+            console.error(e);
             return {
-                error: 'Invalid credentials'
+                error: 'Login failed'
             };
         }
-        const token = generateToken();
-        localStorage.setItem('custom-auth-token', token);
-        return {};
     }
     async resetPassword(_) {
         return {
@@ -187,22 +212,8 @@ class AuthClient {
             error: 'Update reset not implemented'
         };
     }
-    async getUser() {
-        // Make API request
-        // We do not handle the API, so just check if we have a token in localStorage.
-        const token = localStorage.getItem('custom-auth-token');
-        console.log('TOKEN:' + token);
-        if (!token) {
-            return {
-                data: null
-            };
-        }
-        return {
-            data: user
-        };
-    }
     async signOut() {
-        localStorage.removeItem('custom-auth-token');
+        localStorage.removeItem('strapi-jwt');
         return {};
     }
 }

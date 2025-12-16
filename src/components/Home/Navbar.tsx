@@ -18,12 +18,10 @@ export function Navbar({ menuItems, user }: NavbarProps) {
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
-  function handleLogout() {
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    setUserMenuOpen(false);
-    router.replace("/");
-  }
+  const handleLogout = async () => {
+    await fetch('/api/logout', { method: 'POST' });
+    router.replace('/');
+  };
 
   /* Cerrar menú mobile al hacer click fuera */
   useEffect(() => {

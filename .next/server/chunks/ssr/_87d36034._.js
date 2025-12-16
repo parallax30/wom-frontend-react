@@ -241,14 +241,14 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$contexts$2f$auth$2f$u
 const metadata = {
     title: {
         template: '',
-        default: 'Ncmaz - Blog, News, Magazine template'
+        default: 'Wom - Investor Portal'
     },
-    description: 'Ncmaz - Blog, News, Magazine template',
+    description: 'Wom - Investor Portal',
     keywords: [
-        'Ncmaz',
-        'Blog',
-        'News',
-        'Magazine'
+        'Wom',
+        'Inverstor',
+        'Portal',
+        'News'
     ]
 };
 function RootLayout({ children }) {

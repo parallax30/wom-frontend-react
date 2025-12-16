@@ -38,13 +38,14 @@ export interface DateBarProps {
 // ---------------------
 export interface ReportItem {
   id: string;
-  title: string;
+  homeFinancialCardTitle: string;
   icon: string;         // ruta al icono de assets
-  downloadUrl: string;
+  homeFinancialCardLinkText: string;
+  homeFinancialCardLinkUrl: string;
 }
 
 export interface QuarterlyResultsProps {
-  quarter: string;      // Ej: "Q3-2025"
+  quarter: string;      // Ej: Q3-2025
   reports: ReportItem[];
 }
 
@@ -56,6 +57,7 @@ export interface NewsItem {
   title: string;
   icon: string;
   summary: string;
+  url: string;
 }
 
 export interface LatestNewsProps {
@@ -70,6 +72,9 @@ export interface EventItem {
   title: string;
   date: string;
   description: string;
+  summary: string;
+  linkText: string;
+  url: string;
 }
 
 export interface UpcomingEventsProps {
@@ -135,14 +140,32 @@ export interface FooterProps {
 // ---------------------
 export interface HomePageData {
   menu: MenuItem[];
+  homeTitle1: string;
+  homeTitle2: string;
+  homeTitle3: string;
+  homeTitle4: string;
+  homeTItle1TextButton: string;
+  homeTItle1LinkUrlButton: string;
+  homeTItle2TextlButton: string;
+  homeTItle2LinkUrlButton: string;
+  homeTItle3TextlButton: string;
+  homeTItle3LinkUrlButton: string;
   user: UserInfo;
-  heroImage: string;
+  homePrincipalImage: string;
   today: string;
-  quarter: string;
-  reports: ReportItem[];
-  news: NewsItem[];
-  events: EventItem[];
-  documents: BondDocument[];
+  quarter: string; // es home_financial_cards en la API
+  reports?: ReportItem[];
+  news?: NewsItem[];
+  events?: EventItem[];
+  documents?: BondDocument[];
+  contact?: ContactInfo;
+}
+
+
+export interface CommonPageData {
+  menu: MenuItem[];
+  user: UserInfo;
+  today: string;
   contact: ContactInfo;
 }
 

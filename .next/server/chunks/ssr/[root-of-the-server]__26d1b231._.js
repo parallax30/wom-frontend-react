@@ -186,12 +186,12 @@ function Navbar({ menuItems, user }) {
     const [userMenuOpen, setUserMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const mobileMenuRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
-    function handleLogout() {
-        localStorage.removeItem("token");
-        sessionStorage.removeItem("token");
-        setUserMenuOpen(false);
-        router.replace("/");
-    }
+    const handleLogout = async ()=>{
+        await fetch('/api/logout', {
+            method: 'POST'
+        });
+        router.replace('/');
+    };
     /* Cerrar menú mobile al hacer click fuera */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const handler = (e)=>{
             if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
@@ -213,12 +213,12 @@ function Navbar({ menuItems, user }) {
                     className: "h-36 w-auto pointer-events-none select-none"
                 }, void 0, false, {
                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                    lineNumber: 47,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 46,
+                lineNumber: 44,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -257,18 +257,18 @@ function Navbar({ menuItems, user }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                            lineNumber: 80,
+                                                            lineNumber: 78,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 79,
+                                                        lineNumber: 77,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 71,
+                                                lineNumber: 69,
                                                 columnNumber: 21
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                 href: item.href ?? "#",
@@ -278,7 +278,7 @@ function Navbar({ menuItems, user }) {
                                                 children: item.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 87,
                                                 columnNumber: 21
                                             }, this),
                                             hasSubmenu && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -289,24 +289,24 @@ function Navbar({ menuItems, user }) {
                                                         children: s.label
                                                     }, s.href, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 102,
+                                                        lineNumber: 100,
                                                         columnNumber: 25
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 100,
+                                                lineNumber: 98,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, item.label, true, {
                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 63,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 58,
+                                lineNumber: 56,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -315,18 +315,18 @@ function Navbar({ menuItems, user }) {
                                     onToggle: ()=>setMobileMenuOpen((prev)=>!prev)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 119,
+                                    lineNumber: 117,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 118,
+                                lineNumber: 116,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 55,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -338,7 +338,7 @@ function Navbar({ menuItems, user }) {
                                 children: "Contact Us"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 127,
+                                lineNumber: 125,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -350,12 +350,12 @@ function Navbar({ menuItems, user }) {
                                     className: "h-10 w-10 rounded-full border border-gray-300 object-cover cursor-pointer"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 133,
+                                    lineNumber: 131,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 129,
+                                lineNumber: 127,
                                 columnNumber: 11
                             }, this),
                             userMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$navbar$2f$UserMenu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -364,13 +364,13 @@ function Navbar({ menuItems, user }) {
                                 onClose: ()=>setUserMenuOpen(false)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 141,
+                                lineNumber: 139,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 126,
+                        lineNumber: 124,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -409,18 +409,18 @@ function Navbar({ menuItems, user }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                            lineNumber: 179,
+                                                            lineNumber: 177,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 178,
+                                                        lineNumber: 176,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 166,
+                                                lineNumber: 164,
                                                 columnNumber: 19
                                             }, this),
                                             hasSubmenu && isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -431,18 +431,18 @@ function Navbar({ menuItems, user }) {
                                                         children: s.label
                                                     }, s.href, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 192,
+                                                        lineNumber: 190,
                                                         columnNumber: 25
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 190,
+                                                lineNumber: 188,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, item.label, true, {
                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                        lineNumber: 165,
+                                        lineNumber: 163,
                                         columnNumber: 17
                                     }, this);
                                 }),
@@ -454,7 +454,7 @@ function Navbar({ menuItems, user }) {
                                             className: "h-10 w-10 rounded-full border"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                            lineNumber: 208,
+                                            lineNumber: 206,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -464,7 +464,7 @@ function Navbar({ menuItems, user }) {
                                                     children: user.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                    lineNumber: 214,
+                                                    lineNumber: 212,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -472,19 +472,19 @@ function Navbar({ menuItems, user }) {
                                                     children: user.role
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                    lineNumber: 215,
+                                                    lineNumber: 213,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                            lineNumber: 213,
+                                            lineNumber: 211,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 207,
+                                    lineNumber: 205,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -493,30 +493,30 @@ function Navbar({ menuItems, user }) {
                                     children: "Logout"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 220,
+                                    lineNumber: 218,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                            lineNumber: 157,
+                            lineNumber: 155,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 150,
+                        lineNumber: 148,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 54,
+                lineNumber: 52,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Home/Navbar.tsx",
-        lineNumber: 44,
+        lineNumber: 42,
         columnNumber: 5
     }, this);
 }
@@ -537,17 +537,17 @@ function Navbar({ menuItems, user }) {
                 strokeLinecap: "round"
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 242,
+                lineNumber: 240,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/Home/Navbar.tsx",
-            lineNumber: 241,
+            lineNumber: 239,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Home/Navbar.tsx",
-        lineNumber: 236,
+        lineNumber: 234,
         columnNumber: 5
     }, this);
 }

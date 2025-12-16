@@ -5,6 +5,8 @@ import { FiDownload } from "react-icons/fi";
 import { FinancialReportsProps, ReportItem } from "@/types/financial.types";
 
 export function FinancialReports({ data }: FinancialReportsProps) {
+
+
   const years = Object.keys(data).sort((a, b) => Number(b) - Number(a));
 
   const [selectedYear, setSelectedYear] = useState(years[0]);

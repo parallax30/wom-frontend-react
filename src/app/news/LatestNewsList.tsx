@@ -6,13 +6,14 @@ import { LatestNewsItem } from "@/types/news.types"
 
 interface LatestNewsListProps {
   news: LatestNewsItem[];
+  titleLatest: string
 }
 
-export function LatestNewsList({ news }: LatestNewsListProps) {
+export function LatestNewsList({ news, titleLatest }: LatestNewsListProps) {
   return (
     <section className="mt-12 w-full flex flex-col items-center">
         <div className="w-[80%] mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Latest News</h2>
+            <h2 className="text-3xl font-bold mb-4">{titleLatest}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {news.map((n) => (
@@ -40,7 +41,7 @@ export function LatestNewsList({ news }: LatestNewsListProps) {
                         className="flex items-center gap-3 bg-[#E6007E] text-white px-10 py-4 rounded-2xl font-semibold text-lg shadow hover:bg-pink-700 transition"
                     >
                         <FiFileText size={28} color="white" />
-                        VIEW
+                        {n.linkText}
                     </a>
                     </div>
                 </div>

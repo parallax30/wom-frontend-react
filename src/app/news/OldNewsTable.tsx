@@ -7,18 +7,21 @@ import { FiDownload, FiEye } from "react-icons/fi";
 
 export interface OldNewsItem {
   id: string;
-  monthYear: string;
-  documentName: string;
-  url: string;
+  date: string;
+  title: string;
+  viewUrl?: string;
+  downloadUrl: string;
 }
 
 interface Props {
   items: OldNewsItem[];
+  titleArchive: string;
 }
 
-export function OldNewsTable({ items }: Props) {
+export function OldNewsTable({ items, titleArchive }: Props) {
+  type SortField = "date" | "title";
   const [selected, setSelected] = useState<string[]>([]);
-  const [sortField, setSortField] = useState<"monthYear" | "documentName" | null>(null);
+  const [sortField, setSortField] = useState<SortField | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [loadingZip, setLoadingZip] = useState(false);
 
@@ -36,7 +39,7 @@ export function OldNewsTable({ items }: Props) {
     }
   };
 
-  const sortData = (field: "monthYear" | "documentName") => {
+  const sortData = (field:  "date" | "title") => {
     if (sortField === field) {
       setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
     } else {
@@ -63,12 +66,12 @@ export function OldNewsTable({ items }: Props) {
       const item = items.find((x) => x.id === id);
       if (!item) continue;
 
-      const response = await fetch(item.url);
+      const response = await fetch(item.downloadUrl);
       const blob = await response.blob();
 
-      const extension = item.url.split(".").pop() || "file";
+      const extension = item.downloadUrl.split(".").pop() || "file";
 
-      zip.file(`${item.documentName}.${extension}`, blob);
+      zip.file(`${item.title}.${extension}`, blob);
     }
 
     const content = await zip.generateAsync({ type: "blob" });
@@ -80,7 +83,7 @@ export function OldNewsTable({ items }: Props) {
   return (
     <section className="mt-12 w-full flex flex-col items-center">
       <div className="w-[80%] mb-10">
-        <h2 className="text-3xl font-bold mb-6">Old News</h2>
+        <h2 className="text-3xl font-bold mb-6">{titleArchive}</h2>
 
         {/* Select all */}
         <div className="flex items-center gap-3 mb-4">
@@ -121,21 +124,21 @@ export function OldNewsTable({ items }: Props) {
 
                 <th
                   className="p-4 border border-purple-900 cursor-pointer"
-                  onClick={() => sortData("monthYear")}
+                  onClick={() => sortData("date")}
                 >
                   Month/Year
                   <span className="ml-2">
-                    {sortField === "monthYear" ? (sortDirection === "asc" ? "↑" : "↓") : "↕"}
+                    {sortField === "date" ? (sortDirection === "asc" ? "↑" : "↓") : "↕"}
                   </span>
                 </th>
 
                 <th
                   className="p-4 border border-purple-900 cursor-pointer"
-                  onClick={() => sortData("documentName")}
+                  onClick={() => sortData("title")}
                 >
                   Document Name
                   <span className="ml-2">
-                    {sortField === "documentName" ? (sortDirection === "asc" ? "↑" : "↓") : "↕"}
+                    {sortField === "title" ? (sortDirection === "asc" ? "↑" : "↓") : "↕"}
                   </span>
                 </th>
 
@@ -158,17 +161,17 @@ export function OldNewsTable({ items }: Props) {
                     />
                   </td>
 
-                  <td className="p-4 border border-purple-900">{item.monthYear}</td>
+                  <td className="p-4 border border-purple-900">{item.date}</td>
 
-                  <td className="p-4 border border-purple-900">{item.documentName}</td>
+                  <td className="p-4 border border-purple-900">{item.title}</td>
 
                   <td className="p-4 border border-purple-900 text-center">
                     <div className="flex justify-center gap-6">
-                      <button onClick={() => window.open(item.url, "_blank")}>
+                      <button onClick={() => window.open(item.downloadUrl, "_blank")}>
                         <FiDownload size={24} className="text-purple-900 hover:text-purple-600" />
                       </button>
 
-                      <button onClick={() => window.open(item.url, "_blank")}>
+                      <button onClick={() => window.open(item.downloadUrl, "_blank")}>
                         <FiEye size={24} className="text-purple-900 hover:text-purple-600" />
                       </button>
                     </div>
