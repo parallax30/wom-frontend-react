@@ -3,8 +3,9 @@
     chunks: [
   "static/chunks/node_modules_react-icons_fa_index_mjs_d2e2d7f5._.js",
   "static/chunks/node_modules_react-icons_lib_74ccc930._.js",
-  "static/chunks/node_modules_next_navigation_ff30cc2f.js",
-  "static/chunks/src_210b42ef._.js"
+  "static/chunks/node_modules_axios_lib_99999129._.js",
+  "static/chunks/node_modules_next_15c596e9._.js",
+  "static/chunks/src_f6fcea30._.js"
 ],
     source: "dynamic"
 });

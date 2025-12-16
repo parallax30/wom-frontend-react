@@ -186,12 +186,12 @@ function Navbar({ menuItems, user }) {
     const [userMenuOpen, setUserMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const mobileMenuRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
-    function handleLogout() {
-        localStorage.removeItem("token");
-        sessionStorage.removeItem("token");
-        setUserMenuOpen(false);
-        router.replace("/");
-    }
+    const handleLogout = async ()=>{
+        await fetch('/api/logout', {
+            method: 'POST'
+        });
+        router.replace('/');
+    };
     /* Cerrar menú mobile al hacer click fuera */ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const handler = (e)=>{
             if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
@@ -213,12 +213,12 @@ function Navbar({ menuItems, user }) {
                     className: "h-36 w-auto pointer-events-none select-none"
                 }, void 0, false, {
                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                    lineNumber: 47,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 46,
+                lineNumber: 44,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -257,18 +257,18 @@ function Navbar({ menuItems, user }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                            lineNumber: 80,
+                                                            lineNumber: 78,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 79,
+                                                        lineNumber: 77,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 71,
+                                                lineNumber: 69,
                                                 columnNumber: 21
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                 href: item.href ?? "#",
@@ -278,7 +278,7 @@ function Navbar({ menuItems, user }) {
                                                 children: item.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 87,
                                                 columnNumber: 21
                                             }, this),
                                             hasSubmenu && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -289,24 +289,24 @@ function Navbar({ menuItems, user }) {
                                                         children: s.label
                                                     }, s.href, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 102,
+                                                        lineNumber: 100,
                                                         columnNumber: 25
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 100,
+                                                lineNumber: 98,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, item.label, true, {
                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 63,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 58,
+                                lineNumber: 56,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -315,18 +315,18 @@ function Navbar({ menuItems, user }) {
                                     onToggle: ()=>setMobileMenuOpen((prev)=>!prev)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 119,
+                                    lineNumber: 117,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 118,
+                                lineNumber: 116,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 55,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -338,7 +338,7 @@ function Navbar({ menuItems, user }) {
                                 children: "Contact Us"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 127,
+                                lineNumber: 125,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -350,12 +350,12 @@ function Navbar({ menuItems, user }) {
                                     className: "h-10 w-10 rounded-full border border-gray-300 object-cover cursor-pointer"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 133,
+                                    lineNumber: 131,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 129,
+                                lineNumber: 127,
                                 columnNumber: 11
                             }, this),
                             userMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$navbar$2f$UserMenu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -364,13 +364,13 @@ function Navbar({ menuItems, user }) {
                                 onClose: ()=>setUserMenuOpen(false)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 141,
+                                lineNumber: 139,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 126,
+                        lineNumber: 124,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -409,18 +409,18 @@ function Navbar({ menuItems, user }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                            lineNumber: 179,
+                                                            lineNumber: 177,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 178,
+                                                        lineNumber: 176,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 166,
+                                                lineNumber: 164,
                                                 columnNumber: 19
                                             }, this),
                                             hasSubmenu && isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -431,18 +431,18 @@ function Navbar({ menuItems, user }) {
                                                         children: s.label
                                                     }, s.href, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 192,
+                                                        lineNumber: 190,
                                                         columnNumber: 25
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 190,
+                                                lineNumber: 188,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, item.label, true, {
                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                        lineNumber: 165,
+                                        lineNumber: 163,
                                         columnNumber: 17
                                     }, this);
                                 }),
@@ -454,7 +454,7 @@ function Navbar({ menuItems, user }) {
                                             className: "h-10 w-10 rounded-full border"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                            lineNumber: 208,
+                                            lineNumber: 206,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -464,7 +464,7 @@ function Navbar({ menuItems, user }) {
                                                     children: user.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                    lineNumber: 214,
+                                                    lineNumber: 212,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -472,19 +472,19 @@ function Navbar({ menuItems, user }) {
                                                     children: user.role
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                    lineNumber: 215,
+                                                    lineNumber: 213,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                            lineNumber: 213,
+                                            lineNumber: 211,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 207,
+                                    lineNumber: 205,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -493,30 +493,30 @@ function Navbar({ menuItems, user }) {
                                     children: "Logout"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 220,
+                                    lineNumber: 218,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                            lineNumber: 157,
+                            lineNumber: 155,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 150,
+                        lineNumber: 148,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 54,
+                lineNumber: 52,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Home/Navbar.tsx",
-        lineNumber: 44,
+        lineNumber: 42,
         columnNumber: 5
     }, this);
 }
@@ -537,17 +537,17 @@ function Navbar({ menuItems, user }) {
                 strokeLinecap: "round"
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 242,
+                lineNumber: 240,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/Home/Navbar.tsx",
-            lineNumber: 241,
+            lineNumber: 239,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Home/Navbar.tsx",
-        lineNumber: 236,
+        lineNumber: 234,
         columnNumber: 5
     }, this);
 }
@@ -565,7 +565,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 "use client";
 ;
 ;
-function LatestNewsList({ news }) {
+function LatestNewsList({ news, titleLatest }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "mt-12 w-full flex flex-col items-center",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -573,10 +573,10 @@ function LatestNewsList({ news }) {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                     className: "text-3xl font-bold mb-4",
-                    children: "Latest News"
+                    children: titleLatest
                 }, void 0, false, {
                     fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                    lineNumber: 15,
+                    lineNumber: 16,
                     columnNumber: 13
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -591,12 +591,12 @@ function LatestNewsList({ news }) {
                                         color: "#350A63"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                                        lineNumber: 24,
+                                        lineNumber: 25,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                                    lineNumber: 23,
+                                    lineNumber: 24,
                                     columnNumber: 21
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -604,7 +604,7 @@ function LatestNewsList({ news }) {
                                     children: n.title
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                                    lineNumber: 27,
+                                    lineNumber: 28,
                                     columnNumber: 21
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -612,7 +612,7 @@ function LatestNewsList({ news }) {
                                     children: n.summary
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                                    lineNumber: 31,
+                                    lineNumber: 32,
                                     columnNumber: 21
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -628,41 +628,41 @@ function LatestNewsList({ news }) {
                                                 color: "white"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                                                lineNumber: 42,
+                                                lineNumber: 43,
                                                 columnNumber: 25
                                             }, this),
-                                            "VIEW"
+                                            n.linkText
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                                        lineNumber: 36,
+                                        lineNumber: 37,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                                    lineNumber: 35,
+                                    lineNumber: 36,
                                     columnNumber: 21
                                 }, this)
                             ]
                         }, n.id, true, {
                             fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                            lineNumber: 19,
+                            lineNumber: 20,
                             columnNumber: 17
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/app/news/LatestNewsList.tsx",
-                    lineNumber: 17,
+                    lineNumber: 18,
                     columnNumber: 13
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/news/LatestNewsList.tsx",
-            lineNumber: 14,
+            lineNumber: 15,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/news/LatestNewsList.tsx",
-        lineNumber: 13,
+        lineNumber: 14,
         columnNumber: 5
     }, this);
 }
@@ -718,7 +718,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$ico
 ;
 ;
 ;
-function OldNewsTable({ items }) {
+function OldNewsTable({ items, titleArchive }) {
     const [selected, setSelected] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [sortField, setSortField] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [sortDirection, setSortDirection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("asc");
@@ -759,10 +759,10 @@ function OldNewsTable({ items }) {
         for (const id of selected){
             const item = items.find((x)=>x.id === id);
             if (!item) continue;
-            const response = await fetch(item.url);
+            const response = await fetch(item.downloadUrl);
             const blob = await response.blob();
-            const extension = item.url.split(".").pop() || "file";
-            zip.file(`${item.documentName}.${extension}`, blob);
+            const extension = item.downloadUrl.split(".").pop() || "file";
+            zip.file(`${item.title}.${extension}`, blob);
         }
         const content = await zip.generateAsync({
             type: "blob"
@@ -777,10 +777,10 @@ function OldNewsTable({ items }) {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                     className: "text-3xl font-bold mb-6",
-                    children: "Old News"
+                    children: titleArchive
                 }, void 0, false, {
                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                    lineNumber: 83,
+                    lineNumber: 86,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -793,7 +793,7 @@ function OldNewsTable({ items }) {
                             className: "w-5 h-5 cursor-pointer"
                         }, void 0, false, {
                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                            lineNumber: 87,
+                            lineNumber: 90,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -801,13 +801,13 @@ function OldNewsTable({ items }) {
                             children: "Select All"
                         }, void 0, false, {
                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                            lineNumber: 93,
+                            lineNumber: 96,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                    lineNumber: 86,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -824,19 +824,19 @@ function OldNewsTable({ items }) {
                                 size: 22
                             }, void 0, false, {
                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                lineNumber: 110,
+                                lineNumber: 113,
                                 columnNumber: 13
                             }, this),
                             loadingZip ? "GENERATING ZIP..." : "DOWNLOAD SELECTED"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                        lineNumber: 98,
+                        lineNumber: 101,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                    lineNumber: 97,
+                    lineNumber: 100,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -853,45 +853,45 @@ function OldNewsTable({ items }) {
                                             children: "Select"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                            lineNumber: 120,
+                                            lineNumber: 123,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                             className: "p-4 border border-purple-900 cursor-pointer",
-                                            onClick: ()=>sortData("monthYear"),
+                                            onClick: ()=>sortData("date"),
                                             children: [
                                                 "Month/Year",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "ml-2",
-                                                    children: sortField === "monthYear" ? sortDirection === "asc" ? "↑" : "↓" : "↕"
+                                                    children: sortField === "date" ? sortDirection === "asc" ? "↑" : "↓" : "↕"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                    lineNumber: 127,
+                                                    lineNumber: 130,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 125,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                             className: "p-4 border border-purple-900 cursor-pointer",
-                                            onClick: ()=>sortData("documentName"),
+                                            onClick: ()=>sortData("title"),
                                             children: [
                                                 "Document Name",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "ml-2",
-                                                    children: sortField === "documentName" ? sortDirection === "asc" ? "↑" : "↓" : "↕"
+                                                    children: sortField === "title" ? sortDirection === "asc" ? "↑" : "↓" : "↕"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                    lineNumber: 137,
+                                                    lineNumber: 140,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                            lineNumber: 132,
+                                            lineNumber: 135,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -899,18 +899,18 @@ function OldNewsTable({ items }) {
                                             children: "Actions"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 145,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                    lineNumber: 119,
+                                    lineNumber: 122,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                lineNumber: 118,
+                                lineNumber: 121,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -926,28 +926,28 @@ function OldNewsTable({ items }) {
                                                     className: "w-5 h-5 cursor-pointer"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 156,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                lineNumber: 152,
+                                                lineNumber: 155,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                 className: "p-4 border border-purple-900",
-                                                children: item.monthYear
+                                                children: item.date
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                lineNumber: 161,
+                                                lineNumber: 164,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                 className: "p-4 border border-purple-900",
-                                                children: item.documentName
+                                                children: item.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                lineNumber: 163,
+                                                lineNumber: 166,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -956,77 +956,77 @@ function OldNewsTable({ items }) {
                                                     className: "flex justify-center gap-6",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            onClick: ()=>window.open(item.url, "_blank"),
+                                                            onClick: ()=>window.open(item.downloadUrl, "_blank"),
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FiDownload"], {
                                                                 size: 24,
                                                                 className: "text-purple-900 hover:text-purple-600"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                                lineNumber: 168,
+                                                                lineNumber: 171,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                            lineNumber: 167,
+                                                            lineNumber: 170,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            onClick: ()=>window.open(item.url, "_blank"),
+                                                            onClick: ()=>window.open(item.downloadUrl, "_blank"),
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FiEye"], {
                                                                 size: 24,
                                                                 className: "text-purple-900 hover:text-purple-600"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                                lineNumber: 172,
+                                                                lineNumber: 175,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                            lineNumber: 171,
+                                                            lineNumber: 174,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 169,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                                lineNumber: 165,
+                                                lineNumber: 168,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, item.id, true, {
                                         fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 151,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                                lineNumber: 146,
+                                lineNumber: 149,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                        lineNumber: 117,
+                        lineNumber: 120,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/news/OldNewsTable.tsx",
-                    lineNumber: 116,
+                    lineNumber: 119,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/app/news/OldNewsTable.tsx",
-            lineNumber: 82,
+            lineNumber: 85,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/news/OldNewsTable.tsx",
-        lineNumber: 81,
+        lineNumber: 84,
         columnNumber: 5
     }, this);
 }

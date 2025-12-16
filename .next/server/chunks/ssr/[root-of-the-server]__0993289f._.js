@@ -449,9 +449,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js
 const getGlobal = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/global?populate=*`, {
         params
     });
-const getHome = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/home?populate=*`, {
-        params
-    });
+const getHome = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/home?fields=homeTitle1,homeTitle2,homeTitle3,homeTitle4,homeTItle1TextButton,homeTItle1LinkUrlButton,homeTItle2TextlButton,homeTItle2LinkUrlButton,homeTItle3TextlButton,homeTItle3LinkUrlButton&populate[homePrincipalImage][fields][0]=url&populate[home_financial_cards][fields][0]=homeFinancialCardTitle&populate[home_financial_cards][fields][1]=homeFinancialCardLinkText&populate[home_financial_cards][fields][2]=homeFinancialCardLinkUrl&populate[home_news_cards][fields][0]=homeNewsCardTitle&populate[home_news_cards][fields][1]=omeNewsCardSummary&populate[home_event_infos][fields][0]=homeEventInfoTitle&populate[home_event_infos][fields][1]=homeEventInfoDate&populate[home_event_infos][fields][2]=homeEventInfoSummary&populate[home_event_infos][fields][3]=homeEventInfoLinkText&populate[home_event_infos][fields][4]=homeEventInfoLinkUrl&populate[home_bond_documents][fields][0]=homeBondDocumentName&populate[home_bond_documents][fields][1]=homeBondDocumentDate&populate[home_bond_documents][fields][2]=homeBondDocumentSummary&populate[home_bond_documents][fields][3]=homeBondDocumentLinkText&populate[home_bond_documents][fields][4]=homeBondDocumentLinkUrl`, {});
 const getNewsPage = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/news-page?populate=*`, {
         params
     });
@@ -471,7 +469,7 @@ const getViewImage = ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$
 const getGobernanceCollectionCardBoard = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/gobernance-collection-cards?populate=*`, {
         params
     });
-const getGobernanceCollectionCardManagement = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/gobernance-collection-card-managements?populate=*`, {
+const getGobernanceCollectionCardManagement = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/gobernance-collection-card-managements?fields[0]=gobernanceManagmentName&fields[1]=gobernanceManagmentPosition&fields[2]=gobernanceManagmentBiography&populate[gobernanceManagmentImage][fields][0]=url`, {
         params
     });
 const getGobernance = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].get(`/gobernance?populate=*`, {

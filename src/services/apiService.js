@@ -7,7 +7,7 @@ export const getGlobal = (params) =>
 
 // Home
 export const getHome = (params) =>
-  api.get(`/home?populate=*`, { params });
+  api.get(`/home?fields=homeTitle1,homeTitle2,homeTitle3,homeTitle4,homeTItle1TextButton,homeTItle1LinkUrlButton,homeTItle2TextlButton,homeTItle2LinkUrlButton,homeTItle3TextlButton,homeTItle3LinkUrlButton&populate[homePrincipalImage][fields][0]=url&populate[home_financial_cards][fields][0]=homeFinancialCardTitle&populate[home_financial_cards][fields][1]=homeFinancialCardLinkText&populate[home_financial_cards][fields][2]=homeFinancialCardLinkUrl&populate[home_news_cards][fields][0]=homeNewsCardTitle&populate[home_news_cards][fields][1]=omeNewsCardSummary&populate[home_event_infos][fields][0]=homeEventInfoTitle&populate[home_event_infos][fields][1]=homeEventInfoDate&populate[home_event_infos][fields][2]=homeEventInfoSummary&populate[home_event_infos][fields][3]=homeEventInfoLinkText&populate[home_event_infos][fields][4]=homeEventInfoLinkUrl&populate[home_bond_documents][fields][0]=homeBondDocumentName&populate[home_bond_documents][fields][1]=homeBondDocumentDate&populate[home_bond_documents][fields][2]=homeBondDocumentSummary&populate[home_bond_documents][fields][3]=homeBondDocumentLinkText&populate[home_bond_documents][fields][4]=homeBondDocumentLinkUrl`, { });
 
 // News
 export const getNewsPage = (params) =>
@@ -37,7 +37,7 @@ export const getGobernanceCollectionCardBoard = (params) =>
   api.get(`/gobernance-collection-cards?populate=*`, { params });
 
 export const getGobernanceCollectionCardManagement = (params) =>
-  api.get(`/gobernance-collection-card-managements?populate=*`, { params });
+  api.get(`/gobernance-collection-card-managements?fields[0]=gobernanceManagmentName&fields[1]=gobernanceManagmentPosition&fields[2]=gobernanceManagmentBiography&populate[gobernanceManagmentImage][fields][0]=url`, { params });
 
 export const getGobernance = (params) =>
   api.get(`/gobernance?populate=*`, { params });
@@ -81,4 +81,13 @@ export const getCalendarCollectionPastEvent = (params) =>
 
 export const getCalendarCollectionUpcomingEvent = (params) =>
   api.get(`/calendar-past-events?populate=*`, { params });
+
+
+// Auth - Register
+export const registerUser = (payload) =>
+  api.post("/auth/local/register", payload);
+
+// Get users
+export const getUsers = (payload) =>
+  api.get("/users", payload);
 

@@ -570,6 +570,7 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 __turbopack_context__.s({
     "default": (()=>UserAdmin)
 });
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-icons/fa/index.mjs [app-client] (ecmascript)");
@@ -578,58 +579,62 @@ var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
-const mockUsers = [
-    {
-        id: 1,
-        name: "Giacomo Gullizzoni",
-        email: "ggullizzoni@gmail.com",
-        status: "Activo"
-    },
-    {
-        id: 2,
-        name: "Marco Botton",
-        email: "mbotton@gmail.com",
-        status: "Pendiente Autorización"
-    },
-    {
-        id: 3,
-        name: "Mariah Maclachlan",
-        email: "mmaclachlan@gmail.com",
-        status: "Pendiente Validación"
-    },
-    {
-        id: 4,
-        name: "Valerie Liberty",
-        email: "vliberty@gmail.com",
-        status: "Desactivado"
-    }
-];
+/* =====================
+   CONFIGURACIÓN
+===================== */ const STRAPI_URL = ("TURBOPACK compile-time value", "http://34.69.55.168:1337");
+const STRAPI_TOKEN = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.REACT_APP_API_TOKEN;
+/* =====================
+   HELPERS
+===================== */ const mapStatus = (user)=>{
+    if (user.blocked) return "Desactivado";
+    if (!user.confirmed) return "Pendiente Validación";
+    return "Activo";
+};
 function UserAdmin() {
     _s();
     const [users, setUsers] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    // Modal state
+    // Modal
     const [modalOpen, setModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedAction, setSelectedAction] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    // Sorting state
+    // Sorting
     const [sortColumn, setSortColumn] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [sortDirection, setSortDirection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("asc");
-    // ---- Fetch inicial ----
+    /* =====================
+     FETCH USERS
+  ===================== */ const fetchUsers = async ()=>{
+        try {
+            setLoading(true);
+            const res = await fetch(`${STRAPI_URL}/api/users`, {
+                headers: {
+                    Authorization: `Bearer ${STRAPI_TOKEN}`
+                }
+            });
+            if (!res.ok) {
+                throw new Error("Error fetching users from Strapi: " + res.statusText);
+            }
+            const data = await res.json();
+            const mapped = data.map((u)=>({
+                    id: u.id,
+                    name: `${u.name ?? ""} ${u.lastName ?? ""}`.trim(),
+                    email: u.email,
+                    status: mapStatus(u)
+                }));
+            setUsers(mapped);
+        } catch (err) {
+            console.error(err);
+        } finally{
+            setLoading(false);
+        }
+    };
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "UserAdmin.useEffect": ()=>{
-            fetch("/api/users").then({
-                "UserAdmin.useEffect": (r)=>r.json()
-            }["UserAdmin.useEffect"]).then({
-                "UserAdmin.useEffect": (data)=>setUsers(data)
-            }["UserAdmin.useEffect"]).finally({
-                "UserAdmin.useEffect": ()=>setLoading(false)
-            }["UserAdmin.useEffect"]);
-            // TEMPORAL: mock hasta que tengas el API funcionando
-            setUsers(mockUsers);
+            fetchUsers();
         }
     }["UserAdmin.useEffect"], []);
-    // ---- Ordenamiento ----
-    const handleSort = (column)=>{
+    /* =====================
+     SORTING
+  ===================== */ const handleSort = (column)=>{
         if (column === "actions") return;
         if (sortColumn === column) {
             setSortDirection(sortDirection === "asc" ? "desc" : "asc");
@@ -648,8 +653,9 @@ function UserAdmin() {
         if (aVal > bVal) return sortDirection === "asc" ? 1 : -1;
         return 0;
     });
-    // ---- Acciones CRUD ----
-    const confirmAction = (id, type)=>{
+    /* =====================
+     ACTIONS
+  ===================== */ const confirmAction = (id, type)=>{
         setSelectedAction({
             id,
             type
@@ -659,22 +665,37 @@ function UserAdmin() {
     const executeConfirmedAction = async ()=>{
         if (!selectedAction) return;
         const { id, type } = selectedAction;
-        if (type === "delete") {
-            await fetch(`/api/users/${id}`, {
-                method: "DELETE"
-            });
-        } else {
-            await fetch(`/api/users/${id}/${type}`, {
-                method: "PUT"
-            });
+        try {
+            if (type === "delete") {
+                await fetch(`${STRAPI_URL}/api/users/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${STRAPI_TOKEN}`
+                    }
+                });
+            } else {
+                // approve / block → helper API
+                await fetch(`${__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_HELPER_API_URL}/email/${type}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        userId: id
+                    })
+                });
+            }
+            await fetchUsers();
+        } catch (err) {
+            console.error(err);
+        } finally{
+            setModalOpen(false);
+            setSelectedAction(null);
         }
-        const refreshed = await fetch("/api/users").then((r)=>r.json());
-        setUsers(refreshed);
-        setModalOpen(false);
-        setSelectedAction(null);
     };
-    // ---- Colores de estado ----
-    const getColorLabel = (status)=>{
+    /* =====================
+     UI HELPERS
+  ===================== */ const getColorLabel = (status)=>{
         switch(status){
             case "Activo":
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -682,26 +703,17 @@ function UserAdmin() {
                     children: "Activo"
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 97,
-                    columnNumber: 16
-                }, this);
-            case "Pendiente Autorización":
-                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                    className: "text-yellow-500 text-xs font-bold",
-                    children: "Pendiente Autorización"
-                }, void 0, false, {
-                    fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 99,
+                    lineNumber: 178,
                     columnNumber: 16
                 }, this);
             case "Pendiente Validación":
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                    className: "text-green-600 text-xs font-bold",
+                    className: "text-yellow-500 text-xs font-bold",
                     children: "Pendiente Validación"
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 101,
-                    columnNumber: 16
+                    lineNumber: 181,
+                    columnNumber: 11
                 }, this);
             case "Desactivado":
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -709,20 +721,24 @@ function UserAdmin() {
                     children: "Desactivado"
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 103,
+                    lineNumber: 186,
                     columnNumber: 16
                 }, this);
         }
     };
-    if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-        className: "text-center py-10",
-        children: "Loading..."
-    }, void 0, false, {
-        fileName: "[project]/src/app/admin/UserAdmin.tsx",
-        lineNumber: 107,
-        columnNumber: 23
-    }, this);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+    if (loading) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            className: "text-center py-10",
+            children: "Loading..."
+        }, void 0, false, {
+            fileName: "[project]/src/app/admin/UserAdmin.tsx",
+            lineNumber: 191,
+            columnNumber: 12
+        }, this);
+    }
+    /* =====================
+     RENDER
+  ===================== */ return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "w-full px-6 py-10 mt-20",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -733,7 +749,7 @@ function UserAdmin() {
                         children: "User Administration"
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                        lineNumber: 113,
+                        lineNumber: 201,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -755,14 +771,14 @@ function UserAdmin() {
                                             },
                                             {
                                                 key: "status",
-                                                label: "Slate"
+                                                label: "State"
                                             },
                                             {
                                                 key: "actions",
                                                 label: "Actions"
                                             }
                                         ].map((col)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                                className: `py-3 px-4 select-none ${col.key !== "actions" ? "cursor-pointer" : ""}`,
+                                                className: `py-3 px-4 ${col.key !== "actions" ? "cursor-pointer" : ""}`,
                                                 onClick: ()=>handleSort(col.key),
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-center gap-1",
@@ -772,28 +788,28 @@ function UserAdmin() {
                                                             children: sortDirection === "asc" ? "▲" : "▼"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                            lineNumber: 136,
+                                                            lineNumber: 225,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 133,
+                                                    lineNumber: 222,
                                                     columnNumber: 21
                                                 }, this)
                                             }, col.key, false, {
                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 215,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                        lineNumber: 118,
+                                        lineNumber: 208,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 117,
+                                    lineNumber: 207,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -805,7 +821,7 @@ function UserAdmin() {
                                                     children: u.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 239,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -813,7 +829,7 @@ function UserAdmin() {
                                                     children: u.email
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 149,
+                                                    lineNumber: 240,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -821,7 +837,7 @@ function UserAdmin() {
                                                     children: getColorLabel(u.status)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 150,
+                                                    lineNumber: 241,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -831,122 +847,121 @@ function UserAdmin() {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                 onClick: ()=>confirmAction(u.id, "approve"),
-                                                                className: "text-gray-700 hover:text-green-600",
+                                                                className: "hover:text-green-600",
                                                                 title: "Approve",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaCheckSquare"], {
-                                                                    size: 22
+                                                                    size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                    lineNumber: 160,
+                                                                    lineNumber: 250,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                lineNumber: 155,
+                                                                lineNumber: 245,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                 onClick: ()=>confirmAction(u.id, "block"),
-                                                                className: "text-gray-700 hover:text-yellow-600",
+                                                                className: "hover:text-yellow-600",
                                                                 title: "Block",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaBan"], {
-                                                                    size: 22
+                                                                    size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                    lineNumber: 168,
+                                                                    lineNumber: 258,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                lineNumber: 163,
+                                                                lineNumber: 253,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                                 onClick: ()=>confirmAction(u.id, "delete"),
-                                                                className: "text-gray-700 hover:text-red-600",
+                                                                className: "hover:text-red-600",
                                                                 title: "Delete",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FaTrashAlt"], {
-                                                                    size: 22
+                                                                    size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                    lineNumber: 176,
+                                                                    lineNumber: 266,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                lineNumber: 171,
+                                                                lineNumber: 261,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 244,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 152,
+                                                    lineNumber: 243,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, u.id, true, {
                                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                            lineNumber: 147,
+                                            lineNumber: 235,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 145,
+                                    lineNumber: 233,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 116,
+                            lineNumber: 206,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                        lineNumber: 115,
+                        lineNumber: 205,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                lineNumber: 112,
+                lineNumber: 200,
                 columnNumber: 7
             }, this),
             modalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 bg-black/50 flex items-center justify-center z-[9999]",
+                className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "bg-white rounded-lg shadow-lg p-6 w-[350px]",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "text-xl font-bold mb-4 text-[#2D1540]",
-                            children: "Confirmar acción"
+                            className: "text-xl font-bold mb-4",
+                            children: "Confirm action"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 193,
+                            lineNumber: 281,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "mb-6 text-sm text-gray-700",
+                            className: "mb-6 text-sm",
                             children: [
-                                "¿Estás seguro que deseas",
+                                "Are you sure you want to",
                                 " ",
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "font-bold",
-                                    children: selectedAction?.type === "approve" ? "aprobar este usuario" : selectedAction?.type === "block" ? "bloquear este usuario" : "eliminar este usuario"
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                    children: selectedAction?.type
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 197,
+                                    lineNumber: 285,
                                     columnNumber: 15
                                 }, this),
-                                "?"
+                                " this user?"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 195,
+                            lineNumber: 283,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -954,43 +969,43 @@ function UserAdmin() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: ()=>setModalOpen(false),
-                                    className: "px-4 py-2 rounded-md border border-gray-300 hover:bg-gray-100",
-                                    children: "Cancelar"
+                                    className: "px-4 py-2 border rounded-md",
+                                    children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 210,
+                                    lineNumber: 289,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: executeConfirmedAction,
-                                    className: "px-4 py-2 rounded-md bg-purple-700 text-white hover:bg-purple-800",
-                                    children: "Confirmar"
+                                    className: "px-4 py-2 bg-purple-700 text-white rounded-md",
+                                    children: "Confirm"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 217,
+                                    lineNumber: 296,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 209,
+                            lineNumber: 288,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 191,
+                    lineNumber: 280,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                lineNumber: 190,
+                lineNumber: 279,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-        lineNumber: 110,
+        lineNumber: 199,
         columnNumber: 5
     }, this);
 }

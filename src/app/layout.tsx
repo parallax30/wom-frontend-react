@@ -1,21 +1,37 @@
 import '@/styles/tailwind.css'
 import { Metadata } from 'next'
-import { Be_Vietnam_Pro } from 'next/font/google'
 import ThemeProvider from './theme-provider'
 import { UserProvider } from '@/contexts/auth/user-context'
+import { getGlobal } from '@/services/apiService'
 
+export async function generateMetadata(): Promise<Metadata> {
 
+  const globalResponse = await getGlobal()
+  const global = globalResponse?.data?.data
 
-export const metadata: Metadata = {
-  title: {
-    template: '',
-    default: 'Ncmaz - Blog, News, Magazine template',
-  },
-  description: 'Ncmaz - Blog, News, Magazine template',
-  keywords: ['Ncmaz', 'Blog', 'News', 'Magazine'],
+  const faviconUrl = global?.favicon?.url
+    ? `${process.env.NEXT_PUBLIC_API_URL}${global.favicon.url}`
+    : '/favicon.ico'
+
+  return {
+    title: {
+      template: '',
+      default: 'Wom - Investor Portal',
+    },
+    description: global?.pageDescription ?? 'Wom - Investor Portal',
+    keywords: ['Wom', 'Investor', 'Portal', 'News'],
+    icons: {
+      icon: { url: faviconUrl,
+      type: 'image/jpeg'  },
+    },
+  }
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body className="bg-white text-base text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200">

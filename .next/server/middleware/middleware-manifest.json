@@ -1,0 +1,51 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/_0d3699dc._.js",
+        "server/edge/chunks/[root-of-the-server]__dc15d093._.js",
+        "server/edge/chunks/edge-wrapper_594fdf6a.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/admin/:path*{(\\\\.json)}?",
+          "originalSource": "/admin/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/contactUs/:path*{(\\\\.json)}?",
+          "originalSource": "/contactUs/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/financials/:path*{(\\\\.json)}?",
+          "originalSource": "/financials/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/gobernance/:path*{(\\\\.json)}?",
+          "originalSource": "/gobernance/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/news/:path*{(\\\\.json)}?",
+          "originalSource": "/news/:path*"
+        },
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/portal/:path*{(\\\\.json)}?",
+          "originalSource": "/portal/:path*"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "VYYwhKqvf3XDwydo3TZB1Ca611IgR/JNa82iSjKK4+c=",
+        "__NEXT_PREVIEW_MODE_ID": "e1c24a63797cae0088d52de8848b415e",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "36ab25a0eb79f16c87b7d172b35820ad17096081edbb28e3c44a232b161510ca",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "2a1268d24da1a2b1906ce7d4edb48678e61076e68799ddef8a3c3d9fc6c19b38"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}

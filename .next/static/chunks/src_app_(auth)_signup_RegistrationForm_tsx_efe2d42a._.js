@@ -8,7 +8,9 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 __turbopack_context__.s({
     "RegistrationForm": (()=>RegistrationForm)
 });
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-hook-form/dist/index.esm.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/esm/Box/Box.js [app-client] (ecmascript) <export default as Box>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Typography$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/esm/Typography/Typography.js [app-client] (ecmascript) <export default as Typography>");
@@ -19,11 +21,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$mat
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Select$2f$Select$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Select$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/esm/Select/Select.js [app-client] (ecmascript) <export default as Select>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/esm/MenuItem/MenuItem.js [app-client] (ecmascript) <export default as MenuItem>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Button$2f$Button$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Button$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/esm/Button/Button.js [app-client] (ecmascript) <export default as Button>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Dialog$2f$Dialog$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Dialog$3e$__ = __turbopack_context__.i("[project]/node_modules/@mui/material/esm/Dialog/Dialog.js [app-client] (ecmascript) <export default as Dialog>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -39,18 +43,172 @@ function RegistrationForm() {
             phone: "",
             profession: "",
             company: "",
+            country: "",
+            city: "",
             message: ""
         }
     });
     const all = watch();
-    const isEnabled = all.name && all.lastName && all.email && all.phone && all.profession && all.company;
-    const onSubmit = (values)=>{
-        console.log(values);
+    const selectedCountry = watch("country");
+    const isEnabled = all.name && all.lastName && all.email && all.phone && all.profession && all.company && all.country && all.city;
+    const [openOtpModal, setOpenOtpModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [otp, setOtp] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [confirmPassword, setConfirmPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [registeredEmail, setRegisteredEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [registeredName, setRegisteredName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [openSuccessModal, setOpenSuccessModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const handleCloseSuccessModal = ()=>{
+        setOpenSuccessModal(false);
+        router.push("/"); // Redirect to home after closing
+    };
+    const generateOTP = ()=>Math.floor(100000 + Math.random() * 900000).toString();
+    const onSubmit = async (values)=>{
+        try {
+            const otp = generateOTP();
+            const body = {
+                username: values.email.split("@")[0],
+                email: values.email,
+                password: "Temp1234!",
+                name: values.name,
+                lastName: values.lastName,
+                phone: values.phone,
+                profession: values.profession,
+                message: values.message,
+                institution: values.company,
+                country: values.country,
+                city: values.city,
+                OTP: otp
+            };
+            const res = await fetch(`${("TURBOPACK compile-time value", "http://34.69.55.168:1337")}/api/auth/local/register`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                console.error("STRAPI REGISTER ERROR:", data);
+                throw new Error(data?.error?.message || "Register failed");
+            }
+            // 2️⃣ Enviar OTP por email (NestJS)
+            await fetch(`${("TURBOPACK compile-time value", "http://localhost:3001")}/email/send-otp`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    to: values.email,
+                    name: values.name,
+                    otp
+                })
+            });
+            // 3️⃣ Abrir modal OTP
+            setOpenOtpModal(true);
+            setRegisteredEmail(values.email);
+            setRegisteredName(values.name + ' ' + values.lastName);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    const handleConfirmOtp = async ()=>{
+        try {
+            // 1️⃣ Validar OTP + actualizar usuario
+            const res = await fetch(`${("TURBOPACK compile-time value", "http://localhost:3001")}/email/verify-otp`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: registeredEmail,
+                    otp,
+                    password
+                })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                console.error("VALIDATE OTP ERROR:", data);
+                throw new Error(data?.error?.message || "Confirm OTP failed");
+            }
+            // 2️⃣ Avisar al admin WOM
+            const res1 = await fetch(`${("TURBOPACK compile-time value", "http://localhost:3001")}/email/admin-new-user`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: registeredEmail,
+                    name: registeredName
+                })
+            });
+            const data1 = await res1.json();
+            if (!res1.ok) {
+                console.error("ADMIN ALERT ERROR:", data);
+                throw new Error(data?.error?.message || "Confirm OTP failed");
+            }
+            setOpenOtpModal(false);
+            setOpenSuccessModal(true);
+        } catch (err) {
+            console.error(err);
+        }
     };
     const inputStyles = {
         backgroundColor: "#fff",
         borderRadius: 2
     };
+    // -----------------------------
+    // Countries & Cities
+    // -----------------------------
+    const [countries, setCountries] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [cities, setCities] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    // Load countries
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "RegistrationForm.useEffect": ()=>{
+            fetch("https://countriesnow.space/api/v0.1/countries/positions").then({
+                "RegistrationForm.useEffect": (res)=>res.json()
+            }["RegistrationForm.useEffect"]).then({
+                "RegistrationForm.useEffect": (data)=>{
+                    const countryNames = data.data.map({
+                        "RegistrationForm.useEffect.countryNames": (c)=>c.name
+                    }["RegistrationForm.useEffect.countryNames"]).sort({
+                        "RegistrationForm.useEffect.countryNames": (a, b)=>a.localeCompare(b)
+                    }["RegistrationForm.useEffect.countryNames"]);
+                    setCountries(countryNames);
+                }
+            }["RegistrationForm.useEffect"]).catch({
+                "RegistrationForm.useEffect": (err)=>{
+                    console.error("Error loading countries:", err);
+                }
+            }["RegistrationForm.useEffect"]);
+        }
+    }["RegistrationForm.useEffect"], []);
+    // Load cities when country changes
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "RegistrationForm.useEffect": ()=>{
+            if (!selectedCountry) {
+                setCities([]);
+                return;
+            }
+            fetch("https://countriesnow.space/api/v0.1/countries/cities", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    country: selectedCountry
+                })
+            }).then({
+                "RegistrationForm.useEffect": (res)=>res.json()
+            }["RegistrationForm.useEffect"]).then({
+                "RegistrationForm.useEffect": (data)=>{
+                    setCities(data.data || []);
+                }
+            }["RegistrationForm.useEffect"]).catch(console.error);
+        }
+    }["RegistrationForm.useEffect"], [
+        selectedCountry
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
         sx: {
             minHeight: "100vh",
@@ -76,12 +234,12 @@ function RegistrationForm() {
                     alt: "WOM Empresas"
                 }, void 0, false, {
                     fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                    lineNumber: 81,
+                    lineNumber: 254,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                lineNumber: 77,
+                lineNumber: 250,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Typography$3e$__["Typography"], {
@@ -93,7 +251,7 @@ function RegistrationForm() {
                 children: "Registration Request"
             }, void 0, false, {
                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                lineNumber: 90,
+                lineNumber: 263,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -117,7 +275,7 @@ function RegistrationForm() {
                                         children: "Name"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 280,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
@@ -132,25 +290,25 @@ function RegistrationForm() {
                                                 sx: inputStyles
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                lineNumber: 113,
+                                                lineNumber: 286,
                                                 columnNumber: 17
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 281,
                                         columnNumber: 13
                                     }, this),
-                                    errors.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
-                                        children: errors.name.message
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.name?.message
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 117,
-                                        columnNumber: 15
+                                        lineNumber: 289,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                lineNumber: 106,
+                                lineNumber: 279,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormControl$2f$FormControl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormControl$3e$__["FormControl"], {
@@ -161,7 +319,7 @@ function RegistrationForm() {
                                         children: "Last Name"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 123,
+                                        lineNumber: 294,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
@@ -176,25 +334,25 @@ function RegistrationForm() {
                                                 sx: inputStyles
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                lineNumber: 129,
+                                                lineNumber: 300,
                                                 columnNumber: 17
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 124,
+                                        lineNumber: 295,
                                         columnNumber: 13
                                     }, this),
-                                    errors.lastName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
-                                        children: errors.lastName.message
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.lastName?.message
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 133,
-                                        columnNumber: 15
+                                        lineNumber: 303,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                lineNumber: 122,
+                                lineNumber: 293,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormControl$2f$FormControl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormControl$3e$__["FormControl"], {
@@ -205,7 +363,7 @@ function RegistrationForm() {
                                         children: "Email Address"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 139,
+                                        lineNumber: 308,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
@@ -220,25 +378,25 @@ function RegistrationForm() {
                                                 sx: inputStyles
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                lineNumber: 145,
+                                                lineNumber: 314,
                                                 columnNumber: 17
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 309,
                                         columnNumber: 13
                                     }, this),
-                                    errors.email && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
-                                        children: errors.email.message
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.email?.message
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 153,
-                                        columnNumber: 15
+                                        lineNumber: 317,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                lineNumber: 138,
+                                lineNumber: 307,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormControl$2f$FormControl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormControl$3e$__["FormControl"], {
@@ -249,7 +407,7 @@ function RegistrationForm() {
                                         children: "Phone"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 159,
+                                        lineNumber: 322,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
@@ -264,25 +422,25 @@ function RegistrationForm() {
                                                 sx: inputStyles
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                lineNumber: 165,
+                                                lineNumber: 328,
                                                 columnNumber: 17
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 160,
+                                        lineNumber: 323,
                                         columnNumber: 13
                                     }, this),
-                                    errors.phone && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
-                                        children: errors.phone.message
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.phone?.message
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 169,
-                                        columnNumber: 15
+                                        lineNumber: 331,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                lineNumber: 158,
+                                lineNumber: 321,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormControl$2f$FormControl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormControl$3e$__["FormControl"], {
@@ -293,7 +451,7 @@ function RegistrationForm() {
                                         children: "Profession"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 175,
+                                        lineNumber: 336,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
@@ -312,7 +470,7 @@ function RegistrationForm() {
                                                         children: "Select"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                        lineNumber: 182,
+                                                        lineNumber: 343,
                                                         columnNumber: 19
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
@@ -320,7 +478,7 @@ function RegistrationForm() {
                                                         children: "Developer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                        lineNumber: 183,
+                                                        lineNumber: 344,
                                                         columnNumber: 19
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
@@ -328,7 +486,7 @@ function RegistrationForm() {
                                                         children: "Engineer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                        lineNumber: 184,
+                                                        lineNumber: 345,
                                                         columnNumber: 19
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
@@ -336,7 +494,7 @@ function RegistrationForm() {
                                                         children: "Manager"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                        lineNumber: 185,
+                                                        lineNumber: 346,
                                                         columnNumber: 19
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
@@ -344,31 +502,31 @@ function RegistrationForm() {
                                                         children: "Other"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                        lineNumber: 186,
+                                                        lineNumber: 347,
                                                         columnNumber: 19
                                                     }, void 0)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                lineNumber: 181,
+                                                lineNumber: 342,
                                                 columnNumber: 17
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 176,
+                                        lineNumber: 337,
                                         columnNumber: 13
                                     }, this),
-                                    errors.profession && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
-                                        children: errors.profession.message
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.profession?.message
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 191,
-                                        columnNumber: 15
+                                        lineNumber: 351,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                lineNumber: 174,
+                                lineNumber: 335,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormControl$2f$FormControl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormControl$3e$__["FormControl"], {
@@ -379,7 +537,7 @@ function RegistrationForm() {
                                         children: "Institution/Company"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 197,
+                                        lineNumber: 356,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
@@ -394,25 +552,150 @@ function RegistrationForm() {
                                                 sx: inputStyles
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                lineNumber: 203,
+                                                lineNumber: 362,
                                                 columnNumber: 17
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 198,
+                                        lineNumber: 357,
                                         columnNumber: 13
                                     }, this),
-                                    errors.company && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
-                                        children: errors.company.message
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.company?.message
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                        lineNumber: 211,
-                                        columnNumber: 15
+                                        lineNumber: 365,
+                                        columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                lineNumber: 196,
+                                lineNumber: 355,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormControl$2f$FormControl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormControl$3e$__["FormControl"], {
+                                fullWidth: true,
+                                error: Boolean(errors.country),
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$InputLabel$2f$InputLabel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__InputLabel$3e$__["InputLabel"], {
+                                        children: "Country"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                        lineNumber: 370,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
+                                        control: control,
+                                        name: "country",
+                                        rules: {
+                                            required: "Required"
+                                        },
+                                        render: ({ field })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Select$2f$Select$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Select$3e$__["Select"], {
+                                                ...field,
+                                                label: "Country",
+                                                sx: inputStyles,
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
+                                                        value: "",
+                                                        children: "Select"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                                        lineNumber: 377,
+                                                        columnNumber: 19
+                                                    }, void 0),
+                                                    countries.map((country)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
+                                                            value: country,
+                                                            children: country
+                                                        }, country, false, {
+                                                            fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                                            lineNumber: 379,
+                                                            columnNumber: 21
+                                                        }, void 0))
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                                lineNumber: 376,
+                                                columnNumber: 17
+                                            }, void 0)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                        lineNumber: 371,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.country?.message
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                        lineNumber: 386,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                lineNumber: 369,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormControl$2f$FormControl$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormControl$3e$__["FormControl"], {
+                                fullWidth: true,
+                                error: Boolean(errors.city),
+                                disabled: !selectedCountry,
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$InputLabel$2f$InputLabel$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__InputLabel$3e$__["InputLabel"], {
+                                        children: "City"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                        lineNumber: 395,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
+                                        control: control,
+                                        name: "city",
+                                        rules: {
+                                            required: "Required"
+                                        },
+                                        render: ({ field })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Select$2f$Select$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Select$3e$__["Select"], {
+                                                ...field,
+                                                label: "City",
+                                                sx: inputStyles,
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
+                                                        value: "",
+                                                        children: "Select"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                                        lineNumber: 402,
+                                                        columnNumber: 19
+                                                    }, void 0),
+                                                    cities.map((city)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$MenuItem$2f$MenuItem$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MenuItem$3e$__["MenuItem"], {
+                                                            value: city,
+                                                            children: city
+                                                        }, city, false, {
+                                                            fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                                            lineNumber: 404,
+                                                            columnNumber: 21
+                                                        }, void 0))
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                                lineNumber: 401,
+                                                columnNumber: 17
+                                            }, void 0)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                        lineNumber: 396,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$FormHelperText$2f$FormHelperText$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FormHelperText$3e$__["FormHelperText"], {
+                                        children: errors.city?.message
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                        lineNumber: 411,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                lineNumber: 390,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
@@ -427,7 +710,7 @@ function RegistrationForm() {
                                             children: "Message"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                            lineNumber: 218,
+                                            lineNumber: 417,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Controller"], {
@@ -442,29 +725,29 @@ function RegistrationForm() {
                                                     sx: inputStyles
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                                    lineNumber: 223,
+                                                    lineNumber: 422,
                                                     columnNumber: 19
                                                 }, void 0)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                            lineNumber: 219,
+                                            lineNumber: 418,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                    lineNumber: 217,
+                                    lineNumber: 416,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                                lineNumber: 216,
+                                lineNumber: 415,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                        lineNumber: 95,
+                        lineNumber: 268,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
@@ -493,28 +776,233 @@ function RegistrationForm() {
                             children: "REGISTER"
                         }, void 0, false, {
                             fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                            lineNumber: 239,
+                            lineNumber: 438,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                        lineNumber: 238,
+                        lineNumber: 437,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-                lineNumber: 94,
+                lineNumber: 267,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Dialog$2f$Dialog$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Dialog$3e$__["Dialog"], {
+                open: openOtpModal,
+                fullWidth: true,
+                maxWidth: "sm",
+                PaperProps: {
+                    sx: {
+                        borderRadius: 4,
+                        p: 3
+                    }
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Typography$3e$__["Typography"], {
+                        variant: "h5",
+                        sx: {
+                            fontWeight: 700,
+                            mb: 2
+                        },
+                        children: "Verify your email"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 464,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
+                        sx: {
+                            borderBottom: "1px solid #DEE2E6",
+                            mb: 3
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 468,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Typography$3e$__["Typography"], {
+                        sx: {
+                            mb: 3
+                        },
+                        children: "Enter the verification code sent to your email and set your password."
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 470,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$OutlinedInput$2f$OutlinedInput$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__OutlinedInput$3e$__["OutlinedInput"], {
+                        fullWidth: true,
+                        placeholder: "OTP Code",
+                        value: otp,
+                        onChange: (e)=>setOtp(e.target.value),
+                        sx: {
+                            mb: 2
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 474,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$OutlinedInput$2f$OutlinedInput$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__OutlinedInput$3e$__["OutlinedInput"], {
+                        fullWidth: true,
+                        type: "password",
+                        placeholder: "Password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value),
+                        sx: {
+                            mb: 2
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 482,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$OutlinedInput$2f$OutlinedInput$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__OutlinedInput$3e$__["OutlinedInput"], {
+                        fullWidth: true,
+                        type: "password",
+                        placeholder: "Confirm Password",
+                        value: confirmPassword,
+                        onChange: (e)=>setConfirmPassword(e.target.value),
+                        sx: {
+                            mb: 4
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 491,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
+                        sx: {
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            gap: 2
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Button$2f$Button$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Button$3e$__["Button"], {
+                                variant: "outlined",
+                                onClick: ()=>setOpenOtpModal(false),
+                                children: "CLOSE"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                lineNumber: 501,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Button$2f$Button$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Button$3e$__["Button"], {
+                                variant: "contained",
+                                disabled: !otp || !password || password !== confirmPassword,
+                                onClick: handleConfirmOtp,
+                                sx: {
+                                    backgroundColor: "#E92070"
+                                },
+                                children: "CONFIRM"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                                lineNumber: 505,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 500,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                lineNumber: 458,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Dialog$2f$Dialog$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Dialog$3e$__["Dialog"], {
+                open: openSuccessModal,
+                onClose: handleCloseSuccessModal,
+                fullWidth: true,
+                maxWidth: "sm",
+                PaperProps: {
+                    sx: {
+                        borderRadius: 4,
+                        p: 3
+                    }
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Typography$3e$__["Typography"], {
+                        variant: "h5",
+                        sx: {
+                            fontWeight: 700,
+                            mb: 2
+                        },
+                        children: "Account created"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 526,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
+                        sx: {
+                            borderBottom: "1px solid #DEE2E6",
+                            mb: 3
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 530,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Typography$2f$Typography$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Typography$3e$__["Typography"], {
+                        sx: {
+                            mb: 4,
+                            color: "#555"
+                        },
+                        children: "Your account has been created. Now, please wait until our team finish your details review. You will receive a new email when you can enter to this portal."
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 532,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Box$2f$Box$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Box$3e$__["Box"], {
+                        sx: {
+                            display: "flex",
+                            justifyContent: "flex-end"
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$mui$2f$material$2f$esm$2f$Button$2f$Button$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Button$3e$__["Button"], {
+                            variant: "contained",
+                            onClick: handleCloseSuccessModal,
+                            sx: {
+                                backgroundColor: "#E92070",
+                                color: "#fff",
+                                fontWeight: 700,
+                                borderRadius: 2,
+                                px: 4,
+                                "&:hover": {
+                                    backgroundColor: "#C81C62"
+                                }
+                            },
+                            children: "ACCEPT"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                            lineNumber: 539,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                        lineNumber: 538,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
+                lineNumber: 519,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/(auth)/signup/RegistrationForm.tsx",
-        lineNumber: 68,
+        lineNumber: 241,
         columnNumber: 5
     }, this);
 }
-_s(RegistrationForm, "ygf8ZRVoo0d85BD3cBUY99HqdgQ=", false, function() {
+_s(RegistrationForm, "fSz7w01cxDjyi8ceSvl3kYtjv00=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useForm"]

@@ -36,10 +36,26 @@ export function BondInformation({ documents }: BondInformationProps) {
 
         {/* COLUMNA 3 – derecha */}
         <div className="flex justify-end">
-          <button className="border border-[#350A63] text-[#350A63] px-4 py-2 rounded-full text-sm flex items-center gap-2">
-            <img src="/assets/icons/download-icon.png" className="h-4" />
-            DOWNLOAD
-          </button>
+          {d.fileUrl ? (
+            <a
+              href={d.fileUrl}
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-[#350A63] text-[#350A63] px-4 py-2 rounded-full text-sm flex items-center gap-2"
+            >
+              <img src="/assets/icons/download-icon.png" className="h-4" />
+              DOWNLOAD
+            </a>
+          ) : (
+            <button
+              disabled
+              className="border border-[#BDBDBD] text-[#BDBDBD] px-4 py-2 rounded-full text-sm flex items-center gap-2 opacity-50 cursor-not-allowed"
+            >
+              <img src="/assets/icons/download-icon.png" className="h-4" />
+              NO FILE
+            </button>
+          )}
         </div>
       </div>
     ))}

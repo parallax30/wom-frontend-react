@@ -392,10 +392,6 @@ async function getHomeData() {
             role: "Investor"
         },
         // ---------------------
-        // HERO
-        // ---------------------
-        heroImage: "/assets/hero-image.png",
-        // ---------------------
         // DATE BAR
         // ---------------------
         today: new Date().toLocaleDateString("en-US", {
@@ -404,89 +400,6 @@ async function getHomeData() {
             day: "numeric",
             year: "numeric"
         }),
-        // ---------------------
-        // QUARTERLY RESULTS
-        // ---------------------
-        quarter: "Q3 - 2025",
-        reports: [
-            {
-                id: "1",
-                title: "Financial Statements",
-                icon: "/assets/icons/money-icon.png",
-                downloadUrl: "#"
-            },
-            {
-                id: "2",
-                title: "Investor Presentation",
-                icon: "/assets/icons/bill-icon.png",
-                downloadUrl: "#"
-            },
-            {
-                id: "3",
-                title: "Earnings Release",
-                icon: "/assets/icons/book-icon.png",
-                downloadUrl: "#"
-            }
-        ],
-        // ---------------------
-        // LATEST NEWS
-        // ---------------------
-        news: [
-            {
-                id: "1",
-                title: "WOM reaches new subscriber record",
-                icon: "/assets/icons/news-icon.png",
-                summary: "The company achieved a new milestone with 7M users..."
-            },
-            {
-                id: "2",
-                title: "Expansion of 5G network continues",
-                icon: "/assets/icons/news-icon.png",
-                summary: "WOM expands their 5G coverage by 32% this quarter..."
-            },
-            {
-                id: "3",
-                title: "WOM reaches new subscriber record",
-                icon: "/assets/icons/news-icon.png",
-                summary: "The company achieved a new milestone with 7M users..."
-            }
-        ],
-        // ---------------------
-        // UPCOMING EVENTS
-        // ---------------------
-        events: [
-            {
-                id: 1,
-                title: "Earnings Call",
-                date: "2025-12-10",
-                description: "Lorem ipsum dolor sit amet consectetur adipiscing elit facilisi venenatis praesent, a dapibus justo pharetra nullam risus ultricies phasellus gravida egestas natoque, laoreet enim lobortis cum facilisis nunc placerat dui mattis."
-            },
-            {
-                id: 2,
-                title: "Annual General Meeting",
-                date: "2026-02-14",
-                description: "Lorem ipsum dolor sit amet consectetur adipiscing elit facilisi venenatis praesent, a dapibus justo pharetra nullam risus ultricies phasellus gravida egestas natoque, laoreet enim lobortis cum facilisis nunc placerat dui mattis."
-            }
-        ],
-        // ---------------------
-        // BOND INFORMATION LIST
-        // ---------------------
-        documents: [
-            {
-                id: "1",
-                date: "October 31, 2025",
-                title: "Bond 2025 Report",
-                summary: "Detailed report of bond activity",
-                fileUrl: "#"
-            },
-            {
-                id: "2",
-                date: "October 31, 2025",
-                title: "Bond Issuance Notice",
-                summary: "Information on the new bond issuance",
-                fileUrl: "#"
-            }
-        ],
         // ---------------------
         // FOOTER
         // ---------------------
@@ -562,7 +475,7 @@ const Page = async ()=>{
                 user: data.user
             }, void 0, false, {
                 fileName: "[project]/src/app/news/page.tsx",
-                lineNumber: 255,
+                lineNumber: 160,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -572,33 +485,33 @@ const Page = async ()=>{
                         news: mockNews
                     }, void 0, false, {
                         fileName: "[project]/src/app/news/page.tsx",
-                        lineNumber: 257,
+                        lineNumber: 162,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$news$2f$OldNewsTable$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["OldNewsTable"], {
                         items: oldNewsMock
                     }, void 0, false, {
                         fileName: "[project]/src/app/news/page.tsx",
-                        lineNumber: 258,
+                        lineNumber: 163,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/news/page.tsx",
-                lineNumber: 256,
+                lineNumber: 161,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$Footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Footer"], {
                 contact: data.contact
             }, void 0, false, {
                 fileName: "[project]/src/app/news/page.tsx",
-                lineNumber: 260,
+                lineNumber: 165,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/news/page.tsx",
-        lineNumber: 254,
+        lineNumber: 159,
         columnNumber: 7
     }, this);
 };

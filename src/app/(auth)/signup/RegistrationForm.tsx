@@ -12,6 +12,7 @@ import {
   Select,
   MenuItem,
   Button,
+  Dialog,
 } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -23,6 +24,8 @@ interface RegistrationValues {
   phone: string;
   profession: string;
   company: string;
+  country: string;
+  city: string;
   message: string;
 }
 
@@ -42,27 +45,197 @@ export function RegistrationForm(): React.JSX.Element {
       phone: "",
       profession: "",
       company: "",
+      country: "",
+      city: "",
       message: "",
     },
   });
 
   const all = watch();
+  const selectedCountry = watch("country");
+
   const isEnabled =
     all.name &&
     all.lastName &&
     all.email &&
     all.phone &&
     all.profession &&
-    all.company;
+    all.company &&
+    all.country &&
+    all.city;
 
-  const onSubmit = (values: RegistrationValues) => {
-    console.log(values);
+  const [openOtpModal, setOpenOtpModal] = React.useState(false);
+  const [otp, setOtp] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [registeredEmail, setRegisteredEmail] = React.useState("");
+  const [registeredName, setRegisteredName] = React.useState("");
+  
+
+
+  const [openSuccessModal, setOpenSuccessModal] = React.useState(false);
+
+  const handleCloseSuccessModal = () => {
+    setOpenSuccessModal(false);
+
+    router.push("/"); // Redirect to home after closing
   };
+
+  const generateOTP = () =>
+  Math.floor(100000 + Math.random() * 900000).toString();
+
+
+  const onSubmit = async (values: RegistrationValues) => {
+    try {
+      const otp = generateOTP();
+
+      const body = {
+        username: values.email.split("@")[0],
+        email: values.email,
+        password: "Temp1234!", // temporal
+        name: values.name,
+        lastName: values.lastName,
+        phone: values.phone,
+        profession: values.profession,
+        message: values.message,
+        institution: values.company,
+        country: values.country,
+        city: values.city,
+        OTP: otp
+      };
+
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error("STRAPI REGISTER ERROR:", data);
+        throw new Error(data?.error?.message || "Register failed");
+      }
+
+
+      // 2️⃣ Enviar OTP por email (NestJS)
+      await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/send-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: values.email,
+          name: values.name,
+          otp,
+        }),
+      });
+
+      // 3️⃣ Abrir modal OTP
+      setOpenOtpModal(true);
+      setRegisteredEmail(values.email);
+      setRegisteredName(values.name + ' ' + values.lastName);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleConfirmOtp = async () => {
+    try {
+      // 1️⃣ Validar OTP + actualizar usuario
+      const res = await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/verify-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: registeredEmail,
+          otp,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        console.error("VALIDATE OTP ERROR:", data);
+        throw new Error(data?.error?.message || "Confirm OTP failed");
+      }
+
+      // 2️⃣ Avisar al admin WOM
+      const res1 = await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/admin-new-user`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: registeredEmail,
+          name: registeredName,
+        }),
+      });
+
+      const data1 = await res1.json();
+      if (!res1.ok) {
+        console.error("ADMIN ALERT ERROR:", data);
+        throw new Error(data?.error?.message || "Confirm OTP failed");
+      }
+
+      setOpenOtpModal(false);
+      setOpenSuccessModal(true);
+      
+
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
 
   const inputStyles = {
     backgroundColor: "#fff",
-    borderRadius: 2, // esquinas redondeadas
+    borderRadius: 2,
   };
+
+  // -----------------------------
+  // Countries & Cities
+  // -----------------------------
+  const [countries, setCountries] = React.useState<string[]>([]);
+  const [cities, setCities] = React.useState<string[]>([]);
+
+  // Load countries
+  React.useEffect(() => {
+    fetch("https://countriesnow.space/api/v0.1/countries/positions")
+      .then((res) => res.json())
+      .then((data) => {
+        const countryNames = data.data
+          .map((c: any) => c.name)
+          .sort((a: string, b: string) => a.localeCompare(b));
+
+        setCountries(countryNames);
+      })
+      .catch((err) => {
+        console.error("Error loading countries:", err);
+      });
+  }, []);
+
+
+  // Load cities when country changes
+  React.useEffect(() => {
+    if (!selectedCountry) {
+      setCities([]);
+      return;
+    }
+
+    fetch("https://countriesnow.space/api/v0.1/countries/cities", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country: selectedCountry }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCities(data.data || []);
+      })
+      .catch(console.error);
+  }, [selectedCountry]);
 
   return (
     <Box
@@ -113,9 +286,7 @@ export function RegistrationForm(): React.JSX.Element {
                 <OutlinedInput {...field} label="Name" sx={inputStyles} />
               )}
             />
-            {errors.name && (
-              <FormHelperText>{errors.name.message}</FormHelperText>
-            )}
+            <FormHelperText>{errors.name?.message}</FormHelperText>
           </FormControl>
 
           {/* LAST NAME */}
@@ -129,9 +300,7 @@ export function RegistrationForm(): React.JSX.Element {
                 <OutlinedInput {...field} label="Last Name" sx={inputStyles} />
               )}
             />
-            {errors.lastName && (
-              <FormHelperText>{errors.lastName.message}</FormHelperText>
-            )}
+            <FormHelperText>{errors.lastName?.message}</FormHelperText>
           </FormControl>
 
           {/* EMAIL */}
@@ -142,16 +311,10 @@ export function RegistrationForm(): React.JSX.Element {
               name="email"
               rules={{ required: "Required" }}
               render={({ field }) => (
-                <OutlinedInput
-                  {...field}
-                  label="Email Address"
-                  sx={inputStyles}
-                />
+                <OutlinedInput {...field} label="Email Address" sx={inputStyles} />
               )}
             />
-            {errors.email && (
-              <FormHelperText>{errors.email.message}</FormHelperText>
-            )}
+            <FormHelperText>{errors.email?.message}</FormHelperText>
           </FormControl>
 
           {/* PHONE */}
@@ -165,9 +328,7 @@ export function RegistrationForm(): React.JSX.Element {
                 <OutlinedInput {...field} label="Phone" sx={inputStyles} />
               )}
             />
-            {errors.phone && (
-              <FormHelperText>{errors.phone.message}</FormHelperText>
-            )}
+            <FormHelperText>{errors.phone?.message}</FormHelperText>
           </FormControl>
 
           {/* PROFESSION */}
@@ -187,9 +348,7 @@ export function RegistrationForm(): React.JSX.Element {
                 </Select>
               )}
             />
-            {errors.profession && (
-              <FormHelperText>{errors.profession.message}</FormHelperText>
-            )}
+            <FormHelperText>{errors.profession?.message}</FormHelperText>
           </FormControl>
 
           {/* COMPANY */}
@@ -200,19 +359,59 @@ export function RegistrationForm(): React.JSX.Element {
               name="company"
               rules={{ required: "Required" }}
               render={({ field }) => (
-                <OutlinedInput
-                  {...field}
-                  label="Institution/Company"
-                  sx={inputStyles}
-                />
+                <OutlinedInput {...field} label="Institution/Company" sx={inputStyles} />
               )}
             />
-            {errors.company && (
-              <FormHelperText>{errors.company.message}</FormHelperText>
-            )}
+            <FormHelperText>{errors.company?.message}</FormHelperText>
           </FormControl>
 
-          {/* MESSAGE — full width */}
+          {/* COUNTRY */}
+          <FormControl fullWidth error={Boolean(errors.country)}>
+            <InputLabel>Country</InputLabel>
+            <Controller
+              control={control}
+              name="country"
+              rules={{ required: "Required" }}
+              render={({ field }) => (
+                <Select {...field} label="Country" sx={inputStyles}>
+                  <MenuItem value="">Select</MenuItem>
+                  {countries.map((country) => (
+                    <MenuItem key={country} value={country}>
+                      {country}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
+            />
+            <FormHelperText>{errors.country?.message}</FormHelperText>
+          </FormControl>
+
+          {/* CITY */}
+          <FormControl
+            fullWidth
+            error={Boolean(errors.city)}
+            disabled={!selectedCountry}
+          >
+            <InputLabel>City</InputLabel>
+            <Controller
+              control={control}
+              name="city"
+              rules={{ required: "Required" }}
+              render={({ field }) => (
+                <Select {...field} label="City" sx={inputStyles}>
+                  <MenuItem value="">Select</MenuItem>
+                  {cities.map((city) => (
+                    <MenuItem key={city} value={city}>
+                      {city}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
+            />
+            <FormHelperText>{errors.city?.message}</FormHelperText>
+          </FormControl>
+
+          {/* MESSAGE */}
           <Box sx={{ gridColumn: "1 / -1" }}>
             <FormControl fullWidth>
               <InputLabel shrink>Message</InputLabel>
@@ -234,7 +433,7 @@ export function RegistrationForm(): React.JSX.Element {
           </Box>
         </Box>
 
-        {/* SUBMIT BUTTON */}
+        {/* SUBMIT */}
         <Box sx={{ textAlign: "center", mt: 4 }}>
           <Button
             type="submit"
@@ -256,6 +455,106 @@ export function RegistrationForm(): React.JSX.Element {
           </Button>
         </Box>
       </form>
+      <Dialog
+        open={openOtpModal}
+        fullWidth
+        maxWidth="sm"
+        PaperProps={{ sx: { borderRadius: 4, p: 3 } }}
+      >
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+          Verify your email
+        </Typography>
+
+        <Box sx={{ borderBottom: "1px solid #DEE2E6", mb: 3 }} />
+
+        <Typography sx={{ mb: 3 }}>
+          Enter the verification code sent to your email and set your password.
+        </Typography>
+
+        <OutlinedInput
+          fullWidth
+          placeholder="OTP Code"
+          value={otp}
+          onChange={(e) => setOtp(e.target.value)}
+          sx={{ mb: 2 }}
+        />
+
+        <OutlinedInput
+          fullWidth
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          sx={{ mb: 2 }}
+        />
+
+        <OutlinedInput
+          fullWidth
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          sx={{ mb: 4 }}
+        />
+
+        <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+          <Button variant="outlined" onClick={() => setOpenOtpModal(false)}>
+            CLOSE
+          </Button>
+
+          <Button
+            variant="contained"
+            disabled={
+              !otp ||
+              !password ||
+              password !== confirmPassword
+            }
+            onClick={handleConfirmOtp}
+            sx={{ backgroundColor: "#E92070" }}
+          >
+            CONFIRM
+          </Button>
+        </Box>
+      </Dialog>
+      <Dialog
+        open={openSuccessModal}
+        onClose={handleCloseSuccessModal}
+        fullWidth
+        maxWidth="sm"
+        PaperProps={{ sx: { borderRadius: 4, p: 3 } }}
+      >
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+          Account created
+        </Typography>
+
+        <Box sx={{ borderBottom: "1px solid #DEE2E6", mb: 3 }} />
+
+        <Typography sx={{ mb: 4, color: "#555" }}>
+          Your account has been created. Now, please wait until our team finish your
+          details review. You will receive a new email when you can enter to this
+          portal.
+        </Typography>
+
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            variant="contained"
+            onClick={handleCloseSuccessModal}
+            sx={{
+              backgroundColor: "#E92070",
+              color: "#fff",
+              fontWeight: 700,
+              borderRadius: 2,
+              px: 4,
+              "&:hover": {
+                backgroundColor: "#C81C62",
+              },
+            }}
+          >
+            ACCEPT
+          </Button>
+        </Box>
+      </Dialog>
+
     </Box>
   );
 }
