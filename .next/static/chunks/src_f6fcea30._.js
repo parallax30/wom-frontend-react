@@ -329,15 +329,6 @@ function Navbar({ menuItems, user }) {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "hidden md:flex absolute right-8 top-6 items-center gap-4",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                href: "/contactUs",
-                                className: "text-sm text-[#2D1540]",
-                                children: "Contact Us"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 125,
-                                columnNumber: 11
-                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>setUserMenuOpen((prev)=>!prev),
                                 className: "relative",
@@ -605,6 +596,7 @@ __turbopack_context__.s({
     "getCalendarCollectionPastEvent": (()=>getCalendarCollectionPastEvent),
     "getCalendarCollectionUpcomingEvent": (()=>getCalendarCollectionUpcomingEvent),
     "getFinancialCollectionOtherDocument": (()=>getFinancialCollectionOtherDocument),
+    "getFinancialCollectionOtherDocuments": (()=>getFinancialCollectionOtherDocuments),
     "getFinancialCollectionQDocument": (()=>getFinancialCollectionQDocument),
     "getFinancials": (()=>getFinancials),
     "getGlobal": (()=>getGlobal),
@@ -623,8 +615,10 @@ __turbopack_context__.s({
     "getNewsCollectionDataGrid": (()=>getNewsCollectionDataGrid),
     "getNewsDetail": (()=>getNewsDetail),
     "getNewsPage": (()=>getNewsPage),
+    "getUserById": (()=>getUserById),
     "getUsers": (()=>getUsers),
     "getViewImage": (()=>getViewImage),
+    "putUser": (()=>putUser),
     "registerUser": (()=>registerUser)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/api.js [app-client] (ecmascript)");
@@ -696,6 +690,11 @@ const getCalendarCollectionUpcomingEvent = (params)=>__TURBOPACK__imported__modu
     });
 const registerUser = (payload)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("/auth/local/register", payload);
 const getUsers = (payload)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get("/users", payload);
+const getUserById = (id)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`/users/${id}`);
+const putUser = (id, payload)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].put(`/users/${id}`, payload);
+const getFinancialCollectionOtherDocuments = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`/financial-collection-other-documents?fields=financialCollectionOtherDocumentName,financialCollectionOtherDocumentSummary,financialCollectionOtherDocumentLinkText,financialCollectionOtherDocumentLinkUrl,financialCollectionOtherDocumentSummaryList&populate[financialCollectionOtherDocumentLinkIcon][fields][0]=url`, {
+        params
+    });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }

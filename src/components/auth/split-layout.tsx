@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -12,9 +14,6 @@ export interface SplitLayoutProps {
 
 export function SplitLayout({ children, cms }: SplitLayoutProps) {
   const title = cms?.leftTitle ?? "About WOM";
-
-  // Texto del RichText de Strapi
-  const text = cms?.loginParagraphLeft[0].children[0].text;
 
   // Imagen del CMS
   const leftImage = cms?.leftImage?.url
@@ -44,12 +43,12 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
         <Box sx={{ width: "100%", maxWidth: "700px", mx: "auto" }}>
           
           {/* Logo fijo */}
-          <Box sx={{ mb: 4, mt: 2, textAlign: "left" }}>
+          <Box sx={{ mb: 4, mt: 2, width: 250, height: 120, position: "relative" }}>
             <Image
               src="/assets/wom_empresas_logo.png"
-              width={250}
-              height={120}
               alt="WOM Empresas"
+              fill
+              sizes="250px"
               style={{ objectFit: "contain" }}
             />
           </Box>
@@ -66,21 +65,15 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
               width={570}
               height={300}
               alt={title}
+              sizes="250px"
               style={{ width: "100%", height: "auto", borderRadius: 4 }}
             />
           </Box>
 
           {/* Texto dinámico */}
-          <Typography
-            sx={{
-              color: "text.primary",
-              mb: 4,
-              lineHeight: 1.7,
-              whiteSpace: "pre-line",
-            }}
-          >
-            {text}
-          </Typography>
+          <div className="text-sm text-gray-700">
+            {cms.loginParagraphLeft}
+          </div>
 
           {/* Link de registro fijo */}
           <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: 12 }}>
@@ -98,6 +91,7 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
               width={22}
               height={22}
               alt="Register icon"
+              style={{ width: "auto", height: "auto" }}
             />
           </Stack>
         </Box>

@@ -26,7 +26,6 @@ import {
 
 import { paths } from "@/paths";
 import { authClient } from "@/lib/auth/custom/client";
-import { useUser } from "@/hooks/use-user";
 import { ForgotPasswordFlow } from "./ForgotPasswordFlow";
 
 const schema = zod.object({
@@ -92,8 +91,6 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
 
     setIsPending(false);
 
-    console.log("Login successful, redirecting to portal...");
-
     router.push(paths.portal);
   };
 
@@ -105,8 +102,14 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const registerUrl = cms?.loginUrlLinkRegister;      //TODO: Esto no va porque es un modal
   const forgotPassUrl = cms?.loginUrlLinkForgotPass;  //TODO: Esto no va porque es un modal
   const agreementUrl = cms?.loginUrlLinkAgreement;
-  const agreementText = cms?.loginParagraphLeft[0].children[0].text; //TODO: falta texto de Confidentiality Agreement & Policies
+  const agreementText = cms?.loginParagraphAgreement
 
+  const [mounted, setMounted] = React.useState(false);
+
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <Stack spacing={3} sx={{ width: "100%", maxWidth: 600, textAlign: "left" }}>
@@ -142,7 +145,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             <ForgotPasswordFlow />
 
           </Box>
-          <Dialog
+          {mounted && (<Dialog
             open={open}
             onClose={handleCloseModal}
             fullWidth
@@ -217,7 +220,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
                 SEND
               </Button>
             </Box>
-          </Dialog>
+          </Dialog>)}
 
 
           <Controller
@@ -256,8 +259,8 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             ref={scrollRef}
             onScroll={handleScroll}
           >
-            <Typography sx={{ color: "text.secondary", fontSize: 14 }}>
-              {agreementText}{agreementText}{agreementText}
+            <Typography component="div" sx={{ color: "text.secondary", fontSize: 14 }}>
+              {agreementText}
             </Typography>
           </Paper>
 
@@ -272,6 +275,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
               src="/assets/register_icon.png"
               width={20}
               height={20}
+              style={{ width: 'auto', height: 'auto' }}
               alt="doc icon"
             />
             Download our Confidentiality Agreement & Policies Document

@@ -66,7 +66,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$head
 async function POST() {
     try {
         // cookies() is synchronous in App Router; call delete directly
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])().delete('strapi-jwt');
+        (await // cookies() is synchronous in App Router; call delete directly
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])()).delete('strapi-jwt');
         return new Response(JSON.stringify({
             ok: true
         }), {

@@ -122,7 +122,7 @@ export function Navbar({ menuItems, user }: NavbarProps) {
 
         {/* DESKTOP USER MENU (sin tocar) */}
         <div className="hidden md:flex absolute right-8 top-6 items-center gap-4">
-          <a href="/contactUs" className="text-sm text-[#2D1540]">Contact Us</a>
+          
 
           <button
             onClick={() => setUserMenuOpen((prev) => !prev)}

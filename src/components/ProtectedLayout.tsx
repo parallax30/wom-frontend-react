@@ -12,12 +12,10 @@ export default function ProtectedLayout({
   const router = useRouter();
   const [ready, setReady] = useState(false);
 
-  console.log('🔒 PROTECTED LAYOUT RENDER');
-
   useEffect(() => {
     const validate = async () => {
       const user = await getMe();
-
+      console.log("ProtectedLayout - user:", user);
       if (!user) return router.replace('/login');
       if (user.blocked) return router.replace('/blocked');
       if (!user.confirmed) return router.replace('/pending-validation');

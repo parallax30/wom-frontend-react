@@ -37,8 +37,6 @@ const Page = async () => {
       }))
     : [];
 
-    console.log('managementMembers:', managementMembers);
-
 
   return (
       <div className="min-h-screen flex flex-col font-sans text-[#2D1540]">

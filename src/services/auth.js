@@ -1,17 +1,19 @@
+import { cookies } from 'next/headers';
+
 export async function getMe() {
-  const token = localStorage.getItem('strapi-jwt');
+    const cookieStore =  await cookies();
+    const token = cookieStore.get('strapi-jwt')?.value;
 
-  console.log("Token:", token);
-  if (!token) return null;
+    if (!token) return null;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/users/me`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/users/me?populate=role`,
+        {
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        }
+    );
 
   if (!res.ok) return null;
 

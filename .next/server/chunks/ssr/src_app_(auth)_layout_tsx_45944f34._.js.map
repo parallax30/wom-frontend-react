@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/francico/Documents/code/wom-frontend-react/src/app/%28auth%29/layout.tsx"],"sourcesContent":["import React, { FC } from 'react'\n\ninterface Props {\n  children?: React.ReactNode\n}\n\nconst Layout: FC<Props> = ({ children }) => {\n  return <>{children}</>\n}\n\nexport default Layout\n"],"names":[],"mappings":";;;;;AAMA,MAAM,SAAoB,CAAC,EAAE,QAAQ,EAAE;IACrC,qBAAO;kBAAG;;AACZ;uCAEe","debugId":null}}]
-}
