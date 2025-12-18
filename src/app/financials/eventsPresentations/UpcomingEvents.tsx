@@ -29,7 +29,7 @@ export function UpcomingEvents({ events }: UpcomingEventsProps) {
 
           {/* Columna 3: Descripción */}
           <div className="flex-1 text-gray-700 text-sm leading-relaxed">
-            {ev.description}
+            {ev.summary}
           </div>
         </div>
       ))}
