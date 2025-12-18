@@ -1,5 +1,8 @@
 // ---------------------
 // Navbar
+
+import { ReactNode } from "react";
+
 // ---------------------
 export interface SubMenuItem {
   label: string;
@@ -72,7 +75,7 @@ export interface EventItem {
   title: string;
   date: string;
   description: string;
-  summary: string;
+  summary: ReactNode; // rich text content
   linkText: string;
   url: string;
 }

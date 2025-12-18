@@ -1,7 +1,7 @@
 // ---------------------
 // Upcoming Events
 // ---------------------
-export interface EventItem {
+export interface PastEventItem {
   id: number;
   title: string;
   date: string;
@@ -9,5 +9,5 @@ export interface EventItem {
 }
 
 export interface PastEventsProps {
-  events: EventItem[];
+  events: PastEventItem[];
 }

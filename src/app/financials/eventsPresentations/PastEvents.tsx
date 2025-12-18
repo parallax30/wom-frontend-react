@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { PastEventsProps } from "@/types/financial.pastevents";
 
@@ -29,10 +31,21 @@ export function PastEvents({ events }: PastEventsProps) {
 
           {/* Columna 3: Descripción */}
           <div className="flex justify-end">
-          <button className="border border-[#350A63] text-[#350A63] px-4 py-2 rounded-full text-sm flex items-center gap-2">
+          <a
+            href={ev.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              bg-[#E6007E] text-white
+              px-5 py-2 rounded-full text-sm font-semibold
+              flex items-center gap-2
+              transition-colors duration-200
+              hover:bg-[#cc006f]
+            "
+          >
             <img src="/assets/icons/arrow-goto-icon.png" className="h-4" />
             GO TO
-          </button>
+          </a>
         </div>
         </div>
       ))}

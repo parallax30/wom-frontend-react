@@ -1,4 +1,5 @@
-import ButtonPrimary from '@/shared/ButtonPrimary'
+
+import Link from 'next/link'
 import React from 'react'
 
 const Page404: React.FC = () => (
@@ -11,9 +12,9 @@ const Page404: React.FC = () => (
         <span className="block text-sm font-medium tracking-wider text-neutral-800 sm:text-base dark:text-neutral-200">
           {`THE PAGE YOU WERE LOOKING FOR DOESN'T EXIST.`}
         </span>
-        <ButtonPrimary href="/" className="mt-4">
+        <Link href="/" className="mt-4 inline-block rounded-md bg-[#E92070] text-white px-4 py-2 hover:bg-[#c81c62]">
           Return Home Page
-        </ButtonPrimary>
+        </Link>
       </header>
     </div>
   </div>

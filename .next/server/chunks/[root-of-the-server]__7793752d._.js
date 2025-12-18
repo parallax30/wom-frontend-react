@@ -75,11 +75,13 @@ async function POST(req) {
                 status: 400
             });
         }
-        const base = ("TURBOPACK compile-time value", "http://34.69.55.168:1337");
+        const base = ("TURBOPACK compile-time value", "http://34.69.55.168/cms");
+        console.log('Strapi base URL:', base);
         if ("TURBOPACK compile-time falsy", 0) {
             "TURBOPACK unreachable";
         }
-        const url = new URL('/api/auth/local', base).toString();
+        const url = `${base}/api/auth/local`;
+        console.log('url :', url);
         const res = await fetch(url, {
             method: 'POST',
             headers: {
@@ -90,6 +92,7 @@ async function POST(req) {
                 password
             })
         });
+        console.log('Response from Strapi:', res);
         let data = null;
         try {
             data = await res.json();
