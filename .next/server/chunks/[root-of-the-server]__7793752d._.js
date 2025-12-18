@@ -81,7 +81,6 @@ async function POST(req) {
             "TURBOPACK unreachable";
         }
         const url = `${base}/api/auth/local`;
-        console.log('url :', url);
         const res = await fetch(url, {
             method: 'POST',
             headers: {
@@ -115,7 +114,7 @@ async function POST(req) {
         try {
             (await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["cookies"])()).set('strapi-jwt', data.jwt, {
                 httpOnly: true,
-                secure: ("TURBOPACK compile-time value", "development") === 'production',
+                secure: false,
                 sameSite: 'lax',
                 path: '/'
             });

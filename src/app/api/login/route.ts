@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     try {
       (await cookies()).set('strapi-jwt', data.jwt, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: false, // temporal
         sameSite: 'lax',
         path: '/',
       });
