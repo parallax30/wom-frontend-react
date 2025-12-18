@@ -433,12 +433,14 @@ const buildFinancialReports = (qDocs)=>{
     return result;
 };
 const buildOtherSegments = (items)=>{
-    if (!items) return [];
+    if (!Array.isArray(items)) return [];
     return items.map((item)=>({
             id: item.id,
-            title: item.otherDocumentTitle,
-            description: item.otherDocumentDescription,
-            fileUrl: item.otherDocumentLinkUrl
+            title: item.financialCollectionOtherDocumentName,
+            description: item.financialCollectionOtherDocumentSummary,
+            fileUrl: item.financialCollectionOtherDocumentLinkUrl,
+            linkText: item.financialCollectionOtherDocumentLinkText,
+            iconUrl: item.financialCollectionOtherDocumentLinkIcon?.url
         }));
 };
 // -----------------------------------------------------------
@@ -450,60 +452,10 @@ const Page = async ()=>{
     const financialsDataResponse = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$apiService$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getFinancials"])();
     const financialData = financialsDataResponse?.data?.data?.[0];
     const financialReportsData = financialData ? buildFinancialReports(financialData.financial_collection_q_documents) : {};
-    const otherSegmentsData = financialData ? buildOtherSegments(financialData.financial_collection_other_documents) : [];
-    const financialReportsMock = {
-        "2025": {
-            Q1: [
-                {
-                    title: "Document Report 1",
-                    url: "/docs/report1.pdf"
-                },
-                {
-                    title: "Document Report 2",
-                    url: "/docs/report2.pdf"
-                }
-            ],
-            Q2: [
-                {
-                    title: "Document Report 3",
-                    url: "/docs/report3.pdf"
-                },
-                {
-                    title: "Document Report 4",
-                    url: "/docs/report4.pdf"
-                }
-            ],
-            Q3: [],
-            Q4: []
-        },
-        "2024": {
-            Q1: [
-                {
-                    title: "Annual Report 2024",
-                    url: "/docs/annual2024.pdf"
-                }
-            ],
-            Q2: [],
-            Q3: [],
-            Q4: []
-        },
-        "2023": {
-            Q1: [
-                {
-                    title: "Budget Report 2023",
-                    url: "/docs/budget2023.pdf"
-                }
-            ],
-            Q2: [
-                {
-                    title: "Tax Report 2023",
-                    url: "/docs/tax2023.pdf"
-                }
-            ],
-            Q3: [],
-            Q4: []
-        }
-    };
+    const financialsOtherDataResponse = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$apiService$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getFinancialCollectionOtherDocuments"])();
+    console.log("financialsOtherDataResponse.data:", financialsOtherDataResponse?.data);
+    const financialOtherData = financialsOtherDataResponse?.data?.data;
+    const otherSegmentsData = financialData ? buildOtherSegments(financialOtherData) : [];
     const segmentsData = [
         {
             id: 1,
@@ -532,7 +484,7 @@ const Page = async ()=>{
                 user: common.user
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/page.tsx",
-                lineNumber: 138,
+                lineNumber: 120,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -542,33 +494,33 @@ const Page = async ()=>{
                         data: financialReportsData
                     }, void 0, false, {
                         fileName: "[project]/src/app/financials/reports/page.tsx",
-                        lineNumber: 140,
+                        lineNumber: 122,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$financials$2f$reports$2f$OtherSegments$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["OtherSegments"], {
                         segments: otherSegmentsData
                     }, void 0, false, {
                         fileName: "[project]/src/app/financials/reports/page.tsx",
-                        lineNumber: 141,
+                        lineNumber: 123,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/financials/reports/page.tsx",
-                lineNumber: 139,
+                lineNumber: 121,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Home$2f$Footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Footer"], {
                 contact: common.contact
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/page.tsx",
-                lineNumber: 143,
+                lineNumber: 125,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/financials/reports/page.tsx",
-        lineNumber: 137,
+        lineNumber: 119,
         columnNumber: 7
     }, this);
 };

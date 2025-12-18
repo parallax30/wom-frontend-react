@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/francico/Documents/code/wom-frontend-react/src/createEmotionCache.ts"],"sourcesContent":["import createCache from \"@emotion/cache\";\n\nexport default function createEmotionCache() {\n  return createCache({ key: \"css\", prepend: true });\n}\n"],"names":[],"mappings":";;;AAAA;;AAEe,SAAS;IACtB,OAAO,CAAA,GAAA,oLAAA,CAAA,UAAW,AAAD,EAAE;QAAE,KAAK;QAAO,SAAS;IAAK;AACjD","debugId":null}},
-    {"offset": {"line": 24, "column": 0}, "map": {"version":3,"sources":["file:///Users/francico/Documents/code/wom-frontend-react/src/theme/ThemeRegistry.tsx"],"sourcesContent":["\"use client\";\n\nimport { ReactNode, useState } from \"react\";\nimport { CacheProvider } from \"@emotion/react\";\nimport createEmotionCache from \"../createEmotionCache\";\n\nexport default function ThemeRegistry({ children }: { children: ReactNode }) {\n  const [cache] = useState(createEmotionCache);\n  return <CacheProvider value={cache}>{children}</CacheProvider>;\n}\n"],"names":[],"mappings":";;;;AAEA;AACA;AACA;AAJA;;;;;AAMe,SAAS,cAAc,EAAE,QAAQ,EAA2B;IACzE,MAAM,CAAC,MAAM,GAAG,CAAA,GAAA,qMAAA,CAAA,WAAQ,AAAD,EAAE,yHAAA,CAAA,UAAkB;IAC3C,qBAAO,8OAAC,wOAAA,CAAA,gBAAa;QAAC,OAAO;kBAAQ;;;;;;AACvC","debugId":null}}]
-}

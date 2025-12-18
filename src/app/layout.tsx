@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import ThemeProvider from './theme-provider'
 import { UserProvider } from '@/contexts/auth/user-context'
 import { getGlobal } from '@/services/apiService'
+import ThemeRegistry from './theme-registry'
 
 export async function generateMetadata(): Promise<Metadata> {
 
@@ -30,17 +31,15 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-base text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200">
-        <ThemeProvider>
-          <UserProvider>
-            {children}
-          </UserProvider>
-        </ThemeProvider>
+    <html lang="es">
+      <body>
+        <ThemeRegistry>
+          {children}
+        </ThemeRegistry>
       </body>
     </html>
-  )
+  );
 }

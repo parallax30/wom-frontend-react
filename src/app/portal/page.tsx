@@ -13,6 +13,7 @@ import { Footer } from '@/components/Home/Footer'
 import { getHome } from "@/services/apiService";
 
 import { RichTextBlock, richTextToPlainText } from "@/utils/richText";
+import { getCommonPageData } from '@/lib/common/getCommonPageData'
 
 export const metadata: Metadata = {
   title: 'Inversors Portal',
@@ -86,8 +87,6 @@ async function getHomeData(): Promise<HomePageData> {
   // Calcular el trimestre actual (p. ej. "Q3 - 2025") si la API no lo provee
   const quarter = `Q${Math.floor(new Date().getMonth() / 3) + 1} - ${new Date().getFullYear()}`;
 
-
-
   return {
 
     homeTitle1,
@@ -100,52 +99,6 @@ async function getHomeData(): Promise<HomePageData> {
     homeTItle2LinkUrlButton,
     homeTItle3TextlButton,
     homeTItle3LinkUrlButton,
-    // ---------------------
-    // MENU SUPERIOR
-    // ---------------------
-    menu: [
-      { label: "Home", href: "/portal", active: true },
-
-      {
-        label: "Gobernance",
-        href: "#",
-        submenu: [
-          { label: "Board", href: "/gobernance/board" },
-          { label: "Management", href: "/gobernance/management" },
-          { label: "Policies", href: "/gobernance/policies" },
-        ],
-      },
-      {
-        label: "Financials",
-        href: "#",
-        submenu: [
-          { label: "Financials Reports", href: "/financials/reports" },
-          { label: "Events & Presentations", href: "/financials/eventsPresentations" },
-        ],
-      },
-
-      {
-        label: "News",
-        href: "/news"
-      },
-      {
-        label: "Contact Us",
-        href: "/contactUs", 
-      },
-      {
-        label: "Admin",
-        href: "/admin"
-      },
-    ],
-
-    // ---------------------
-    // USUARIO
-    // ---------------------
-    user: {
-      avatar: "/assets/avatar.png",
-      name: "John Doe",
-      role: "Investor",
-    },
 
     // ---------------------
     // HERO
@@ -182,14 +135,6 @@ async function getHomeData(): Promise<HomePageData> {
     // BOND INFORMATION LIST
     // ---------------------
     documents,
-
-    // ---------------------
-    // FOOTER
-    // ---------------------
-    contact: {
-      email: "investors@wom.cl",
-      phone: "+56 2 2753 1234",
-    } as const,
   };
 }
 
@@ -199,17 +144,18 @@ async function getHomeData(): Promise<HomePageData> {
 const Page = async () => {
   // Llamada simulada a API
   const data = await getHomeData()
+  const common = await getCommonPageData("/portal");
 
   return (
     <div className="w-full font-sans text-[#2D1540]">
-      <Navbar menuItems={data.menu} user={data.user} />
+      <Navbar menuItems={common.menu} user={common.user} />
       <Hero image={data.homePrincipalImage} />
       <DateBar date={data.today} />
       <QuarterlyResults quarter={data.quarter} reports={data.reports || []} />
       <LatestNews news={data.news || []} />
       <UpcomingEvents events={data.events || []} />
       <BondInformation documents={data.documents || []} />
-      <Footer contact={data.contact || { email: "investors@wom.cl", phone: "+56 2 2753 1234" }} />
+      <Footer contact={common.contact || { email: "investors@wom.cl", phone: "+56 2 2753 1234" }} />
     </div>
   )
 }

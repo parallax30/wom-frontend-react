@@ -139,7 +139,6 @@ export interface FooterProps {
 // HomePage Props
 // ---------------------
 export interface HomePageData {
-  menu: MenuItem[];
   homeTitle1: string;
   homeTitle2: string;
   homeTitle3: string;
@@ -150,7 +149,6 @@ export interface HomePageData {
   homeTItle2LinkUrlButton: string;
   homeTItle3TextlButton: string;
   homeTItle3LinkUrlButton: string;
-  user: UserInfo;
   homePrincipalImage: string;
   today: string;
   quarter: string; // es home_financial_cards en la API
@@ -158,7 +156,6 @@ export interface HomePageData {
   news?: NewsItem[];
   events?: EventItem[];
   documents?: BondDocument[];
-  contact?: ContactInfo;
 }
 
 

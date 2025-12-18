@@ -12,7 +12,7 @@ import { Footer } from '@/components/Home/Footer'
 import { FinancialReports } from './FinancialReports'
 import { OtherSegments } from './OtherSegments'
 import { getCommonPageData } from '@/lib/common/getCommonPageData'
-import { getFinancials } from '@/services/apiService'
+import { getFinancialCollectionOtherDocuments, getFinancials } from '@/services/apiService'
 
 export const metadata: Metadata = {
   title: 'Inversors Portal',
@@ -44,16 +44,20 @@ export const metadata: Metadata = {
   };
 
 
-  const buildOtherSegments = (items: any[]) => {
-    if (!items) return [];
+  const buildOtherSegments = (items?: any[]) => {
+    if (!Array.isArray(items)) return [];
 
     return items.map((item) => ({
       id: item.id,
-      title: item.otherDocumentTitle,
-      description: item.otherDocumentDescription,
-      fileUrl: item.otherDocumentLinkUrl,
+      title: item.financialCollectionOtherDocumentName,
+      description: item.financialCollectionOtherDocumentSummary,
+      fileUrl: item.financialCollectionOtherDocumentLinkUrl,
+      linkText: item.financialCollectionOtherDocumentLinkText,
+      iconUrl: item.financialCollectionOtherDocumentLinkIcon?.url,
     }));
   };
+
+  
 
 
 
@@ -72,41 +76,14 @@ const Page = async () => {
     ? buildFinancialReports(financialData.financial_collection_q_documents)
     : {};
 
-  
+  const financialsOtherDataResponse = await getFinancialCollectionOtherDocuments();
 
+  const financialOtherData = financialsOtherDataResponse?.data?.data;
 
   const otherSegmentsData = financialData
-    ? buildOtherSegments(financialData.financial_collection_other_documents)
+    ? buildOtherSegments(financialOtherData)
     : [];
 
-  const financialReportsMock = {
-  "2025": {
-    Q1: [
-      { title: "Document Report 1", url: "/docs/report1.pdf" },
-      { title: "Document Report 2", url: "/docs/report2.pdf" },
-    ],
-    Q2: [
-      { title: "Document Report 3", url: "/docs/report3.pdf" },
-      { title: "Document Report 4", url: "/docs/report4.pdf" },
-    ],
-    Q3: [],
-    Q4: [],
-  },
-
-  "2024": {
-    Q1: [{ title: "Annual Report 2024", url: "/docs/annual2024.pdf" }],
-    Q2: [],
-    Q3: [],
-    Q4: [],
-  },
-
-  "2023": {
-    Q1: [{ title: "Budget Report 2023", url: "/docs/budget2023.pdf" }],
-    Q2: [{ title: "Tax Report 2023", url: "/docs/tax2023.pdf" }],
-    Q3: [],
-    Q4: [],
-  },
-};
 
 const segmentsData = [
   {

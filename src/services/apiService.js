@@ -82,7 +82,6 @@ export const getCalendarCollectionPastEvent = (params) =>
 export const getCalendarCollectionUpcomingEvent = (params) =>
   api.get(`/calendar-past-events?populate=*`, { params });
 
-
 // Auth - Register
 export const registerUser = (payload) =>
   api.post("/auth/local/register", payload);
@@ -90,4 +89,14 @@ export const registerUser = (payload) =>
 // Get users
 export const getUsers = (payload) =>
   api.get("/users", payload);
+
+export const getUserById = (id) =>
+  api.get(`/users/${id}`);
+
+//PUT users
+export const putUser = (id, payload) =>
+  api.put(`/users/${id}`, payload); 
+
+export const getFinancialCollectionOtherDocuments = (params) =>
+  api.get(`/financial-collection-other-documents?fields=financialCollectionOtherDocumentName,financialCollectionOtherDocumentSummary,financialCollectionOtherDocumentLinkText,financialCollectionOtherDocumentLinkUrl,financialCollectionOtherDocumentSummaryList&populate[financialCollectionOtherDocumentLinkIcon][fields][0]=url`, { params });
 
