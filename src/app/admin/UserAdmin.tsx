@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { FaCheckSquare, FaTrashAlt, FaBan } from "react-icons/fa";
-import { getUsers } from "@/services/apiService";
+import { getUsers, putUser } from "@/services/apiService";
 
 /* =====================
    TIPOS
@@ -132,22 +132,35 @@ export default function UserAdmin() {
           {
             method: "DELETE",
             headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_ADMIN_TOKEN}`,
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
             },
           }
         );
       } else {
-        await fetch(
-          `${process.env.NEXT_PUBLIC_HELPER_API}/email/${type}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId: id }),
-          }
-        );
+        const isBlocked = (type === "block" ? true : false);
+
+        await putUser(id, { blocked: isBlocked});
+      }
+
+      //envío correo notificando al usuario
+      const res1 = await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/${type}`, {
+      
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: id
+        }),
+      });
+        
+
+      const data = await res1.json();
+      if (!res1.ok) {
+        console.error("Error en send mail:", data);
+        //throw new Error(data?.error?.message || "Confirm OTP failed");
       }
 
       await fetchUsers();
+    
     } catch (error) {
       console.error("Action failed", error);
     } finally {

@@ -148,7 +148,7 @@ const Page = async () => {
 
   return (
     <div className="w-full font-sans text-[#2D1540]">
-      <Navbar menuItems={common.menu} user={common.user} />
+      <Navbar menuItems={common.menu} user={common.user} urlLogo={common.logoHeader}/>
       <Hero image={data.homePrincipalImage} />
       <DateBar date={data.today} />
       <QuarterlyResults quarter={data.quarter} reports={data.reports || []} />

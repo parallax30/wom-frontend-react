@@ -2,6 +2,8 @@ import React from "react";
 import { UpcomingEventsProps } from "@/types/home.types";
 
 export function UpcomingEvents({ events }: UpcomingEventsProps) {
+
+  console.log("Upcoming Events:", events);
   return (
     <section className="px-10 py-16">
       <h2 className="text-xl font-bold mb-10">Upcoming Events</h2>

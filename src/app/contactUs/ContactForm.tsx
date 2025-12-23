@@ -7,8 +7,9 @@ import { useRouter } from "next/navigation";
 
 interface ContactFormProps {
   user: {
+    avatar?: string;
     name: string;
-    email: string;
+    email?: string;
   };
 }
 
@@ -17,7 +18,7 @@ export default function ContactForm({ user }: ContactFormProps) {
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const [subject] = useState("Message IR Web Page");
   const [message, setMessage] = useState("");
 
   const [sending, setSending] = useState(false);
@@ -91,11 +92,11 @@ export default function ContactForm({ user }: ContactFormProps) {
             />
             <div>
               <p className="font-semibold text-lg">Contact Email</p>
-              <p className="text-[#C52A6C] font-semibold">example@example.com</p>
+              <p className="text-[#C52A6C] font-semibold">ir@wom.cl</p>
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
+          {/* <div className="flex items-start gap-4">
             <Image
               src="/assets/icons/phone-contact-icon.png"
               alt="phone"
@@ -106,7 +107,7 @@ export default function ContactForm({ user }: ContactFormProps) {
               <p className="font-semibold text-lg">Contact Phone</p>
               <p className="text-[#C52A6C] font-semibold">+56 9 12345678</p>
             </div>
-          </div>
+          </div>*/}
         </div>
 
         {/* RIGHT SECTION — FORM */}
@@ -133,9 +134,9 @@ export default function ContactForm({ user }: ContactFormProps) {
           <label className="block font-semibold mb-1">Subject</label>
           <input
             type="text"
-            className="w-full border border-gray-400 rounded-xl px-4 py-3 mb-6"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
+            className="w-full border border-gray-400 rounded-xl px-4 py-3 mb-6 bg-gray-100 cursor-not-allowed"
+            value="Message IR Web Page"
+            disabled
           />
 
           {/* MESSAGE */}

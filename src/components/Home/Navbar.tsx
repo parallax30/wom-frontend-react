@@ -8,9 +8,10 @@ import UserMenu from "../navbar/UserMenu";
 interface NavbarProps {
   menuItems: MenuItem[];
   user: UserInfo;
+  urlLogo: string;
 }
 
-export function Navbar({ menuItems, user }: NavbarProps) {
+export function Navbar({ menuItems, user, urlLogo }: NavbarProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -43,9 +44,9 @@ export function Navbar({ menuItems, user }: NavbarProps) {
       {/* LOGO */}
       <div className="absolute -top-5 left-8 z-50 pointer-events-none">
         <img
-          src="/assets/logo_azul.png"
+          src={urlLogo}
           alt="Logo"
-          className="h-36 w-auto pointer-events-none select-none"
+          className="h-28 w-auto pointer-events-none select-none"
         />
       </div>
 
@@ -53,7 +54,7 @@ export function Navbar({ menuItems, user }: NavbarProps) {
         <div className="flex items-center justify-center h-full">
 
           {/* DESKTOP MENU */}
-          <div className="hidden md:flex items-center gap-0 text-base font-semibold h-full">
+          <div className="hidden md:flex items-center gap-0 text-base font-semibold h-full pl-28">
             {menuItems.map((item, idx) => {
               const submenu = item.submenu ?? [];
               const hasSubmenu = submenu.length > 0;

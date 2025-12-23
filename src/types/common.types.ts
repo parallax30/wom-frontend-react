@@ -21,4 +21,5 @@ export interface CommonPageData {
     email: string;
     phone: string;
   };
+  logoHeader: string;
 }

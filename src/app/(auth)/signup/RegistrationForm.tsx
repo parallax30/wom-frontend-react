@@ -174,8 +174,8 @@ export function RegistrationForm(): React.JSX.Element {
 
       const data1 = await res1.json();
       if (!res1.ok) {
-        console.error("ADMIN ALERT ERROR:", data);
-        throw new Error(data?.error?.message || "Confirm OTP failed");
+        console.error("ADMIN ALERT ERROR:", data1);
+        throw new Error(data1?.error?.message || "Confirm OTP failed");
       }
 
       setOpenOtpModal(false);

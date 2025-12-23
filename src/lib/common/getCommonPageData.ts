@@ -1,3 +1,4 @@
+import { getGlobal } from "@/services/apiService";
 import { getMe } from "@/services/auth";
 import { CommonPageData } from "@/types/common.types";
 
@@ -12,9 +13,18 @@ export async function getCommonPageData(
   const canSeeAdmin = user?.role?.name === "UserValidation";
 
   const isRouteActive = (activeRoute?: string, href?: string) => {
-  if (!activeRoute || !href) return false;
-  return activeRoute === href || activeRoute.startsWith(`${href}/`);
-};
+    if (!activeRoute || !href) return false;
+    return activeRoute === href || activeRoute.startsWith(`${href}/`);
+  };
+
+
+  const responseGlobal = await getGlobal({});
+  const globalData = responseGlobal?.data?.data;
+    
+  const logoHeader = globalData.headerImage.url
+    ? `${process.env.NEXT_PUBLIC_API_URL}${globalData.headerImage.url}`
+    : "/assets/wom_empresas_logo.png";
+
 
   const menu = [
     {
@@ -65,9 +75,6 @@ export async function getCommonPageData(
     });
   }
 
-
-
-
   return {
     menu,
 
@@ -88,5 +95,6 @@ export async function getCommonPageData(
       email: "investors@wom.cl",
       phone: "+56 2 2753 1234",
     },
+    logoHeader,
   };
 }

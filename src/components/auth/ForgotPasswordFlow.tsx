@@ -122,7 +122,7 @@ export function ForgotPasswordFlow() {
         <Typography sx={{ mb: 3 }}>Enter your email to receive a recovery code.</Typography>
         <OutlinedInput
           fullWidth
-          placeholder="example@example.com"
+          placeholder="ir@wom.cl"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           sx={{ mb: 3, backgroundColor: "#fff", borderRadius: 2 }}
