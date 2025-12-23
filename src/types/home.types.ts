@@ -42,9 +42,16 @@ export interface DateBarProps {
 export interface ReportItem {
   id: string;
   homeFinancialCardTitle: string;
-  icon: string;         // ruta al icono de assets
+  homeFinancialCardIcon?: {
+    url: string; // ruta al icono de la tarjeta
+  };
   homeFinancialCardLinkText: string;
-  homeFinancialCardLinkUrl: string;
+  homeFinancialCardLinkIcon?: {
+    url: string; // ruta al icono del link de descarga
+  };
+  homeFinancialCardFile?: {
+    url: string; // ruta al archivo PDF
+  };
 }
 
 export interface QuarterlyResultsProps {
