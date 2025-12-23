@@ -22,18 +22,22 @@ import { PastEventItem } from '@/types/financial.pastevents'
 const Page = async () => {
 
   const mapUpcomingEvents = (items?: any[]): EventItem[] => {
-    if (!Array.isArray(items)) return [];
+  if (!Array.isArray(items)) return [];
 
-    return items.map((item) => ({
-      id: item.id,
-      title: item.calendarUpcomingEventName ?? "",
-      date: item.calendarUpcomingEventDate ?? "",
-      description: "", // no viene desde CMS (puedes usar summary si quieres)
-      summary: richTextToReact(item.calendarUpcomingEventSummary),
-      linkText: item.calendarUpcomingEventLinkText ?? "",
-      url: item.calendarUpcomingEventLinkUrl ?? "",
-    }));
-  };
+  return items.map((item) => ({
+    id: item.id,
+    title: item.calendarUpcomingEventName ?? "",
+    date: item.calendarUpcomingEventDate ?? "",
+    description: "",
+    summary: item.calendarUpcomingEventSummary
+      ? richTextToReact(item.calendarUpcomingEventSummary)
+      : null,
+    linkText: item.calendarUpcomingEventLinkText ?? "",
+    url: item.calendarUpcomingEventLinkUrl ?? "",
+    iconUrl: item.calendarUpcomingEventIcon?.url ?? null,
+  }));
+};
+
 
   const mapPastEvents = (items?: any[]): PastEventItem[] => {
     if (!Array.isArray(items)) return [];
@@ -49,6 +53,7 @@ const Page = async () => {
   const common = await getCommonPageData()
   
   const upcomingEventsResponse = await getCalendarCollectionUpcomingEvent();
+  console.log("Upcoming Events Response:", upcomingEventsResponse?.data?.data);
   const upcomingEventsData = mapUpcomingEvents(upcomingEventsResponse?.data?.data);
   
   const pastEventsResponse = await getCalendarCollectionPastEvent();
@@ -56,7 +61,7 @@ const Page = async () => {
 
   return (
       <div className="min-h-screen flex flex-col font-sans text-[#2D1540]">
-        <Navbar menuItems={common.menu} user={common.user} />
+        <Navbar menuItems={common.menu} user={common.user} urlLogo={common.logoHeader}/>
         <main className="flex-grow">
           <UpcomingEvents events={upcomingEventsData}/>
           <PastEvents events={pastEventsData} />

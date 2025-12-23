@@ -80,7 +80,7 @@ export const getCalendarCollectionPastEvent = (params) =>
   api.get(`/calendar-past-events?populate=*`, { params });
 
 export const getCalendarCollectionUpcomingEvent = (params) =>
-  api.get(`/calendar-past-events?populate=*`, { params });
+  api.get(`/calendar-upcoming-events?populate=*`, { params });
 
 // Auth - Register
 export const registerUser = (payload) =>
@@ -99,4 +99,8 @@ export const putUser = (id, payload) =>
 
 export const getFinancialCollectionOtherDocuments = (params) =>
   api.get(`/financial-collection-other-documents?fields=financialCollectionOtherDocumentName,financialCollectionOtherDocumentSummary,financialCollectionOtherDocumentLinkText,financialCollectionOtherDocumentLinkUrl,financialCollectionOtherDocumentSummaryList&populate[financialCollectionOtherDocumentLinkIcon][fields][0]=url`, { params });
+
+
+export const getGobernanceCollectionDocuments = (params) =>
+  api.get(`/gobernance-collection-documents?populate=*`, { params });
 

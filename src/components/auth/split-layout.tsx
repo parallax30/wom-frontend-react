@@ -20,7 +20,12 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
     ? `${process.env.NEXT_PUBLIC_API_URL}${cms.leftImage.url}`
     : "/assets/about_wom_image.jpg";
 
-  //TODO: falta el logo (linea 49)
+  const logoGrande = cms?.leftImage?.url
+    ? `${process.env.NEXT_PUBLIC_API_URL}${cms.logoGrande}`
+    : "/assets/wom_empresas_logo.png";
+
+  console.log("Logo Grande URL:", cms.logoGrande);
+
 
   return (
     <Box
@@ -45,7 +50,7 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
           {/* Logo fijo */}
           <Box sx={{ mb: 4, mt: 2, width: 250, height: 120, position: "relative" }}>
             <Image
-              src="/assets/wom_empresas_logo.png"
+              src={logoGrande}
               alt="WOM Empresas"
               fill
               sizes="250px"

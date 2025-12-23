@@ -170,7 +170,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function Navbar({ menuItems, user }) {
+function Navbar({ menuItems, user, urlLogo }) {
     _s();
     const [openIndex, setOpenIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [mobileMenuOpen, setMobileMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -205,17 +205,17 @@ function Navbar({ menuItems, user }) {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -top-5 left-8 z-50 pointer-events-none",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                    src: "/assets/logo_azul.png",
+                    src: urlLogo,
                     alt: "Logo",
-                    className: "h-36 w-auto pointer-events-none select-none"
+                    className: "h-28 w-auto pointer-events-none select-none"
                 }, void 0, false, {
                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                    lineNumber: 45,
+                    lineNumber: 46,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 44,
+                lineNumber: 45,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -225,7 +225,7 @@ function Navbar({ menuItems, user }) {
                         className: "flex items-center justify-center h-full",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "hidden md:flex items-center gap-0 text-base font-semibold h-full",
+                                className: "hidden md:flex items-center gap-0 text-base font-semibold h-full pl-28",
                                 children: menuItems.map((item, idx)=>{
                                     const submenu = item.submenu ?? [];
                                     const hasSubmenu = submenu.length > 0;
@@ -254,18 +254,18 @@ function Navbar({ menuItems, user }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                            lineNumber: 78,
+                                                            lineNumber: 79,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 77,
+                                                        lineNumber: 78,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 69,
+                                                lineNumber: 70,
                                                 columnNumber: 21
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                 href: item.href ?? "#",
@@ -275,7 +275,7 @@ function Navbar({ menuItems, user }) {
                                                 children: item.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 88,
                                                 columnNumber: 21
                                             }, this),
                                             hasSubmenu && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -286,24 +286,24 @@ function Navbar({ menuItems, user }) {
                                                         children: s.label
                                                     }, s.href, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 100,
+                                                        lineNumber: 101,
                                                         columnNumber: 25
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 98,
+                                                lineNumber: 99,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, item.label, true, {
                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                        lineNumber: 63,
+                                        lineNumber: 64,
                                         columnNumber: 17
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 56,
+                                lineNumber: 57,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -312,18 +312,18 @@ function Navbar({ menuItems, user }) {
                                     onToggle: ()=>setMobileMenuOpen((prev)=>!prev)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 117,
+                                    lineNumber: 118,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 116,
+                                lineNumber: 117,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 53,
+                        lineNumber: 54,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -338,12 +338,12 @@ function Navbar({ menuItems, user }) {
                                     className: "h-10 w-10 rounded-full border border-gray-300 object-cover cursor-pointer"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 131,
+                                    lineNumber: 132,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 127,
+                                lineNumber: 128,
                                 columnNumber: 11
                             }, this),
                             userMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$navbar$2f$UserMenu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -352,13 +352,13 @@ function Navbar({ menuItems, user }) {
                                 onClose: ()=>setUserMenuOpen(false)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                lineNumber: 139,
+                                lineNumber: 140,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 124,
+                        lineNumber: 125,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -397,18 +397,18 @@ function Navbar({ menuItems, user }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                            lineNumber: 177,
+                                                            lineNumber: 178,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 176,
+                                                        lineNumber: 177,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 164,
+                                                lineNumber: 165,
                                                 columnNumber: 19
                                             }, this),
                                             hasSubmenu && isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -419,18 +419,18 @@ function Navbar({ menuItems, user }) {
                                                         children: s.label
                                                     }, s.href, false, {
                                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                        lineNumber: 190,
+                                                        lineNumber: 191,
                                                         columnNumber: 25
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                lineNumber: 188,
+                                                lineNumber: 189,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, item.label, true, {
                                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                                        lineNumber: 163,
+                                        lineNumber: 164,
                                         columnNumber: 17
                                     }, this);
                                 }),
@@ -442,7 +442,7 @@ function Navbar({ menuItems, user }) {
                                             className: "h-10 w-10 rounded-full border"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                            lineNumber: 206,
+                                            lineNumber: 207,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -452,7 +452,7 @@ function Navbar({ menuItems, user }) {
                                                     children: user.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                    lineNumber: 212,
+                                                    lineNumber: 213,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -460,19 +460,19 @@ function Navbar({ menuItems, user }) {
                                                     children: user.role
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                                    lineNumber: 213,
+                                                    lineNumber: 214,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                                            lineNumber: 211,
+                                            lineNumber: 212,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 205,
+                                    lineNumber: 206,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -481,30 +481,30 @@ function Navbar({ menuItems, user }) {
                                     children: "Logout"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Home/Navbar.tsx",
-                                    lineNumber: 218,
+                                    lineNumber: 219,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Home/Navbar.tsx",
-                            lineNumber: 155,
+                            lineNumber: 156,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Home/Navbar.tsx",
-                        lineNumber: 148,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 52,
+                lineNumber: 53,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Home/Navbar.tsx",
-        lineNumber: 42,
+        lineNumber: 43,
         columnNumber: 5
     }, this);
 }
@@ -531,17 +531,17 @@ _c = Navbar;
                 strokeLinecap: "round"
             }, void 0, false, {
                 fileName: "[project]/src/components/Home/Navbar.tsx",
-                lineNumber: 240,
+                lineNumber: 241,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/Home/Navbar.tsx",
-            lineNumber: 239,
+            lineNumber: 240,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Home/Navbar.tsx",
-        lineNumber: 234,
+        lineNumber: 235,
         columnNumber: 5
     }, this);
 }
@@ -569,7 +569,7 @@ const api = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axio
 });
 // Interceptor para agregar token desde .env
 api.interceptors.request.use((config)=>{
-    const token = ("TURBOPACK compile-time value", "d48f8fa6fcb6287d40e8bfa641a7a6c76f8737f4a09c8c2d0e23c09e6cc25a404e927885096262adef398c3ac5d17a825d67fe066b2fc1288471e6fcb5e7e2779ec84f4f43a4ac7d9988ae5cc4be01a16356e56acdcdcd0c14b1bc8f318e7ccd3a1f3a132e3a82e7e589babf53dd99620f765b9684d83a6931834790907a8a64");
+    const token = ("TURBOPACK compile-time value", "7377901583d77b44dd629cfff3daa207230eb826b39f409ae0d5a915d583374514f345e5d31ccf3cfafa9219914e78b76805506e48411cefe28f60dfb0354805c845b66155dfffb3d40ebbc02aa2347800646fc54b15ff81e2558ce1f87240109ee54332c1afe55d211979eeb9d23524bb770ce9e9ff1e55796ec24ab6b286d0");
     if ("TURBOPACK compile-time truthy", 1) {
         config.headers.Authorization = `Bearer ${token}`;
     }
@@ -685,7 +685,7 @@ const getFinancialCollectionOtherDocument = (params)=>__TURBOPACK__imported__mod
 const getCalendarCollectionPastEvent = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`/calendar-past-events?populate=*`, {
         params
     });
-const getCalendarCollectionUpcomingEvent = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`/calendar-past-events?populate=*`, {
+const getCalendarCollectionUpcomingEvent = (params)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`/calendar-upcoming-events?populate=*`, {
         params
     });
 const registerUser = (payload)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$api$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post("/auth/local/register", payload);
@@ -799,19 +799,29 @@ function UserAdmin() {
                 await fetch(`${("TURBOPACK compile-time value", "http://34.69.55.168/cms")}/api/users/${id}`, {
                     method: "DELETE",
                     headers: {
-                        Authorization: `Bearer ${__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_STRAPI_ADMIN_TOKEN}`
+                        Authorization: `Bearer ${("TURBOPACK compile-time value", "7377901583d77b44dd629cfff3daa207230eb826b39f409ae0d5a915d583374514f345e5d31ccf3cfafa9219914e78b76805506e48411cefe28f60dfb0354805c845b66155dfffb3d40ebbc02aa2347800646fc54b15ff81e2558ce1f87240109ee54332c1afe55d211979eeb9d23524bb770ce9e9ff1e55796ec24ab6b286d0")}`
                     }
                 });
             } else {
-                await fetch(`${("TURBOPACK compile-time value", "http://localhost:3001")}/email/${type}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        userId: id
-                    })
+                const isBlocked = type === "block" ? true : false;
+                await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$apiService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["putUser"])(id, {
+                    blocked: isBlocked
                 });
+            }
+            //envío correo notificando al usuario
+            const res1 = await fetch(`${("TURBOPACK compile-time value", "http://34.69.55.168/api-helper")}/email/${type}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userId: id
+                })
+            });
+            const data = await res1.json();
+            if (!res1.ok) {
+                console.error("Error en send mail:", data);
+            //throw new Error(data?.error?.message || "Confirm OTP failed");
             }
             await fetchUsers();
         } catch (error) {
@@ -831,7 +841,7 @@ function UserAdmin() {
                     children: "Activo"
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 166,
+                    lineNumber: 179,
                     columnNumber: 16
                 }, this);
             case "Pendiente Validación":
@@ -840,7 +850,7 @@ function UserAdmin() {
                     children: "Pendiente Validación"
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 169,
+                    lineNumber: 182,
                     columnNumber: 11
                 }, this);
             case "Desactivado":
@@ -849,7 +859,7 @@ function UserAdmin() {
                     children: "Desactivado"
                 }, void 0, false, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 174,
+                    lineNumber: 187,
                     columnNumber: 16
                 }, this);
         }
@@ -860,7 +870,7 @@ function UserAdmin() {
             children: "Loading..."
         }, void 0, false, {
             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-            lineNumber: 179,
+            lineNumber: 192,
             columnNumber: 12
         }, this);
     }
@@ -877,7 +887,7 @@ function UserAdmin() {
                         children: "User Administration"
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                        lineNumber: 189,
+                        lineNumber: 202,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -916,28 +926,28 @@ function UserAdmin() {
                                                             children: sortDirection === "asc" ? "▲" : "▼"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                            lineNumber: 213,
+                                                            lineNumber: 226,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 210,
+                                                    lineNumber: 223,
                                                     columnNumber: 21
                                                 }, this)
                                             }, col.key, false, {
                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                lineNumber: 203,
+                                                lineNumber: 216,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                        lineNumber: 196,
+                                        lineNumber: 209,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 195,
+                                    lineNumber: 208,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -949,7 +959,7 @@ function UserAdmin() {
                                                     children: u.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 227,
+                                                    lineNumber: 240,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -957,7 +967,7 @@ function UserAdmin() {
                                                     children: u.email
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 228,
+                                                    lineNumber: 241,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -965,7 +975,7 @@ function UserAdmin() {
                                                     children: getColorLabel(u.status)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 229,
+                                                    lineNumber: 242,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -980,12 +990,12 @@ function UserAdmin() {
                                                                     size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                    lineNumber: 237,
+                                                                    lineNumber: 250,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                lineNumber: 233,
+                                                                lineNumber: 246,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -995,12 +1005,12 @@ function UserAdmin() {
                                                                     size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                    lineNumber: 244,
+                                                                    lineNumber: 257,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                lineNumber: 240,
+                                                                lineNumber: 253,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1010,51 +1020,51 @@ function UserAdmin() {
                                                                     size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                    lineNumber: 251,
+                                                                    lineNumber: 264,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                                lineNumber: 247,
+                                                                lineNumber: 260,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                        lineNumber: 232,
+                                                        lineNumber: 245,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                                    lineNumber: 231,
+                                                    lineNumber: 244,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, u.id, true, {
                                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                            lineNumber: 223,
+                                            lineNumber: 236,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 221,
+                                    lineNumber: 234,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 194,
+                            lineNumber: 207,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                        lineNumber: 193,
+                        lineNumber: 206,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                lineNumber: 188,
+                lineNumber: 201,
                 columnNumber: 7
             }, this),
             modalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1067,7 +1077,7 @@ function UserAdmin() {
                             children: "Confirm action"
                         }, void 0, false, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 266,
+                            lineNumber: 279,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1078,14 +1088,14 @@ function UserAdmin() {
                                     children: selectedAction?.type
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 269,
+                                    lineNumber: 282,
                                     columnNumber: 40
                                 }, this),
                                 " this user?"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 268,
+                            lineNumber: 281,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1097,7 +1107,7 @@ function UserAdmin() {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 273,
+                                    lineNumber: 286,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1106,30 +1116,30 @@ function UserAdmin() {
                                     children: "Confirm"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                                    lineNumber: 280,
+                                    lineNumber: 293,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                            lineNumber: 272,
+                            lineNumber: 285,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                    lineNumber: 265,
+                    lineNumber: 278,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/admin/UserAdmin.tsx",
-                lineNumber: 264,
+                lineNumber: 277,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/admin/UserAdmin.tsx",
-        lineNumber: 187,
+        lineNumber: 200,
         columnNumber: 5
     }, this);
 }

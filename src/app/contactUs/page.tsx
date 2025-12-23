@@ -28,9 +28,9 @@ const Page = async () => {
 
   return (
       <div className="min-h-screen flex flex-col font-sans text-[#2D1540]">
-        <Navbar menuItems={common.menu} user={common.user} />
+        <Navbar menuItems={common.menu} user={common.user} urlLogo={common.logoHeader}/>
         <main className="flex-grow">
-          <ContactForm user={user} />
+          <ContactForm user={common.user} />
         </main>
         <Footer contact={common.contact} />
       </div>

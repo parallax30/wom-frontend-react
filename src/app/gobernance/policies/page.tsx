@@ -11,6 +11,7 @@ import { HomePageData } from '@/types/home.types'
 import { Footer } from '@/components/Home/Footer'
 import { Policies } from './Policies'
 import { getCommonPageData } from '@/lib/common/getCommonPageData'
+import { getGobernanceCollectionDocuments } from '@/services/apiService'
 
 export const metadata: Metadata = {
   title: 'Inversors Portal',
@@ -25,33 +26,30 @@ const Page = async () => {
   // Llamada simulada a API
   const common = await getCommonPageData("/policies");
 
-  const policies = [
-    {
-      id: "1",
-      title: "John Wick",
-      summary:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit lacus ultricies imperdiet...",
-      fileUrl: "/assets/john.png",
-    },
-    {
-      id: "2",
-      title: "Finance Director",
-      summary:
-        "Vivamus nascetur odio rhoncus accumsan magna pretium dolor justo.",
-      fileUrl: "/assets/sarah.png",
-    },
-    {
-      id: "3",
-      title: "Financial Management",
-      summary:
-        "Vivamus nascetur odio rhoncus accumsan magna pretium dolor justo.",
-      fileUrl: "/assets/vigo.png",
-    },
-  ];
+  const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  const mapPolicies = (items?: any[]) => {
+    if (!Array.isArray(items)) return [];
+
+    return items.map((item) => {
+        return {
+          id: String(item.id),
+          title: item.gobernanceCollectionDocumentName ?? "",
+          summary: item.gobernanceCollectionDocumentSummary ?? "",
+          fileUrl: item.gobernanceCollectionDocumentLinkUrl ?? "",
+        };
+      });
+  };
+
+const policiesResponse = await getGobernanceCollectionDocuments();
+const rawPolicies = policiesResponse?.data?.data;
+
+const policies = mapPolicies(rawPolicies);
+
 
   return (
       <div className="min-h-screen flex flex-col font-sans text-[#2D1540]">
-        <Navbar menuItems={common.menu} user={common.user} />
+        <Navbar menuItems={common.menu} user={common.user} urlLogo={common.logoHeader}/>
         <main className="flex-grow">
           <Policies policies={policies} />
         </main>

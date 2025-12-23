@@ -28,7 +28,7 @@ export function Footer({ contact }: FooterProps) {
             <div className="flex items-center gap-3">
                 <img src="/assets/icons/contact-us-icon.png" className="h-6 w-6" />
                 <a
-                href="/contact"
+                href="/contactUs"
                 className="font-bold text-[#E92070] hover:underline"
                 >
                 Contact Us
@@ -46,11 +46,11 @@ export function Footer({ contact }: FooterProps) {
                 </div>
                 <p className="text-sm mb-4 ml-7">{contact.email}</p>
 
-                <div className="flex items-center gap-2 mb-1">
+                {/* <div className="flex items-center gap-2 mb-1">
                 <img src="/assets/icons/phone-footer-icon.png" className="h-5 w-5" />
                 <p className="font-bold">Contact Phone</p>
                 </div>
-                <p className="text-sm ml-7">{contact.phone}</p>
+                <p className="text-sm ml-7">{contact.phone}</p>*/}
             </div>
 
             {/* Columna 5 - vacía */}
