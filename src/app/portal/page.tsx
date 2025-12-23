@@ -7,10 +7,10 @@ import { Navbar } from '@/components/Home/Navbar'
 import { QuarterlyResults } from '@/components/Home/QuarterlyResults'
 import { UpcomingEvents } from '@/components/Home/UpcomingEvents'
 import { Metadata } from 'next'
-import { HomePageData } from '@/types/home.types'
+import { HomePageData, ReportItem } from '@/types/home.types'
 import { Footer } from '@/components/Home/Footer'
 
-import { getHome } from "@/services/apiService";
+import { getHome, getHomeCollectionFinacnialCard } from "@/services/apiService";
 
 import { RichTextBlock, richTextToPlainText } from "@/utils/richText";
 import { getCommonPageData } from '@/lib/common/getCommonPageData'
@@ -145,13 +145,26 @@ const Page = async () => {
   // Llamada simulada a API
   const data = await getHomeData()
   const common = await getCommonPageData("/portal");
+  const financialCrdsResponse = await getHomeCollectionFinacnialCard({});
+  
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
+
+  const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).map((card: any) => ({
+    id: String(card.id),
+    homeFinancialCardTitle: card.homeFinancialCardTitle,
+    icon: card.homeFinancialCardIcon?.url ? apiUrl + card.homeFinancialCardIcon.url : "/assets/icons/money-icon.png",
+    homeFinancialCardLinkText: card.homeFinancialCardLinkText,
+    homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? apiUrl + card.homeFinancialCardFile.url : "#",
+  }));
+
+  console.log("Financial Cards from API:", financialCrds);
 
   return (
     <div className="w-full font-sans text-[#2D1540]">
       <Navbar menuItems={common.menu} user={common.user} urlLogo={common.logoHeader}/>
       <Hero image={data.homePrincipalImage} />
       <DateBar date={data.today} />
-      <QuarterlyResults quarter={data.quarter} reports={data.reports || []} />
+      <QuarterlyResults quarter={data.quarter} reports={financialCrds || []} />
       <LatestNews news={data.news || []} />
       <UpcomingEvents events={data.events || []} />
       <BondInformation documents={data.documents || []} />
