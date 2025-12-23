@@ -22,7 +22,12 @@ export function QuarterlyResults({ quarter, reports }: QuarterlyResultsProps) {
                 ))}
             </div>
             <div className="w-full flex justify-center mt-8">
-            <button className="bg-[#E6007E] text-white px-6 py-2 rounded-full text-sm">VIEW ALL RESULTS</button>
+            <a
+                href="/financial/reports"
+                className="bg-[#E6007E] text-white px-6 py-2 rounded-full text-sm text-center inline-block"
+            >
+                VIEW ALL RESULTS
+            </a>
             </div>
         </section>
     );

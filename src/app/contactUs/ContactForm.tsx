@@ -71,7 +71,7 @@ export default function ContactForm({ user }: ContactFormProps) {
       {/* Background Image Circle */}
       <div className="absolute left-[-10%] top-[10%] w-[600px] h-[600px] opacity-60 -z-10">
       <Image
-        src="/assets/contact-bg.png"
+        src="/assets/contact-bg-2.png"
         alt="Background shape"
         fill
         className="object-contain rounded-full"

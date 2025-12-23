@@ -5,10 +5,7 @@ import { FiDownload } from "react-icons/fi";
 import { FinancialReportsProps, ReportItem } from "@/types/financial.types";
 
 export function FinancialReports({ data }: FinancialReportsProps) {
-
-
   const years = Object.keys(data).sort((a, b) => Number(b) - Number(a));
-
   const [selectedYear, setSelectedYear] = useState(years[0]);
   const [selectedQuarter, setSelectedQuarter] = useState<string | null>(null);
 
@@ -18,13 +15,15 @@ export function FinancialReports({ data }: FinancialReportsProps) {
     data[selectedYear]?.[q] && data[selectedYear][q].length > 0;
 
   const reports: ReportItem[] =
-    selectedQuarter ? data[selectedYear][selectedQuarter] : [];
+    selectedQuarter && hasQuarterData(selectedQuarter)
+      ? data[selectedYear][selectedQuarter]
+      : [];
 
   return (
     <section className="px-10 py-16">
       <h2 className="text-2xl font-bold mb-6">Financial Reports</h2>
 
-      {/* Title */}
+      {/* Subtitle */}
       <h3 className="text-xl font-semibold text-center mb-10">
         Previous Years Documents
       </h3>
@@ -51,11 +50,10 @@ export function FinancialReports({ data }: FinancialReportsProps) {
         </div>
       </div>
 
-      {/* Quarter Selector — always visible */}
+      {/* Quarter Selector */}
       <div className="flex justify-center gap-4 mb-10">
         {quarters.map((q) => {
           const enabled = hasQuarterData(q);
-
           return (
             <button
               key={q}
@@ -85,9 +83,7 @@ export function FinancialReports({ data }: FinancialReportsProps) {
               {reports.map((r, index) => (
                 <tr
                   key={index}
-                  className={`${
-                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                  } border-b border-purple-200`}
+                  className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} border-b border-purple-200`}
                 >
                   <td className="p-4 text-lg text-gray-900 border-r border-purple-300">
                     {r.title}
@@ -95,8 +91,9 @@ export function FinancialReports({ data }: FinancialReportsProps) {
 
                   <td className="p-4 text-center">
                     <a
-                      href={r.url}
+                      href={`${process.env.NEXT_PUBLIC_API_URL}${r.url}`}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 text-[#0000EE] font-semibold"
                     >
                       <FiDownload size={22} color="#0000EE" />

@@ -5,6 +5,7 @@ import { Footer } from '@/components/Home/Footer'
 import Management from './Management'
 import { getCommonPageData } from '@/lib/common/getCommonPageData'
 import { getGobernanceCollectionCardManagement } from '@/services/apiService'
+import { richTextToPlainText } from '@/utils/richText'
 
 export const metadata: Metadata = {
   title: 'Inversors Portal',
@@ -28,9 +29,7 @@ const Page = async () => {
         name: item.gobernanceManagmentName,
         role: item.gobernanceManagmentPosition,
         description:
-          item.gobernanceManagmentBiography?.[0]?.children
-            ?.map((c: any) => c.text)
-            .join("") || "",
+          richTextToPlainText(item.gobernanceManagmentBiography) || "",
         image: item.gobernanceManagmentImage?.url
           ? `${process.env.NEXT_PUBLIC_API_URL}${item.gobernanceManagmentImage.url}`
           : null,
