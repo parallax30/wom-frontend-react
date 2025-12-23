@@ -19,7 +19,12 @@ export function LatestNews({ news }: LatestNewsProps) {
                 ))}
             </div>
             <div className="w-full flex justify-center mt-10">
-            <button className="bg-[#E6007E] text-white px-6 py-2 rounded-full text-sm">VIEW ALL NEWS</button>
+            <a
+                href="/news"
+                className="bg-[#E6007E] text-white px-6 py-2 rounded-full text-sm text-center inline-block"
+            >
+                VIEW ALL RESULTS
+            </a>
             </div>
         </section>
     );

@@ -561,6 +561,7 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 __turbopack_context__.s({
     "FinancialReports": (()=>FinancialReports)
 });
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-icons/fi/index.mjs [app-client] (ecmascript)");
@@ -581,7 +582,7 @@ function FinancialReports({ data }) {
         "Q4"
     ];
     const hasQuarterData = (q)=>data[selectedYear]?.[q] && data[selectedYear][q].length > 0;
-    const reports = selectedQuarter ? data[selectedYear][selectedQuarter] : [];
+    const reports = selectedQuarter && hasQuarterData(selectedQuarter) ? data[selectedYear][selectedQuarter] : [];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "px-10 py-16",
         children: [
@@ -590,7 +591,7 @@ function FinancialReports({ data }) {
                 children: "Financial Reports"
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                lineNumber: 25,
+                lineNumber: 24,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -598,7 +599,7 @@ function FinancialReports({ data }) {
                 children: "Previous Years Documents"
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                lineNumber: 28,
+                lineNumber: 27,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -614,17 +615,17 @@ function FinancialReports({ data }) {
                             children: year
                         }, year, false, {
                             fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                            lineNumber: 36,
+                            lineNumber: 35,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                    lineNumber: 34,
+                    lineNumber: 33,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                lineNumber: 33,
+                lineNumber: 32,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -642,13 +643,13 @@ function FinancialReports({ data }) {
                         children: q
                     }, q, false, {
                         fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                        lineNumber: 60,
+                        lineNumber: 58,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                lineNumber: 55,
+                lineNumber: 54,
                 columnNumber: 7
             }, this),
             selectedQuarter && hasQuarterData(selectedQuarter) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -664,14 +665,15 @@ function FinancialReports({ data }) {
                                         children: r.title
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                                        lineNumber: 92,
+                                        lineNumber: 88,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                         className: "p-4 text-center",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                            href: r.url,
+                                            href: `${("TURBOPACK compile-time value", "http://34.69.55.168/cms")}${r.url}`,
                                             target: "_blank",
+                                            rel: "noopener noreferrer",
                                             className: "flex items-center justify-center gap-2 text-[#0000EE] font-semibold",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FiDownload"], {
@@ -679,46 +681,46 @@ function FinancialReports({ data }) {
                                                     color: "#0000EE"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                                                    lineNumber: 102,
+                                                    lineNumber: 99,
                                                     columnNumber: 23
                                                 }, this),
                                                 "Download"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                                            lineNumber: 97,
+                                            lineNumber: 93,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                                        lineNumber: 96,
+                                        lineNumber: 92,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, index, true, {
                                 fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                                lineNumber: 86,
+                                lineNumber: 84,
                                 columnNumber: 17
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                        lineNumber: 84,
+                        lineNumber: 82,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                    lineNumber: 83,
+                    lineNumber: 81,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-                lineNumber: 82,
+                lineNumber: 80,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/financials/reports/FinancialReports.tsx",
-        lineNumber: 24,
+        lineNumber: 23,
         columnNumber: 5
     }, this);
 }
@@ -742,24 +744,18 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 "use client";
 ;
 function OtherSegments({ segments }) {
-    function handleDownload(url) {
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = ""; // fuerza descarga
-        link.click();
+    function handleView(url) {
+        window.open(url, "_blank", "noopener,noreferrer");
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
-        className: "px-10 py-16",
-        style: {
-            background: "#F4F4F7"
-        },
+        className: "px-10 py-16 bg-[#F4F4F7]",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                 className: "text-xl font-bold mb-10",
                 children: "Other Important Segments"
             }, void 0, false, {
                 fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                lineNumber: 21,
+                lineNumber: 14,
                 columnNumber: 7
             }, this),
             segments.map((ev)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -773,57 +769,49 @@ function OtherSegments({ segments }) {
                                     children: ev.title
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                                    lineNumber: 31,
+                                    lineNumber: 24,
                                     columnNumber: 13
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-sm text-[#E6007E] font-medium mt-1",
-                                    children: ev.title
+                                ev.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-sm text-gray-600 mt-1",
+                                    children: ev.description
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                                    lineNumber: 32,
-                                    columnNumber: 13
+                                    lineNumber: 26,
+                                    columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                            lineNumber: 30,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex-1 text-gray-700 text-sm leading-relaxed",
-                            children: ev.description
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                            lineNumber: 38,
+                            lineNumber: 23,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "md:self-center md:ml-auto",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>handleDownload(ev.fileUrl),
-                                className: "bg-[#E6007E] text-white px-4 py-2 rounded-full text-xs md:text-sm shadow hover:bg-pink-700 transition",
+                                onClick: ()=>handleView(ev.fileUrl),
+                                className: "bg-[#E6007E] text-white px-5 py-2 rounded-full text-sm shadow hover:bg-pink-700 transition",
                                 children: "VIEW"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                                lineNumber: 44,
+                                lineNumber: 32,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                            lineNumber: 43,
+                            lineNumber: 31,
                             columnNumber: 11
                         }, this)
                     ]
                 }, ev.id, true, {
                     fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-                    lineNumber: 24,
+                    lineNumber: 17,
                     columnNumber: 9
                 }, this))
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/financials/reports/OtherSegments.tsx",
-        lineNumber: 20,
+        lineNumber: 13,
         columnNumber: 5
     }, this);
 }
