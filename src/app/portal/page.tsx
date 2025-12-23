@@ -149,13 +149,13 @@ const Page = async () => {
   
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
-  const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).map((card: any) => ({
-    id: String(card.id),
-    homeFinancialCardTitle: card.homeFinancialCardTitle,
-    icon: card.homeFinancialCardIcon?.url ? apiUrl + card.homeFinancialCardIcon.url : "/assets/icons/money-icon.png",
-    homeFinancialCardLinkText: card.homeFinancialCardLinkText,
-    homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? apiUrl + card.homeFinancialCardFile.url : "#",
-  }));
+const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).map((card: any) => ({
+  id: String(card.id),
+  homeFinancialCardTitle: card.homeFinancialCardTitle,
+  icon: card.homeFinancialCardIcon?.url ? apiUrl + card.homeFinancialCardIcon.url : "/assets/icons/money-icon.png",
+  homeFinancialCardLinkText: card.homeFinancialCardLinkText,
+  homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? apiUrl + card.homeFinancialCardFile.url : "#",
+}));
 
   console.log("Financial Cards from API:", financialCrds);
 

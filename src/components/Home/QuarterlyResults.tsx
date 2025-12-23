@@ -1,14 +1,7 @@
 "use client";
 
+import { ReportItem } from "@/types/home.types";
 import React from "react";
-
-export interface ReportItem {
-  id: string;
-  homeFinancialCardTitle: string;         // Título de la tarjeta
-  icon: string;                            // URL completa del icono
-  homeFinancialCardLinkText: string;       // Texto del link de descarga
-  homeFinancialCardLinkUrl: string;        // URL completa del archivo PDF
-}
 
 
 interface QuarterlyResultsProps {
