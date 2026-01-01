@@ -58,7 +58,10 @@ export function ForgotPasswordFlow() {
       // 4️⃣ Enviar OTP por correo
       await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/send-otp`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json" ,
+          "X-Internal-Token": process.env.NEXT_PUBLIC_HELPER_API_TOKEN!,
+        },
         body: JSON.stringify({
           to: email,
           name: user.name,

@@ -146,7 +146,10 @@ export default function UserAdmin() {
       const res1 = await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/${type}`, {
       
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "X-Internal-Token": process.env.NEXT_PUBLIC_HELPER_API_TOKEN!,
+        },
         body: JSON.stringify({
           userId: id
         }),

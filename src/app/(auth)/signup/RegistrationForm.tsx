@@ -125,7 +125,8 @@ export function RegistrationForm(): React.JSX.Element {
       // 2️⃣ Enviar OTP por email (NestJS)
       await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/send-otp`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          "X-Internal-Token": process.env.NEXT_PUBLIC_HELPER_API_TOKEN!, },
         body: JSON.stringify({
           to: values.email,
           name: values.name,
@@ -146,9 +147,11 @@ export function RegistrationForm(): React.JSX.Element {
   const handleConfirmOtp = async () => {
     try {
       // 1️⃣ Validar OTP + actualizar usuario
+      
       const res = await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/verify-otp`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          "X-Internal-Token": process.env.NEXT_PUBLIC_HELPER_API_TOKEN!, },
         body: JSON.stringify({
           email: registeredEmail,
           otp,
@@ -165,7 +168,8 @@ export function RegistrationForm(): React.JSX.Element {
       // 2️⃣ Avisar al admin WOM
       const res1 = await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/admin-new-user`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          "X-Internal-Token": process.env.NEXT_PUBLIC_HELPER_API_TOKEN!, },
         body: JSON.stringify({
           email: registeredEmail,
           name: registeredName,
