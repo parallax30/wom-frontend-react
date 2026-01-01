@@ -20,7 +20,7 @@ const nextConfig = {
       },
       {
         protocol: 'http',
-        hostname: '34.69.55.168',
+        hostname: '136.110.180.2',
         pathname: '/cms/**',
       },
     ],
