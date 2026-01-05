@@ -6,7 +6,6 @@ import { z as zod } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NextImage from "next/image";
 
-
 import {
   Box,
   Button,
@@ -64,11 +63,11 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const password = watch("password");
   const accept = watch("accept");
 
+  // ✅ CAMBIO: el botón NO depende del scroll
   const isButtonEnabled =
     email.trim() !== "" &&
     password.trim() !== "" &&
-    accept === true &&
-    hasReadPolicies;
+    accept === true;
 
   const handleScroll = () => {
     const el = scrollRef.current;
@@ -90,7 +89,6 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
     }
 
     setIsPending(false);
-
     router.push(paths.portal);
   };
 
@@ -99,13 +97,12 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
-  const registerUrl = cms?.loginUrlLinkRegister;      //TODO: Esto no va porque es un modal
-  const forgotPassUrl = cms?.loginUrlLinkForgotPass;  //TODO: Esto no va porque es un modal
+  const registerUrl = cms?.loginUrlLinkRegister;
+  const forgotPassUrl = cms?.loginUrlLinkForgotPass;
   const agreementUrl = cms?.loginUrlLinkAgreement;
-  const agreementText = cms?.loginParagraphAgreement
+  const agreementText = cms?.loginParagraphAgreement;
 
   const [mounted, setMounted] = React.useState(false);
-
 
   React.useEffect(() => {
     setMounted(true);
@@ -113,14 +110,12 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
 
   return (
     <Stack spacing={3} sx={{ width: "100%", maxWidth: 600, textAlign: "left" }}>
-      {/* Title */}
       <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
         Login
       </Typography>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
-
 
           {/* EMAIL FIELD */}
           <Controller
@@ -137,91 +132,100 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             )}
           />
 
-
           {/* PASSWORD + Forgot password */}
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography sx={{ fontWeight: 500 }}> </Typography>
+          <Box sx={{ fontSize: 14, color: "#3f51b5", fontWeight: 600, textTransform: "none", padding: 0 }}>
+            <Stack spacing={0.5} alignItems="flex-end">
+              <ForgotPasswordFlow />
 
-            <ForgotPasswordFlow />
-
+              <Link
+                href={registerUrl}
+                underline="hover"
+                sx={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                }}
+              >
+                New user? Register
+              </Link>
+            </Stack>
           </Box>
-          {mounted && (<Dialog
-            open={open}
-            onClose={handleCloseModal}
-            fullWidth
-            maxWidth="sm"
-            PaperProps={{
-              sx: {
-                borderRadius: 4,
-                p: 3,
-              },
-            }}
-          >
-            <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-              <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                New Password
-              </Typography>
-              <Button onClick={handleCloseModal} sx={{ minWidth: 0 }}>
-                ✕
-              </Button>
-            </Box>
 
-            {/* FORM FIELDS */}
-            <Box sx={{ mt: 1 }}>
-              <Typography sx={{ mb: 1 }}>Enter your OTP</Typography>
-              <OutlinedInput
-                fullWidth
-                placeholder="Code sent to your email"
-                sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
-              />
+          {mounted && (
+            <Dialog
+              open={open}
+              onClose={handleCloseModal}
+              fullWidth
+              maxWidth="sm"
+              PaperProps={{
+                sx: {
+                  borderRadius: 4,
+                  p: 3,
+                },
+              }}
+            >
+              <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+                <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  New Password
+                </Typography>
+                <Button onClick={handleCloseModal} sx={{ minWidth: 0 }}>
+                  ✕
+                </Button>
+              </Box>
 
-              <Typography sx={{ mb: 1 }}>Enter your new password</Typography>
-              <OutlinedInput
-                fullWidth
-                type="password"
-                sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
-              />
+              <Box sx={{ mt: 1 }}>
+                <Typography sx={{ mb: 1 }}>Enter your OTP</Typography>
+                <OutlinedInput
+                  fullWidth
+                  placeholder="Code sent to your email"
+                  sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
+                />
 
-              <Typography sx={{ mb: 1 }}>Repeat your new password</Typography>
-              <OutlinedInput
-                fullWidth
-                type="password"
-                sx={{ background: "#fff", borderRadius: 2, mb: 4 }}
-              />
-            </Box>
+                <Typography sx={{ mb: 1 }}>Enter your new password</Typography>
+                <OutlinedInput
+                  fullWidth
+                  type="password"
+                  sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
+                />
 
-            {/* FOOTER BUTTONS */}
-            <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
-              <Button
-                variant="outlined"
-                onClick={handleCloseModal}
-                sx={{
-                  borderColor: "#A45CE8",
-                  color: "#000",
-                  fontWeight: 700,
-                  borderRadius: 2,
-                  px: 4,
-                }}
-              >
-                CLOSE
-              </Button>
+                <Typography sx={{ mb: 1 }}>Repeat your new password</Typography>
+                <OutlinedInput
+                  fullWidth
+                  type="password"
+                  sx={{ background: "#fff", borderRadius: 2, mb: 4 }}
+                />
+              </Box>
 
-              <Button
-                variant="contained"
-                disabled
-                sx={{
-                  backgroundColor: "#F0D6EB",
-                  color: "#fff",
-                  fontWeight: 700,
-                  borderRadius: 2,
-                  px: 4,
-                }}
-              >
-                SEND
-              </Button>
-            </Box>
-          </Dialog>)}
+              <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+                <Button
+                  variant="outlined"
+                  onClick={handleCloseModal}
+                  sx={{
+                    borderColor: "#A45CE8",
+                    color: "#000",
+                    fontWeight: 700,
+                    borderRadius: 2,
+                    px: 4,
+                  }}
+                >
+                  CLOSE
+                </Button>
 
+                <Button
+                  variant="contained"
+                  disabled
+                  sx={{
+                    backgroundColor: "#F0D6EB",
+                    color: "#fff",
+                    fontWeight: 700,
+                    borderRadius: 2,
+                    px: 4,
+                  }}
+                >
+                  SEND
+                </Button>
+              </Box>
+            </Dialog>
+          )}
 
           <Controller
             control={control}
@@ -229,11 +233,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             render={({ field }) => (
               <FormControl fullWidth error={Boolean(errors.password)}>
                 <InputLabel>Password</InputLabel>
-                <OutlinedInput
-                  {...field}
-                  type="password"
-                  label="Password"
-                />
+                <OutlinedInput {...field} type="password" label="Password" />
                 {errors.password && (
                   <FormHelperText>{errors.password.message}</FormHelperText>
                 )}
@@ -241,13 +241,10 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             )}
           />
 
-
-          {/* CONFIDENTIALITY AGREEMENT title */}
           <Typography sx={{ fontWeight: 600, mt: 2 }}>
             Confidentiality Agreement & Policies
           </Typography>
 
-          {/* SCROLLABLE BOX */}
           <Paper
             variant="outlined"
             sx={{
@@ -259,14 +256,20 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             ref={scrollRef}
             onScroll={handleScroll}
           >
-            <Typography component="div" sx={{ color: "text.secondary", fontSize: 14 }}>
+            <Typography
+              component="div"
+              sx={{
+                color: "text.secondary",
+                fontSize: 14,
+                textAlign: "justify",
+              }}
+            >
               {agreementText}
             </Typography>
           </Paper>
 
-          {/* Download LINK */}
           <Link
-            href={agreementUrl}
+            href={`${process.env.NEXT_PUBLIC_STRAPI_URL}${agreementUrl}`}
             target="_blank"
             underline="hover"
             sx={{ fontSize: 15, display: "flex", gap: 1, alignItems: "center" }}
@@ -275,12 +278,11 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
               src="/assets/register_icon.png"
               width={20}
               height={20}
-              style={{ width: 'auto', height: 'auto' }}
+              style={{ width: "auto", height: "auto" }}
               alt="doc icon"
             />
             Download our Confidentiality Agreement & Policies Document
           </Link>
-
 
           {/* CHECKBOX */}
           <Controller
@@ -289,8 +291,15 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             render={({ field }) => (
               <FormControl error={Boolean(errors.accept)}>
                 <FormControlLabel
-                  control={<Checkbox {...field} checked={field.value} />}
-                  label="I accept the Confidentiality Agreement & Policies"
+                  disabled={!hasReadPolicies}          // ✅ CLAVE
+                  control={
+                    <Checkbox
+                      {...field}
+                      checked={field.value}
+                      disabled={!hasReadPolicies}      // ✅ CLAVE
+                    />
+                  }
+                  label="I agree to the Confidentiality Agreement & Policies"
                 />
                 {errors.accept && (
                   <FormHelperText>{errors.accept.message}</FormHelperText>

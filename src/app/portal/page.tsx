@@ -157,7 +157,7 @@ const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).ma
   homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? apiUrl + card.homeFinancialCardFile.url : "#",
 }));
 
-  console.log("Financial Cards from API:", financialCrds);
+
 
   return (
     <div className="w-full font-sans text-[#2D1540]">
@@ -168,7 +168,7 @@ const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).ma
       <LatestNews news={data.news || []} />
       <UpcomingEvents events={data.events || []} />
       <BondInformation documents={data.documents || []} />
-      <Footer contact={common.contact || { email: "investors@wom.cl", phone: "+56 2 2753 1234" }} />
+      <Footer contact={common.contact || { email: "ir@wom.cl", phone: "+56 2 2753 1234" }} />
     </div>
   )
 }

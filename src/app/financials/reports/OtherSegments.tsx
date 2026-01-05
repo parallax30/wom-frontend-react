@@ -30,7 +30,7 @@ export function OtherSegments({ segments }: OtherSegmentsProps) {
           {/* Botón */}
           <div className="md:self-center md:ml-auto">
             <button
-              onClick={() => handleView(ev.fileUrl)}
+              onClick={() => handleView(`${process.env.NEXT_PUBLIC_API_URL}${ev.fileUrl}`)}
               className="bg-[#E6007E] text-white px-5 py-2 rounded-full text-sm
                          shadow hover:bg-pink-700 transition"
             >

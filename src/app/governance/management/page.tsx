@@ -26,12 +26,12 @@ const Page = async () => {
   const managementMembers = managementData
     ? managementData.map((item: any) => ({
         id: item.id,
-        name: item.gobernanceManagmentName,
-        role: item.gobernanceManagmentPosition,
+        name: item.governanceManagmentName,
+        role: item.governanceManagmentPosition,
         description:
-          richTextToPlainText(item.gobernanceManagmentBiography) || "",
-        image: item.gobernanceManagmentImage?.url
-          ? `${process.env.NEXT_PUBLIC_API_URL}${item.gobernanceManagmentImage.url}`
+          richTextToPlainText(item.governanceManagmentBiography) || "",
+        image: item.governanceManagmentImage?.url
+          ? `${process.env.NEXT_PUBLIC_API_URL}${item.governanceManagmentImage.url}`
           : null,
       }))
     : [];

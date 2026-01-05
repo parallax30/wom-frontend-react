@@ -8,7 +8,7 @@ export function Board({ members }: BoardProps) {
     <section className="px-10 py-16 mt-10">
       <h2 className="text-xl font-bold mb-10">Board Members</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
         {members.map((m: BoardMember) => (
           <div
             key={m.id}

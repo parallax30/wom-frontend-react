@@ -76,12 +76,17 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
           </Box>
 
           {/* Texto dinámico */}
-          <div className="text-sm text-gray-700">
+          <Typography
+            component="div"   // 👈 CLAVE
+            variant="body2"
+            color="text.secondary"
+            sx={{ textAlign: "justify" }}
+          >
             {cms.loginParagraphLeft}
-          </div>
+          </Typography>
 
           {/* Link de registro fijo */}
-          <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: 12 }}>
+          {/* <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: 12 }}>
             <Typography>New User?</Typography>
             <Link
               href="/signup"
@@ -98,7 +103,7 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
               alt="Register icon"
               style={{ width: "auto", height: "auto" }}
             />
-          </Stack>
+          </Stack> */}
         </Box>
       </Box>
 

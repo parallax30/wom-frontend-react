@@ -34,13 +34,13 @@ export async function getCommonPageData(
     },
 
     {
-      label: "Gobernance",
-      href: "/gobernance",
-      active: isRouteActive(activeRoute, "/gobernance"),
+      label: "Governance",
+      href: "/governance",
+      active: isRouteActive(activeRoute, "/governance"),
       submenu: [
-        { label: "Board", href: "/gobernance/board" },
-        { label: "Management", href: "/gobernance/management" },
-        { label: "Policies", href: "/gobernance/policies" },
+        { label: "Board", href: "/governance/board" },
+        { label: "Management", href: "/governance/management" },
+        { label: "Policies", href: "/governance/policies" },
       ],
     },
 
@@ -92,7 +92,7 @@ export async function getCommonPageData(
     }),
 
     contact: {
-      email: "investors@wom.cl",
+      email: "ir@wom.cl",
       phone: "+56 2 2753 1234",
     },
     logoHeader,

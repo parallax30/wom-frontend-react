@@ -34,9 +34,9 @@ const Page = async () => {
     return items.map((item) => {
         return {
           id: String(item.id),
-          title: item.gobernanceCollectionDocumentName ?? "",
-          summary: item.gobernanceCollectionDocumentSummary ?? "",
-          fileUrl: item.gobernanceCollectionDocumentLinkUrl ?? "",
+          title: item.governanceCollectionDocumentName ?? "",
+          summary: item.governanceCollectionDocumentSummary ?? "",
+          fileUrl: item.governanceCollectionDocumentLinkUrl ?? "",
         };
       });
   };

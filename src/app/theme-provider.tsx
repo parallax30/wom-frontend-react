@@ -81,8 +81,27 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     },
     typography: {
       fontFamily: 'Cera Pro, sans-serif',
+      body1: {
+        textAlign: "justify",
+      },
+      body2: {
+        textAlign: "justify",
+      },
+    },
+    components: {
+      MuiTypography: {
+        styleOverrides: {
+          paragraph: {
+            textAlign: "justify",
+          },
+          root: {
+            textAlign: "justify",
+          },
+        },
+      },
     },
   })
+
 
   // ---------------------------------------------------------
   // RETURN PROVIDERS

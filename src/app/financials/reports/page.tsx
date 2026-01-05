@@ -64,7 +64,7 @@ const Page = async () => {
   // Financial Reports
   const qDocsResponse = await getFinancialCollectionQDocument()
   const qDocuments = qDocsResponse?.data?.data ?? []
-  const financialReportsData = buildFinancialReports(qDocuments)
+  const financialReportsData = qDocuments
 
   // Other Segments
   const otherDocsResponse = await getFinancialCollectionOtherDocuments()

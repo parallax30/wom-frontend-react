@@ -16,8 +16,8 @@ export default async function Page(): Promise<React.JSX.Element> {
 
   const responseGlobal = await getGlobal({});
   const globalData = responseGlobal?.data?.data;
-  const logoGrande =
-  globalData.headerImage.url ?? null;
+  const logoGrande = globalData.headerImage?.url ?? null;
+
 
 
 

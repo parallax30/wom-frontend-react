@@ -38,7 +38,7 @@ export function BondInformation({ documents }: BondInformationProps) {
         <div className="flex justify-end">
           {d.fileUrl ? (
             <a
-              href={d.fileUrl}
+              href={`${process.env.NEXT_PUBLIC_API_URL}${d.fileUrl}`}
               download
               target="_blank"
               rel="noopener noreferrer"

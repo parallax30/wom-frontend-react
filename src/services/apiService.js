@@ -34,13 +34,13 @@ export const getViewImage = () =>
 
 // Gobernance collections
 export const getGobernanceCollectionCardBoard = (params) =>
-  api.get(`/gobernance-collection-cards?populate=*`, { params });
+  api.get(`/gobernance-collection-cards?populate=*&sort=governanceTeamOrder`, { params });
 
 export const getGobernanceCollectionCardManagement = (params) =>
-  api.get(`/gobernance-collection-card-managements?fields[0]=gobernanceManagmentName&fields[1]=gobernanceManagmentPosition&fields[2]=gobernanceManagmentBiography&populate[gobernanceManagmentImage][fields][0]=url`, { params });
+  api.get(`/gobernance-collection-card-managements?fields[0]=governanceManagmentName&fields[1]=governanceManagmentPosition&fields[2]=governanceManagmentBiography&populate[governanceManagmentImage][fields][0]=url`, { params });
 
 export const getGobernance = (params) =>
-  api.get(`/gobernance?populate=*`, { params });
+  api.get(`/gobernances?populate=*`, { params });
 
 // News collections
 export const getNewsCollectionCard = (params) =>

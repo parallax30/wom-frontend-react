@@ -25,9 +25,10 @@ const Page = async () => {
   
   const members = boardData.map((item: any) => ({
       id: item.id,
-      name: item.gobernanceTeamName,
-      position: item.gobernanceTeamPosition,
-      description: richTextToPlainText(item.gbernanceTeamBiography),
+      name: item.governanceTeamName,
+      position: item.governanceTeamPosition,
+      description: richTextToPlainText(item.governanceTeamBiography),
+      order: item.governanceTeamOrder,
   }));
 
   //acá hacer el map de boardDataResponse a BoardMember[]

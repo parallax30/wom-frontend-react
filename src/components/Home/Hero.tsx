@@ -15,7 +15,7 @@ export function Hero({ image }: HeroProps) {
                     background: "linear-gradient(to right, #3E0279, #EC2375)",
                 }}
             />
-            <h1 className="text-white text-4xl md:text-5xl font-extrabold">INVERTERS PORTAL</h1>
+            <h1 className="text-white text-4xl md:text-5xl font-extrabold">INVESTOR RELATIONS</h1>
         </header>
     );
 }
