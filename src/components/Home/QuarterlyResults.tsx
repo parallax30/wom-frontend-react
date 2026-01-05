@@ -7,9 +7,10 @@ import React from "react";
 interface QuarterlyResultsProps {
   quarter: string;
   reports: ReportItem[];
+  titleButton1: string;
 }
 
-export function QuarterlyResults({ quarter, reports }: QuarterlyResultsProps) {
+export function QuarterlyResults({ quarter, reports, titleButton1 }: QuarterlyResultsProps) {
   return (
     <section className="px-10 py-16">
       <h2 className="text-xl font-bold mb-6">Latest Quarterly Results</h2>
@@ -26,7 +27,7 @@ export function QuarterlyResults({ quarter, reports }: QuarterlyResultsProps) {
               rel="noopener noreferrer"
               className="text-[#350A63] flex items-center justify-center gap-2 text-sm"
             >
-              <img src="/assets/note-icon.png" className="h-4" alt="Download Icon" />
+              <img src={r.linkIcon} className="h-4" alt="Download Icon" />
               {r.homeFinancialCardLinkText}
             </a>
           </div>
@@ -38,7 +39,7 @@ export function QuarterlyResults({ quarter, reports }: QuarterlyResultsProps) {
           href="/financial/reports"
           className="bg-[#E6007E] text-white px-6 py-2 rounded-full text-sm text-center inline-block"
         >
-          VIEW ALL RESULTS
+          {titleButton1}
         </a>
       </div>
     </section>

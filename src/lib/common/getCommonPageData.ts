@@ -23,7 +23,7 @@ export async function getCommonPageData(
     
   const logoHeader = globalData.headerImage.url
     ? `${process.env.NEXT_PUBLIC_API_URL}${globalData.headerImage.url}`
-    : "/assets/wom_empresas_logo.png";
+    : "/assets/wom_logo.png";
 
 
   const menu = [
@@ -39,7 +39,7 @@ export async function getCommonPageData(
       active: isRouteActive(activeRoute, "/governance"),
       submenu: [
         { label: "Board", href: "/governance/board" },
-        { label: "Management", href: "/governance/management" },
+        { label: "Management Team", href: "/governance/management" },
         { label: "Policies", href: "/governance/policies" },
       ],
     },

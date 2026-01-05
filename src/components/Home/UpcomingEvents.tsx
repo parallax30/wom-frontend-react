@@ -1,7 +1,7 @@
 import React from "react";
 import { UpcomingEventsProps } from "@/types/home.types";
 
-export function UpcomingEvents({ events }: UpcomingEventsProps) {
+export function UpcomingEvents({ events, titleButton1 }: UpcomingEventsProps) {
   return (
     <section className="px-10 py-16" style={{ background: "#F4F4F7" }}>
       <h2 className="text-xl font-bold mb-10">Upcoming Events</h2>
@@ -38,7 +38,7 @@ export function UpcomingEvents({ events }: UpcomingEventsProps) {
                 href="/financials/eventsPresentations"
                 className="bg-[#E6007E] text-white px-6 py-2 rounded-full text-sm text-center inline-block"
             >
-                VIEW ALL RESULTS
+                {titleButton1}
             </a>
       </div>
     </section>

@@ -42,7 +42,8 @@ export interface DateBarProps {
 export interface ReportItem {
   id: string;
   homeFinancialCardTitle: string;         // Título de la tarjeta
-  icon: string;                            // URL completa del icono
+  icon: string;               
+  linkIcon?: string;             // URL completa del icono
   homeFinancialCardLinkText: string;       // Texto del link de descarga
   homeFinancialCardLinkUrl: string;  
 }
@@ -65,6 +66,7 @@ export interface NewsItem {
 
 export interface LatestNewsProps {
   news: NewsItem[];
+  titleButton1?: string;
 }
 
 // ---------------------
@@ -82,6 +84,7 @@ export interface EventItem {
 
 export interface UpcomingEventsProps {
   events: EventItem[];
+  titleButton1?: string;
 }
 
 export interface OtherSegmentsItem {
@@ -110,6 +113,7 @@ export interface BondDocument {
 
 export interface BondInformationProps {
   documents: BondDocument[];
+  titleButton1?: string;
 }
 
 // ---------------------
@@ -142,16 +146,19 @@ export interface FooterProps {
 // HomePage Props
 // ---------------------
 export interface HomePageData {
+  homeSubTitle1: string;
   homeTitle1: string;
   homeTitle2: string;
   homeTitle3: string;
   homeTitle4: string;
-  homeTItle1TextButton: string;
+  homeTitle1TextButton: string;
   homeTItle1LinkUrlButton: string;
   homeTItle2TextlButton: string;
   homeTItle2LinkUrlButton: string;
   homeTItle3TextlButton: string;
   homeTItle3LinkUrlButton: string;
+  homeTitle4TextButton: string;
+  homeTitle4LinkUrlButton: string;
   homePrincipalImage: string;
   today: string;
   quarter: string; // es home_financial_cards en la API

@@ -25,23 +25,27 @@ async function getHomeData(): Promise<HomePageData> {
   const response = await getHome({});
   const cmsHomeData = response?.data?.data; 
 
+
   const homeTitle1 = cmsHomeData.homeTitle1;
   const homeTitle2 = cmsHomeData.homeTitle2;
   const homeTitle3 = cmsHomeData.homeTitle3;
   const homeTitle4 = cmsHomeData.homeTitle4;
-  const homeTItle1TextButton = cmsHomeData.homeTItle1TextButton;
+  const homeTitle1TextButton = cmsHomeData.homeTItle1TextButton;
   const homeTItle1LinkUrlButton = cmsHomeData.homeTItle1LinkUrlButton;
   const homeTItle2TextlButton = cmsHomeData.homeTItle2TextlButton;
   const homeTItle2LinkUrlButton = cmsHomeData.homeTItle2LinkUrlButton;
   const homeTItle3TextlButton = cmsHomeData.homeTItle3TextlButton
   const homeTItle3LinkUrlButton = cmsHomeData.homeTItle3LinkUrlButton;
+  const homeTitle4TextButton = cmsHomeData.homeTitle4TextButton
+  const homeTitle4LinkUrlButton = cmsHomeData.homeTitle4LinkUrlButton;
+  const homeSubTitle1 = cmsHomeData.homeSubTitle1;
 
 
   const reports = cmsHomeData.home_financial_cards.map(
-    (card: { homeFinancialCardTitle: any; homeFinancialCardLinkUrl: any; homeFinancialCardLinkText: any }, index: number) => ({
+    (card: { homeFinancialCardTitle: any; homeFinancialCardLinkUrl: any; homeFinancialCardLinkText: any, homeFinancialCardIcon: any }, index: number) => ({
       id: String(index + 1), // o card.id si quieres el de Strapi
       homeFinancialCardTitle: card.homeFinancialCardTitle,
-      icon: "/assets/icons/money-icon.png",
+      icon: card.homeFinancialCardIcon?.url,
       homeFinancialCardLinkUrl: card.homeFinancialCardLinkUrl,
       homeFinancialCardLinkText: card.homeFinancialCardLinkText,
     })
@@ -93,12 +97,15 @@ async function getHomeData(): Promise<HomePageData> {
     homeTitle2,
     homeTitle3,
     homeTitle4,
-    homeTItle1TextButton,
+    homeTitle1TextButton,
     homeTItle1LinkUrlButton,
     homeTItle2TextlButton,
     homeTItle2LinkUrlButton,
     homeTItle3TextlButton,
     homeTItle3LinkUrlButton,
+    homeTitle4TextButton,
+    homeTitle4LinkUrlButton,
+    homeSubTitle1,
 
     // ---------------------
     // HERO
@@ -153,20 +160,21 @@ const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).ma
   id: String(card.id),
   homeFinancialCardTitle: card.homeFinancialCardTitle,
   icon: card.homeFinancialCardIcon?.url ? apiUrl + card.homeFinancialCardIcon.url : "/assets/icons/money-icon.png",
+  linkIcon: `${process.env.NEXT_PUBLIC_API_URL}${card.homeFinancialCardLinkIcon?.url}`,
   homeFinancialCardLinkText: card.homeFinancialCardLinkText,
   homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? apiUrl + card.homeFinancialCardFile.url : "#",
 }));
 
-
+console.log("data.homeTitle4TextButton:", data.homeTitle4TextButton);
 
   return (
     <div className="w-full font-sans text-[#2D1540]">
       <Navbar menuItems={common.menu} user={common.user} urlLogo={common.logoHeader}/>
       <Hero image={data.homePrincipalImage} />
       <DateBar date={data.today} />
-      <QuarterlyResults quarter={data.quarter} reports={financialCrds || []} />
-      <LatestNews news={data.news || []} />
-      <UpcomingEvents events={data.events || []} />
+      <QuarterlyResults quarter={data.homeSubTitle1} reports={financialCrds || []} titleButton1 = {data.homeTitle1TextButton} />
+      <LatestNews news={data.news || []} titleButton1 = {data.homeTItle3TextlButton}/>
+      <UpcomingEvents events={data.events || []}  titleButton1 = {data.homeTitle4TextButton}/>
       <BondInformation documents={data.documents || []} />
       <Footer contact={common.contact || { email: "ir@wom.cl", phone: "+56 2 2753 1234" }} />
     </div>

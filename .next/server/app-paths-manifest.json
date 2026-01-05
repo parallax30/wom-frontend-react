@@ -1,16 +1,7 @@
 {
-  "/(app)/(home)/(home-1)/page": "app/(app)/(home)/(home-1)/page.js",
-  "/(auth)/signup/page": "app/(auth)/signup/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/login/route": "app/api/login/route.js",
-  "/api/logout/route": "app/api/logout/route.js",
   "/contactUs/page": "app/contactUs/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/financials/eventsPresentations/page": "app/financials/eventsPresentations/page.js",
   "/financials/reports/page": "app/financials/reports/page.js",
-  "/governance/board/page": "app/governance/board/page.js",
-  "/governance/management/page": "app/governance/management/page.js",
-  "/governance/policies/page": "app/governance/policies/page.js",
-  "/news/page": "app/news/page.js",
   "/portal/page": "app/portal/page.js"
 }

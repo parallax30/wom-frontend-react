@@ -85,7 +85,7 @@ export default function ContactForm({ user }: ContactFormProps) {
 
           <div className="flex items-start gap-4 mb-10">
             <Image
-              src="/assets/icons/email-contact-icon.png"
+              src="/assets/communication.png"
               alt="email"
               width={44}
               height={44}

@@ -53,7 +53,6 @@ const Page = async () => {
   const common = await getCommonPageData()
   
   const upcomingEventsResponse = await getCalendarCollectionUpcomingEvent();
-  console.log("Upcoming Events Response:", upcomingEventsResponse?.data?.data);
   const upcomingEventsData = mapUpcomingEvents(upcomingEventsResponse?.data?.data);
   
   const pastEventsResponse = await getCalendarCollectionPastEvent();

@@ -5,7 +5,7 @@ import {
 LatestNewsProps,
 } from "@/types/home.types";
 
-export function LatestNews({ news }: LatestNewsProps) {
+export function LatestNews({ news, titleButton1 }: LatestNewsProps) {
     return (
         <section className="px-10 py-16">
             <h2 className="text-xl font-bold mb-10">Latest News</h2>
@@ -23,7 +23,7 @@ export function LatestNews({ news }: LatestNewsProps) {
                 href="/news"
                 className="bg-[#E6007E] text-white px-6 py-2 rounded-full text-sm text-center inline-block"
             >
-                VIEW ALL RESULTS
+                {titleButton1}
             </a>
             </div>
         </section>
