@@ -256,7 +256,7 @@ export function RegistrationForm(): React.JSX.Element {
         onClick={() => router.push("/")}
       >
         <Image
-          src="/assets/wom_empresas_logo.png"
+          src="/assets/wom_logo.png"
           width={200}
           height={100}
           alt="WOM Empresas"
@@ -345,9 +345,12 @@ export function RegistrationForm(): React.JSX.Element {
               render={({ field }) => (
                 <Select {...field} label="Profession" sx={inputStyles}>
                   <MenuItem value="">Select</MenuItem>
-                  <MenuItem value="Developer">Developer</MenuItem>
-                  <MenuItem value="Engineer">Engineer</MenuItem>
-                  <MenuItem value="Manager">Manager</MenuItem>
+                  <MenuItem value="Fixed Income Investor">Fixed Income Investor</MenuItem>
+                  <MenuItem value="Fixed Income Sell-Side">Fixed Income Sell-Side</MenuItem>
+                  <MenuItem value="Equity Investor">Equity Investor</MenuItem>
+                  <MenuItem value="Equity Sell-Side">Equity Sell-Side</MenuItem>
+                  <MenuItem value="Credit Rating">Credit Rating</MenuItem>
+                  <MenuItem value="Journalist/Press">Journalist/Press </MenuItem>
                   <MenuItem value="Other">Other</MenuItem>
                 </Select>
               )}

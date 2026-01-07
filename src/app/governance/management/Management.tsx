@@ -34,7 +34,7 @@ export default function Management({ members }: BoardProps) {
 
   return (
     <section className="px-10 py-16 mt-10">
-      <h2 className="text-xl font-bold mb-10 text-[#2D1540]">Board Members</h2>
+      <h2 className="text-xl font-bold mb-10 text-[#2D1540]">Management Team</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {members.map((m) => {

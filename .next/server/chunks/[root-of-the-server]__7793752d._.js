@@ -75,7 +75,7 @@ async function POST(req) {
                 status: 400
             });
         }
-        const base = ("TURBOPACK compile-time value", "http://192.168.1.16:1337");
+        const base = ("TURBOPACK compile-time value", "http://136.110.180.2/cms");
         console.log('Strapi base URL:', base);
         if ("TURBOPACK compile-time falsy", 0) {
             "TURBOPACK unreachable";

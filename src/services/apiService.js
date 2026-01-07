@@ -37,7 +37,7 @@ export const getGobernanceCollectionCardBoard = (params) =>
   api.get(`/gobernance-collection-cards?populate=*&sort=governanceTeamOrder`, { params });
 
 export const getGobernanceCollectionCardManagement = (params) =>
-  api.get(`/gobernance-collection-card-managements?fields[0]=governanceManagmentName&fields[1]=governanceManagmentPosition&fields[2]=governanceManagmentBiography&populate[governanceManagmentImage][fields][0]=url`, { params });
+  api.get(`/gobernance-collection-card-managements?fields[0]=governanceManagementName&fields[1]=governanceManagementPosition&fields[2]=governanceManagementBiography&fields[3]=governanceManagementOrder&populate[governanceManagementImage][fields][0]=url&sort=governanceManagementOrder:asc`, { params });
 
 export const getGobernance = (params) =>
   api.get(`/gobernances?populate=*`, { params });

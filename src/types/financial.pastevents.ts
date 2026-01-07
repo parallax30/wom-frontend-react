@@ -6,6 +6,7 @@ export interface PastEventItem {
   title: string;
   date: string;
   url: string;
+  icon?: string | null;
 }
 
 export interface PastEventsProps {

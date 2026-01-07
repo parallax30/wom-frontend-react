@@ -68,7 +68,7 @@ export function RegistrationForm(): React.JSX.Element {
       {/* LOGO */}
       <Box sx={{ textAlign: "center", mb: 4 }}>
         <Image
-          src="/assets/wom_empresas_logo.png"
+          src="/assets/wom_logo.png"
           width={200}
           height={100}
           alt="WOM Empresas"

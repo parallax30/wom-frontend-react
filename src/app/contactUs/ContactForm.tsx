@@ -42,17 +42,10 @@ export default function ContactForm({ user }: ContactFormProps) {
     try {
       setSending(true);
 
-      const payload = {
-        fullName,
-        email,
-        subject,
-        message,
-      };
-
       await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ fullName, email, subject, message }),
       });
 
       setSent(true);
@@ -67,21 +60,23 @@ export default function ContactForm({ user }: ContactFormProps) {
   };
 
   return (
-    <section className="mt-20 px-10 py-16 relative w-[80%] mx-auto">
-      {/* Background Image Circle */}
-      <div className="absolute left-[-10%] top-[10%] w-[600px] h-[600px] opacity-60 -z-10">
-      <Image
-        src="/assets/contact-bg-2.png"
-        alt="Background shape"
-        fill
-        className="object-contain rounded-full"
-      />
-    </div>
+    <section className="relative mt-16 px-4 py-10 md:px-10 md:py-16 md:w-[80%] md:mx-auto">
+      {/* Background Image (solo desktop) */}
+      <div className="hidden md:block absolute left-[-10%] top-[10%] w-[600px] h-[600px] opacity-60 -z-10">
+        <Image
+          src="/assets/contact-bg-2.png"
+          alt="Background shape"
+          fill
+          className="object-contain rounded-full"
+        />
+      </div>
 
-      <div className="flex flex-col md:flex-row gap-20">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-20">
         {/* LEFT SECTION */}
         <div className="flex-1">
-          <h2 className="text-4xl font-bold mb-10">Contact</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-10">
+            Contact
+          </h2>
 
           <div className="flex items-start gap-4 mb-10">
             <Image
@@ -95,24 +90,10 @@ export default function ContactForm({ user }: ContactFormProps) {
               <p className="text-[#C52A6C] font-semibold">ir@wom.cl</p>
             </div>
           </div>
-
-          {/* <div className="flex items-start gap-4">
-            <Image
-              src="/assets/icons/phone-contact-icon.png"
-              alt="phone"
-              width={44}
-              height={44}
-            />
-            <div>
-              <p className="font-semibold text-lg">Contact Phone</p>
-              <p className="text-[#C52A6C] font-semibold">+56 9 12345678</p>
-            </div>
-          </div>*/}
         </div>
 
         {/* RIGHT SECTION — FORM */}
-        <div className="flex-1 ">
-          {/* FULL NAME */}
+        <div className="flex-1">
           <label className="block font-semibold mb-1">Full Name</label>
           <input
             type="text"
@@ -121,7 +102,6 @@ export default function ContactForm({ user }: ContactFormProps) {
             onChange={(e) => setFullName(e.target.value)}
           />
 
-          {/* EMAIL */}
           <label className="block font-semibold mb-1">Email Address</label>
           <input
             type="email"
@@ -130,16 +110,14 @@ export default function ContactForm({ user }: ContactFormProps) {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          {/* SUBJECT */}
           <label className="block font-semibold mb-1">Subject</label>
           <input
             type="text"
             className="w-full border border-gray-400 rounded-xl px-4 py-3 mb-6 bg-gray-100 cursor-not-allowed"
-            value="Message IR Web Page"
+            value={subject}
             disabled
           />
 
-          {/* MESSAGE */}
           <label className="block font-semibold mb-1">Message</label>
           <textarea
             className="w-full border border-gray-400 rounded-xl px-4 py-3 h-40 mb-10"
@@ -147,13 +125,16 @@ export default function ContactForm({ user }: ContactFormProps) {
             onChange={(e) => setMessage(e.target.value)}
           />
 
-          {/* SEND BUTTON */}
           <button
             disabled={isDisabled}
             onClick={handleSubmit}
             className={`
               w-full py-4 rounded-xl font-bold text-lg transition
-              ${isDisabled ? "bg-pink-200 text-white" : "bg-[#E6007E] text-white hover:bg-pink-700"}
+              ${
+                isDisabled
+                  ? "bg-pink-200 text-white"
+                  : "bg-[#E6007E] text-white hover:bg-pink-700"
+              }
             `}
           >
             {sending && "Sending..."}

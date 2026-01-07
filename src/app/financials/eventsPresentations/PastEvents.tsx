@@ -56,7 +56,7 @@ export function PastEvents({ events }: PastEventsProps) {
               "
             >
               <img
-                src="/assets/icons/arrow-goto-icon.png"
+                src={ev.icon || "/assets/icons/go-to-icon.png"}
                 className="h-4"
               />
               GO TO
