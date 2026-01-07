@@ -21,6 +21,8 @@ import {
   Alert,
   Paper,
   Dialog,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 
 import { paths } from "@/paths";
@@ -30,7 +32,7 @@ import { ForgotPasswordFlow } from "./ForgotPasswordFlow";
 const schema = zod.object({
   email: zod.string().email("Email is required"),
   password: zod.string().min(1, "Password is required"),
-  accept: zod.boolean().refine(val => val === true, {
+  accept: zod.boolean().refine((val) => val === true, {
     message: "You must accept the policies",
   }),
 });
@@ -44,26 +46,23 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
     control,
     handleSubmit,
     watch,
-    setValue,
     setError,
-    formState: { errors }
+    formState: { errors },
   } = useForm<Values>({
     resolver: zodResolver(schema),
     defaultValues: { email: "", password: "", accept: false },
   });
 
   const [isPending, setIsPending] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  // Track if user reached bottom of scroll
   const [hasReadPolicies, setHasReadPolicies] = React.useState(false);
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
-  // Enable button only if all conditions are met
   const email = watch("email");
   const password = watch("password");
   const accept = watch("accept");
 
-  // ✅ CAMBIO: el botón NO depende del scroll
   const isButtonEnabled =
     email.trim() !== "" &&
     password.trim() !== "" &&
@@ -72,264 +71,182 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
-
-    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 5;
-    if (atBottom) setHasReadPolicies(true);
+    if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5) {
+      setHasReadPolicies(true);
+    }
   };
 
   const onSubmit = async (values: Values) => {
-    setIsPending(true);
+    try {
+      setIsPending(true);
+      setIsLoading(true);
 
-    const { error } = await authClient.signInWithPassword(values);
+      const { error } = await authClient.signInWithPassword(values);
 
-    if (error) {
-      setError("root", { type: "server", message: error });
+      if (error) {
+        setError("root", { type: "server", message: error });
+        return;
+      }
+
+      router.push(paths.portal);
+    } finally {
       setIsPending(false);
-      return;
+      setIsLoading(false);
     }
-
-    setIsPending(false);
-    router.push(paths.portal);
   };
 
   const [open, setOpen] = React.useState(false);
-
-  const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
   const registerUrl = cms?.loginUrlLinkRegister;
-  const forgotPassUrl = cms?.loginUrlLinkForgotPass;
   const agreementUrl = cms?.loginUrlLinkAgreement;
   const agreementText = cms?.loginParagraphAgreement;
 
   const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  React.useEffect(() => setMounted(true), []);
 
   return (
-    <Stack spacing={3} sx={{ width: "100%", maxWidth: 600, textAlign: "left" }}>
-      <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-        Login
-      </Typography>
+    <>
+      <Stack spacing={3} sx={{ width: "100%", maxWidth: 600, textAlign: "left" }}>
+        <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+          Login
+        </Typography>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={3}>
-
-          {/* EMAIL FIELD */}
-          <Controller
-            control={control}
-            name="email"
-            render={({ field }) => (
-              <FormControl fullWidth error={Boolean(errors.email)}>
-                <InputLabel>Email Address</InputLabel>
-                <OutlinedInput {...field} type="email" label="Email Address" />
-                {errors.email && (
-                  <FormHelperText>{errors.email.message}</FormHelperText>
-                )}
-              </FormControl>
-            )}
-          />
-
-          {/* PASSWORD + Forgot password */}
-          <Box sx={{ fontSize: 14, color: "#3f51b5", fontWeight: 600, textTransform: "none", padding: 0 }}>
-            <Stack spacing={0.5} alignItems="flex-end">
-              <ForgotPasswordFlow />
-
-              <Link
-                href={registerUrl}
-                underline="hover"
-                sx={{
-                  fontSize: 14,
-                  fontWeight: 600,
-                }}
-              >
-                New user? Register
-              </Link>
-            </Stack>
-          </Box>
-
-          {mounted && (
-            <Dialog
-              open={open}
-              onClose={handleCloseModal}
-              fullWidth
-              maxWidth="sm"
-              PaperProps={{
-                sx: {
-                  borderRadius: 4,
-                  p: 3,
-                },
-              }}
-            >
-              <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-                <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                  New Password
-                </Typography>
-                <Button onClick={handleCloseModal} sx={{ minWidth: 0 }}>
-                  ✕
-                </Button>
-              </Box>
-
-              <Box sx={{ mt: 1 }}>
-                <Typography sx={{ mb: 1 }}>Enter your OTP</Typography>
-                <OutlinedInput
-                  fullWidth
-                  placeholder="Code sent to your email"
-                  sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
-                />
-
-                <Typography sx={{ mb: 1 }}>Enter your new password</Typography>
-                <OutlinedInput
-                  fullWidth
-                  type="password"
-                  sx={{ background: "#fff", borderRadius: 2, mb: 3 }}
-                />
-
-                <Typography sx={{ mb: 1 }}>Repeat your new password</Typography>
-                <OutlinedInput
-                  fullWidth
-                  type="password"
-                  sx={{ background: "#fff", borderRadius: 2, mb: 4 }}
-                />
-              </Box>
-
-              <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
-                <Button
-                  variant="outlined"
-                  onClick={handleCloseModal}
-                  sx={{
-                    borderColor: "#A45CE8",
-                    color: "#000",
-                    fontWeight: 700,
-                    borderRadius: 2,
-                    px: 4,
-                  }}
-                >
-                  CLOSE
-                </Button>
-
-                <Button
-                  variant="contained"
-                  disabled
-                  sx={{
-                    backgroundColor: "#F0D6EB",
-                    color: "#fff",
-                    fontWeight: 700,
-                    borderRadius: 2,
-                    px: 4,
-                  }}
-                >
-                  SEND
-                </Button>
-              </Box>
-            </Dialog>
-          )}
-
-          <Controller
-            control={control}
-            name="password"
-            render={({ field }) => (
-              <FormControl fullWidth error={Boolean(errors.password)}>
-                <InputLabel>Password</InputLabel>
-                <OutlinedInput {...field} type="password" label="Password" />
-                {errors.password && (
-                  <FormHelperText>{errors.password.message}</FormHelperText>
-                )}
-              </FormControl>
-            )}
-          />
-
-          <Typography sx={{ fontWeight: 600, mt: 2 }}>
-            Confidentiality Agreement & Policies
-          </Typography>
-
-          <Paper
-            variant="outlined"
-            sx={{
-              p: 2,
-              maxHeight: 170,
-              overflowY: "auto",
-              borderRadius: 2,
-            }}
-            ref={scrollRef}
-            onScroll={handleScroll}
-          >
-            <Typography
-              component="div"
-              sx={{
-                color: "text.secondary",
-                fontSize: 14,
-                textAlign: "justify",
-              }}
-            >
-              {agreementText}
-            </Typography>
-          </Paper>
-
-          <Link
-            href={`${process.env.NEXT_PUBLIC_STRAPI_URL}${agreementUrl}`}
-            target="_blank"
-            underline="hover"
-            sx={{ fontSize: 15, display: "flex", gap: 1, alignItems: "center" }}
-          >
-            <NextImage
-              src="/assets/register_icon.png"
-              width={20}
-              height={20}
-              style={{ width: "auto", height: "auto" }}
-              alt="doc icon"
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing={3}>
+            {/* EMAIL */}
+            <Controller
+              control={control}
+              name="email"
+              render={({ field }) => (
+                <FormControl fullWidth error={Boolean(errors.email)}>
+                  <InputLabel>Email Address</InputLabel>
+                  <OutlinedInput {...field} type="email" label="Email Address" />
+                  {errors.email && (
+                    <FormHelperText>{errors.email.message}</FormHelperText>
+                  )}
+                </FormControl>
+              )}
             />
-            Download our Confidentiality Agreement & Policies Document
-          </Link>
 
-          {/* CHECKBOX */}
-          <Controller
-            control={control}
-            name="accept"
-            render={({ field }) => (
-              <FormControl error={Boolean(errors.accept)}>
-                <FormControlLabel
-                  disabled={!hasReadPolicies}          // ✅ CLAVE
-                  control={
-                    <Checkbox
-                      {...field}
-                      checked={field.value}
-                      disabled={!hasReadPolicies}      // ✅ CLAVE
-                    />
-                  }
-                  label="I agree to the Confidentiality Agreement & Policies"
-                />
-                {errors.accept && (
-                  <FormHelperText>{errors.accept.message}</FormHelperText>
-                )}
-              </FormControl>
+            {/* LINKS */}
+            <Box sx={{ fontSize: 14, fontWeight: 600 }}>
+              <Stack spacing={0.5} alignItems="flex-end">
+                <ForgotPasswordFlow />
+
+                <Link href={registerUrl} underline="hover">
+                  New user? Register
+                </Link>
+              </Stack>
+            </Box>
+
+            {/* PASSWORD */}
+            <Controller
+              control={control}
+              name="password"
+              render={({ field }) => (
+                <FormControl fullWidth error={Boolean(errors.password)}>
+                  <InputLabel>Password</InputLabel>
+                  <OutlinedInput {...field} type="password" label="Password" />
+                  {errors.password && (
+                    <FormHelperText>{errors.password.message}</FormHelperText>
+                  )}
+                </FormControl>
+              )}
+            />
+
+            <Typography sx={{ fontWeight: 600 }}>
+              Confidentiality Agreement & Policies
+            </Typography>
+
+            <Paper
+              variant="outlined"
+              sx={{ p: 2, maxHeight: 170, overflowY: "auto", borderRadius: 2 }}
+              ref={scrollRef}
+              onScroll={handleScroll}
+            >
+              <Typography sx={{ fontSize: 14, textAlign: "justify" }}>
+                {agreementText}
+              </Typography>
+            </Paper>
+
+            <Link
+              href={`${process.env.NEXT_PUBLIC_STRAPI_URL}${agreementUrl}`}
+              target="_blank"
+              underline="hover"
+              sx={{ display: "flex", gap: 1, alignItems: "center" }}
+            >
+              <NextImage
+                src="/assets/register_icon.png"
+                width={20}
+                height={20}
+                alt="doc"
+              />
+              Download our Confidentiality Agreement & Policies Document
+            </Link>
+
+            {/* CHECKBOX */}
+            <Controller
+              control={control}
+              name="accept"
+              render={({ field }) => (
+                <FormControl error={Boolean(errors.accept)}>
+                  <FormControlLabel
+                    disabled={!hasReadPolicies}
+                    control={
+                      <Checkbox
+                        {...field}
+                        checked={field.value}
+                        disabled={!hasReadPolicies}
+                      />
+                    }
+                    label="I agree to the Confidentiality Agreement & Policies"
+                  />
+                  {errors.accept && (
+                    <FormHelperText>{errors.accept.message}</FormHelperText>
+                  )}
+                </FormControl>
+              )}
+            />
+
+            {/* SUBMIT */}
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              disabled={!isButtonEnabled || isPending}
+              sx={{
+                height: 48,
+                fontWeight: 600,
+                backgroundColor: isButtonEnabled ? "#E92070" : "#e5d1ee",
+              }}
+            >
+              LOGIN
+            </Button>
+
+            {errors.root && (
+              <Alert severity="error">{errors.root.message}</Alert>
             )}
-          />
+          </Stack>
+        </form>
+      </Stack>
 
-          {/* SUBMIT BUTTON */}
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            disabled={!isButtonEnabled || isPending}
-            sx={{
-              color: "#fff",
-              backgroundColor: isButtonEnabled ? "#E92070" : "#e5d1ee",
-              "&:hover": {
-                backgroundColor: isButtonEnabled ? "#c81c62" : "#e5d1ee",
-              },
-              height: 48,
-              fontWeight: 600,
-            }}
-          >
-            LOGIN
-          </Button>
-
-          {errors.root && <Alert severity="error">{errors.root.message}</Alert>}
-        </Stack>
-      </form>
-    </Stack>
+      {/* LOADING OVERLAY */}
+      <Backdrop
+        open={isLoading}
+        sx={{
+          zIndex: (theme) => theme.zIndex.modal + 1,
+          backdropFilter: "blur(4px)",
+          color: "#fff",
+        }}
+      >
+        <Box sx={{ textAlign: "center" }}>
+          <CircularProgress color="inherit" />
+          <Typography sx={{ mt: 2, fontWeight: 600 }}>
+            Signing you in...
+          </Typography>
+        </Box>
+      </Backdrop>
+    </>
   );
 }

@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 interface RegistrationValues {
   name: string;
@@ -54,6 +55,9 @@ export function RegistrationForm(): React.JSX.Element {
   const all = watch();
   const selectedCountry = watch("country");
 
+  const [isLoading, setIsLoading] = React.useState(false);
+
+
   const isEnabled =
     all.name &&
     all.lastName &&
@@ -87,6 +91,8 @@ export function RegistrationForm(): React.JSX.Element {
 
   const onSubmit = async (values: RegistrationValues) => {
     try {
+      setIsLoading(true);
+
       const otp = generateOTP();
 
       const body = {
@@ -142,11 +148,14 @@ export function RegistrationForm(): React.JSX.Element {
     } catch (error) {
       console.error(error);
     }
+    finally {
+      setIsLoading(false);
+    }
   };
 
   const handleConfirmOtp = async () => {
     try {
-      // 1️⃣ Validar OTP + actualizar usuario
+      setIsLoading(true);
       
       const res = await fetch(`${process.env.NEXT_PUBLIC_HELPER_API}/email/verify-otp`, {
         method: "POST",
@@ -185,10 +194,10 @@ export function RegistrationForm(): React.JSX.Element {
       setOpenOtpModal(false);
       setOpenSuccessModal(true);
       
-
-
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -559,9 +568,25 @@ export function RegistrationForm(): React.JSX.Element {
           >
             ACCEPT
           </Button>
+
         </Box>
       </Dialog>
 
+      <Backdrop
+        sx={{
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.modal + 1,
+          backdropFilter: "blur(4px)",
+        }}
+        open={isLoading}
+      >
+        <Box sx={{ textAlign: "center" }}>
+          <CircularProgress color="inherit" />
+          <Typography sx={{ mt: 2, fontWeight: 600 }}>
+            Creating your account...
+          </Typography>
+        </Box>
+      </Backdrop>
     </Box>
   );
 }

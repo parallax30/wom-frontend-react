@@ -23,18 +23,22 @@ const Page = async () => {
   const managementDataResponse = await getGobernanceCollectionCardManagement();
   const managementData = managementDataResponse?.data?.data;
 
+  console.log("managementData", managementData);
+
   const managementMembers = managementData
     ? managementData.map((item: any) => ({
         id: item.id,
-        name: item.governanceManagmentName,
-        role: item.governanceManagmentPosition,
+        name: item.governanceManagementName,
+        role: item.governanceManagementPosition,
         description:
-          richTextToPlainText(item.governanceManagmentBiography) || "",
-        image: item.governanceManagmentImage?.url
-          ? `${process.env.NEXT_PUBLIC_API_URL}${item.governanceManagmentImage.url}`
+          richTextToPlainText(item.governanceManagementBiography) || "",
+        image: item.governanceManagementImage?.url
+          ? `${process.env.NEXT_PUBLIC_API_URL}${item.governanceManagementImage.url}`
           : null,
       }))
     : [];
+
+    //console.log("managementMembers", managementMembers);
 
 
   return (
