@@ -35,8 +35,8 @@ const Page = async () => {
         return {
           id: String(item.id),
           title: item.governanceCollectionDocumentName ?? "",
-          summary: item.governanceCollectionDocumentSummary ?? "",
-          fileUrl: item.governanceCollectionDocumentLinkUrl ?? "",
+          summary: item.goernanceCollectionDocumentSummary ?? "",
+          fileUrl: STRAPI_URL + item.governanceCollectionDocumentLinkUrl,
         };
       });
   };

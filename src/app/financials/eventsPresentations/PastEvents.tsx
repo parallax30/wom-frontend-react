@@ -4,6 +4,8 @@ import React from "react";
 import { PastEventsProps } from "@/types/financial.pastevents";
 
 export function PastEvents({ events }: PastEventsProps) {
+
+  
   return (
     <section className="px-4 md:px-10 py-12 md:py-16 bg-[#F4F4F7]">
       <h2 className="text-xl font-bold mb-8 md:mb-10">Past Events</h2>
@@ -59,7 +61,7 @@ export function PastEvents({ events }: PastEventsProps) {
                 src={ev.icon || "/assets/icons/go-to-icon.png"}
                 className="h-4"
               />
-              GO TO
+              {ev.buttonName}
             </a>
           </div>
         </div>

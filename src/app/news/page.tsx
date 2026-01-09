@@ -25,7 +25,7 @@ const Page = async () => {
     title: card.newsCollectionCardTitle,
     summary: richTextToPlainText(card.newsCollectionCardSummary ?? []),
     linkText: card.newsCollectionCardLinkText,
-    url: card.newsCollectionCardLinkUrl,
+    url: `${process.env.NEXT_PUBLIC_STRAPI_MEDIA}${card.newsCollectionCardLinkUrl}`,
     icon: "/assets/icons/news-icon.png", // fijo, como en Home
   }));
 
@@ -40,7 +40,7 @@ const Page = async () => {
       day: "numeric",
     }),
     viewUrl: row.newsCollectionDataGridLinkViewUrl,
-    downloadUrl: row.newsCollectionDataGridLinkDownloadUrl,
+    downloadUrl: `${process.env.NEXT_PUBLIC_STRAPI_MEDIA}${row.newsCollectionDataGridLinkDownloadUrl}`,
     checked: row.newsCollectionDataGridCheckOne,
   }));
 

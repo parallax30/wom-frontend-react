@@ -48,6 +48,7 @@ const Page = async () => {
       date: item.calendarPastEventDate ?? "",
       url: item.calendarPastEventLinkUrl ?? "",
       icon: `${item.calendarPastEventLinkIcon?.url}`,
+      buttonName: item.calendarPastEventLinkText ?? "",
     }));
   };
 

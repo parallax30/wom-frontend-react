@@ -75,8 +75,7 @@ async function POST(req) {
                 status: 400
             });
         }
-        const base = ("TURBOPACK compile-time value", "http://136.110.180.2/cms");
-        console.log('Strapi base URL:', base);
+        const base = ("TURBOPACK compile-time value", "https://holy-rhythm-d59945257b.strapiapp.com");
         if ("TURBOPACK compile-time falsy", 0) {
             "TURBOPACK unreachable";
         }
@@ -91,7 +90,6 @@ async function POST(req) {
                 password
             })
         });
-        console.log('Response from Strapi:', res);
         let data = null;
         try {
             data = await res.json();

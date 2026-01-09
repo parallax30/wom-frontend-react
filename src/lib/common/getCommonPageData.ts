@@ -80,8 +80,8 @@ export async function getCommonPageData(
 
     user: {
       avatar: "/assets/avatar.png",
-      name: `${user.name} ${user.lastName}`,
-      role: `${ user.role?.name === "UserValidation" ? "Admin": "Investor"}`,
+      name: `${user?.name ?? "Name"} ${user?.lastName ?? "LastName"}`,
+      role: `${ user?.role?.name === "UserValidation" ? "Admin": "Investor"}`,
     },
 
     today: new Date().toLocaleDateString("en-US", {

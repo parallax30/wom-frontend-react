@@ -7,6 +7,7 @@ export interface PastEventItem {
   date: string;
   url: string;
   icon?: string | null;
+  buttonName?: string;
 }
 
 export interface PastEventsProps {

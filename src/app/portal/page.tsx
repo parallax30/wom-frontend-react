@@ -61,7 +61,7 @@ async function getHomeData(): Promise<HomePageData> {
     url: "card.homeNewsCardUrl",
   }));
 
-  const homePrincipalImage = process.env.NEXT_PUBLIC_API_URL + cmsHomeData.homePrincipalImage.url;
+  const homePrincipalImage = cmsHomeData.homePrincipalImage.url;
 
   const events = cmsHomeData.home_event_infos.map((event: { id: any; homeEventInfoTitle: any; homeEventInfoDate: string | number | Date; homeEventInfoSummary: RichTextBlock[] | undefined; homeEventInfoLinkText: any; homeEventInfoLinkUrl: any }) => ({
     id: String(event.id),
@@ -159,13 +159,12 @@ const Page = async () => {
 const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).map((card: any) => ({
   id: String(card.id),
   homeFinancialCardTitle: card.homeFinancialCardTitle,
-  icon: card.homeFinancialCardIcon?.url ? apiUrl + card.homeFinancialCardIcon.url : "/assets/icons/money-icon.png",
+  icon: card.homeFinancialCardIcon?.url ?  card.homeFinancialCardIcon.url : "/assets/icons/money-icon.png",
   linkIcon: `${card.homeFinancialCardLinkIcon?.url}`,
   homeFinancialCardLinkText: card.homeFinancialCardLinkText,
-  homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? apiUrl + card.homeFinancialCardFile.url : "#",
+  homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? card.homeFinancialCardFile.url : "#",
 }));
 
-console.log("data.homeTitle4TextButton:", data.homeTitle4TextButton);
 
   return (
     <div className="w-full font-sans text-[#2D1540]">

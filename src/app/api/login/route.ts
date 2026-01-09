@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     }
 
     const base = process.env.NEXT_PUBLIC_STRAPI_URL;
-    console.log('Strapi base URL:', base);
+    
     if (!base) {
       console.error('[app/api/login] NEXT_PUBLIC_STRAPI_URL not set');
       return new Response(JSON.stringify({ error: 'Server not configured' }), { status: 500 });
@@ -24,8 +24,6 @@ export async function POST(req: Request) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ identifier, password }),
     });
-
-    console.log('Response from Strapi:', res);
 
     let data: any = null;
     try {
