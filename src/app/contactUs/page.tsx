@@ -18,13 +18,7 @@ export const metadata: Metadata = {
 // -----------------------------------------------------------
 const Page = async () => {
   // Llamada simulada a API
-  const common = await getCommonPageData()
-
-  const user=  {
-      avatar: "/assets/avatar.png",
-      name: "John Doe",
-      email: "johndoe@email.com",
-  }
+  const common = await getCommonPageData('/contactUs')
 
   return (
       <div className="min-h-screen flex flex-col font-sans text-[#2D1540]">

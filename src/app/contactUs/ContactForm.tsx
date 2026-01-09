@@ -63,12 +63,12 @@ export default function ContactForm({ user }: ContactFormProps) {
     <section className="relative mt-16 px-4 py-10 md:px-10 md:py-16 md:w-[80%] md:mx-auto">
       {/* Background Image (solo desktop) */}
       <div className="hidden md:block absolute left-[-10%] top-[10%] w-[600px] h-[600px] opacity-60 -z-10">
-        <Image
+        {/*<Image
           src="/assets/contact-bg-2.png"
           alt="Background shape"
           fill
           className="object-contain rounded-full"
-        />
+        /> */}
       </div>
 
       <div className="flex flex-col md:flex-row gap-12 md:gap-20">

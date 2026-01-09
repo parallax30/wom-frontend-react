@@ -5,8 +5,11 @@ import {
   FiBarChart2,
   FiFileText,
   FiFile,
-  FiPlayCircle,
+  FiPenTool,
 } from "react-icons/fi";
+
+import { PiPresentationChart } from "react-icons/pi";
+
 
 type ApiItem = {
   financialCollectionQDocumentYear: string;
@@ -34,12 +37,12 @@ const ROWS = [
   {
     label: "Earnings Transcript",
     type: "Earnings Transcript",
-    icon: FiPlayCircle,
+    icon: FiPenTool,
   },
   {
     label: "Earnings Presentation",
     type: "Earnings Presentation",
-    icon: FiBarChart2,
+    icon: PiPresentationChart,
   },
   {
     label: "Financial Statements",
@@ -136,7 +139,7 @@ export function FinancialReports({ data }: Props) {
                     <div key={idx} className="p-4 flex justify-center">
                       {enabled ? (
                         <a
-                          href={`${process.env.NEXT_PUBLIC_API_URL}${item!.financialCollectionQDocumentLinkUrl}`}
+                          href={`${process.env.NEXT_PUBLIC_STRAPI_MEDIA}${item!.financialCollectionQDocumentLinkUrl}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >

@@ -15,7 +15,7 @@ HomePageProps,
 
 export function Footer({ contact }: FooterProps) {
   return (
-    <footer className="w-full bg-[#2D1540] text-white px-4 py-10 md:px-10 md:py-12">
+    <footer className="w-full bg-[#4D008C] text-white px-4 py-10 md:px-10 md:py-12">
       <div
         className="
           flex flex-col items-center text-center gap-8

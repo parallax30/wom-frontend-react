@@ -5,7 +5,7 @@ PolicyInformationProps,
 
 export function Policies({ policies }: PolicyInformationProps) {
   return (
-    <section className="px-4 py-10 mt-10 md:px-10 md:py-16">
+    <section className="px-52 py-10 mt-10 md:py-16">
       <h2 className="text-xl font-bold mb-8 md:mb-10">Policies</h2>
 
       {policies.map((d) => (

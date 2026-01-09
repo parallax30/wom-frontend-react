@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 // -----------------------------------------------------------
 const Page = async () => {
   // Llamada simulada a API
-  const common = await getCommonPageData("/policies");
+  const common = await getCommonPageData("/governance");
 
-  const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL;
+  const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_MEDIA;
 
   const mapPolicies = (items?: any[]) => {
     if (!Array.isArray(items)) return [];

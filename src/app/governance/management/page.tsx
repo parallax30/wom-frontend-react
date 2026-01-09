@@ -18,12 +18,10 @@ export const metadata: Metadata = {
 // -----------------------------------------------------------
 const Page = async () => {
   // Llamada simulada a API
-  const common = await getCommonPageData("/gobernance");
+  const common = await getCommonPageData("/governance");
   
   const managementDataResponse = await getGobernanceCollectionCardManagement();
   const managementData = managementDataResponse?.data?.data;
-
-  console.log("managementData", managementData);
 
   const managementMembers = managementData
     ? managementData.map((item: any) => ({

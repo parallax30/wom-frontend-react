@@ -24,7 +24,6 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
     ? `${cms.logoGrande}`
     : "/assets/wom_empresas_logo.png";
 
-  console.log("Logo Grande URL:", cms.logoGrande);
 
 
   return (

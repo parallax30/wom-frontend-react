@@ -99,7 +99,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
   const handleCloseModal = () => setOpen(false);
 
   const registerUrl = cms?.loginUrlLinkRegister;
-  const agreementUrl = cms?.loginUrlLinkAgreement;
+  const agreementUrl = `${process.env.NEXT_PUBLIC_STRAPI_MEDIA}${cms?.loginUrlLinkAgreement}`;
   const agreementText = cms?.loginParagraphAgreement;
 
   const [mounted, setMounted] = React.useState(false);
@@ -171,7 +171,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             </Paper>
 
             <Link
-              href={`${process.env.NEXT_PUBLIC_STRAPI_URL}${agreementUrl}`}
+              href={`${agreementUrl}`}
               target="_blank"
               underline="hover"
               sx={{ display: "flex", gap: 1, alignItems: "center" }}
@@ -227,6 +227,11 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
             {errors.root && (
               <Alert severity="error">{errors.root.message}</Alert>
             )}
+
+            <Typography sx={{ fontSize: 13, textAlign: "center", color: "text.secondary" }}>
+              Having trouble accessing your account? Contact us at{" "}
+              <Link href="mailto:ir@wom.cl">ir@wom.cl</Link>
+            </Typography>
           </Stack>
         </form>
       </Stack>

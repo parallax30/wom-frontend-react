@@ -167,13 +167,13 @@ export function OldNewsTable({ items, titleArchive }: Props) {
 
                   <td className="p-4 border border-purple-900 text-center">
                     <div className="flex justify-center gap-6">
-                      <button onClick={() => window.open(`${item.downloadUrl}`, "_blank")}>
+                      {/*<button onClick={() => window.open(`${item.downloadUrl}`, "_blank")}>
                         <FiDownload size={24} className="text-purple-900 hover:text-purple-600" />
-                      </button>
-
-                      {/*<button onClick={() => window.open(item.downloadUrl, "_blank")}>
-                        <FiEye size={24} className="text-purple-900 hover:text-purple-600" />
                       </button>*/}
+
+                      <button onClick={() => window.open(item.downloadUrl, "_blank")}>
+                        <FiEye size={24} className="text-purple-900 hover:text-purple-600" />
+                      </button>
                     </div>
                   </td>
                 </tr>

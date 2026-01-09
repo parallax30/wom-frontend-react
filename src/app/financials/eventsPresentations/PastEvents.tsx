@@ -46,7 +46,7 @@ export function PastEvents({ events }: PastEventsProps) {
           {/* CTA */}
           <div className="w-full md:w-auto flex justify-center md:justify-end">
             <a
-              href={ev.url}
+              href={`${process.env.NEXT_PUBLIC_STRAPI_MEDIA}${ev.url}`}
               target="_blank"
               rel="noopener noreferrer"
               className="
