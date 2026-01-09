@@ -165,7 +165,7 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
               ref={scrollRef}
               onScroll={handleScroll}
             >
-              <Typography sx={{ fontSize: 14, textAlign: "justify" }}>
+              <Typography component="div" sx={{ fontSize: 14, textAlign: "justify" }}>
                 {agreementText}
               </Typography>
             </Paper>

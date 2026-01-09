@@ -160,7 +160,7 @@ const financialCrds: ReportItem[] = (financialCrdsResponse?.data?.data ?? []).ma
   id: String(card.id),
   homeFinancialCardTitle: card.homeFinancialCardTitle,
   icon: card.homeFinancialCardIcon?.url ? apiUrl + card.homeFinancialCardIcon.url : "/assets/icons/money-icon.png",
-  linkIcon: `${process.env.NEXT_PUBLIC_API_URL}${card.homeFinancialCardLinkIcon?.url}`,
+  linkIcon: `${card.homeFinancialCardLinkIcon?.url}`,
   homeFinancialCardLinkText: card.homeFinancialCardLinkText,
   homeFinancialCardLinkUrl: card.homeFinancialCardFile?.url ? apiUrl + card.homeFinancialCardFile.url : "#",
 }));

@@ -24,9 +24,8 @@ const nextConfig = {
         pathname: '/cms/**',
       },
       {
-        protocol: 'http',
-        hostname: '192.168.1.40',
-        port: "1337",
+        protocol: 'https',
+        hostname: 'holy-rhythm-d59945257b.media.strapiapp.com',
         pathname: '/**',
       },
     ],

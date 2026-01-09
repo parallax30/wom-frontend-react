@@ -33,7 +33,7 @@ const Page = async () => {
         description:
           richTextToPlainText(item.governanceManagementBiography) || "",
         image: item.governanceManagementImage?.url
-          ? `${process.env.NEXT_PUBLIC_API_URL}${item.governanceManagementImage.url}`
+          ? `${item.governanceManagementImage.url}`
           : null,
       }))
     : [];

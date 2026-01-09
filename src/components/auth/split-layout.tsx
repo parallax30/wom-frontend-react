@@ -17,11 +17,11 @@ export function SplitLayout({ children, cms }: SplitLayoutProps) {
 
   // Imagen del CMS
   const leftImage = cms?.leftImage?.url
-    ? `${process.env.NEXT_PUBLIC_API_URL}${cms.leftImage.url}`
+    ? `${cms.leftImage.url}`
     : "/assets/about_wom_image.jpg";
 
   const logoGrande = cms?.leftImage?.url
-    ? `${process.env.NEXT_PUBLIC_API_URL}${cms.logoGrande}`
+    ? `${cms.logoGrande}`
     : "/assets/wom_empresas_logo.png";
 
   console.log("Logo Grande URL:", cms.logoGrande);

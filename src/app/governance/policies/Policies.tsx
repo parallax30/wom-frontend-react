@@ -32,7 +32,7 @@ export function Policies({ policies }: PolicyInformationProps) {
           {/* Columna 3 – botón */}
           <div className="flex md:justify-end">
             <a
-              href={`${process.env.NEXT_PUBLIC_API_URL}${d.fileUrl}`}
+              href={`${d.fileUrl}`}
               target="_blank"
               rel="noopener noreferrer"
               className="

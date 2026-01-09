@@ -22,7 +22,7 @@ export async function getCommonPageData(
   const globalData = responseGlobal?.data?.data;
     
   const logoHeader = globalData.headerImage.url
-    ? `${process.env.NEXT_PUBLIC_API_URL}${globalData.headerImage.url}`
+    ? `${globalData.headerImage.url}`
     : "/assets/wom_logo.png";
 
 

@@ -136,7 +136,7 @@ export function FinancialReports({ data }: Props) {
                     <div key={idx} className="p-4 flex justify-center">
                       {enabled ? (
                         <a
-                          href={`${process.env.NEXT_PUBLIC_API_URL}${item!.financialCollectionQDocumentLinkUrl}`}
+                          href={`${item!.financialCollectionQDocumentLinkUrl}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >

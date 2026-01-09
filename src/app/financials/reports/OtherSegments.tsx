@@ -42,7 +42,7 @@ export function OtherSegments({ segments }: OtherSegmentsProps) {
             <button
               onClick={() =>
                 handleView(
-                  `${process.env.NEXT_PUBLIC_API_URL}${ev.fileUrl}`
+                  `${ev.fileUrl}`
                 )
               }
               className="

@@ -47,7 +47,7 @@ const Page = async () => {
       title: item.calendarPastEventName ?? "",
       date: item.calendarPastEventDate ?? "",
       url: item.calendarPastEventLinkUrl ?? "",
-      icon: `${process.env.NEXT_PUBLIC_API_URL}${item.calendarPastEventLinkIcon?.url}`,
+      icon: `${item.calendarPastEventLinkIcon?.url}`,
     }));
   };
 

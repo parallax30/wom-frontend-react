@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const global = globalResponse?.data?.data
 
   const faviconUrl = global?.favicon?.url
-    ? `${process.env.NEXT_PUBLIC_API_URL}${global.favicon.url}`
+    ? `${global.favicon.url}`
     : '/favicon.ico'
 
   return {
