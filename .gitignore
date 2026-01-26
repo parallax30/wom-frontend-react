@@ -76,3 +76,4 @@ coverage/
 # =========================
 # vercel.json
 # .eslintcache
+.next
