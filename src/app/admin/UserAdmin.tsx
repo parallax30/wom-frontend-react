@@ -64,8 +64,6 @@ export default function UserAdmin() {
       const response = await getUsers({});
       const users: StrapiUser[] = response?.data || [];
 
-      console.log("Fetched users:", users);
-
       const mapped: UserRow[] = users.map((u) => ({
         id: u.id,
         name: `${u.name ?? ""} ${u.lastName ?? ""}`.trim(),

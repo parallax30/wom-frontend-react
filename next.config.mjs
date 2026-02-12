@@ -3,28 +3,8 @@ const nextConfig = {
   poweredByHeader: false,
 
   images: {
-    minimumCacheTTL: 2678400 * 6, // 6 meses
+    minimumCacheTTL: 2678400 * 6,
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'unsplash.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.pexels.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: '136.110.180.2',
-        pathname: '/cms/**',
-      },
       {
         protocol: 'https',
         hostname: 'holy-rhythm-d59945257b.media.strapiapp.com',
@@ -58,23 +38,29 @@ const nextConfig = {
             key: "Permissions-Policy",
             value: "geolocation=(), microphone=(), camera=()",
           },
-          /*{
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-          {
-            key: "Cross-Origin-Resource-Policy",
-            value: "same-origin",
-          },*/
-          /*{
-            key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; img-src 'self' https: data:; script-src 'self'; style-src 'self' 'unsafe-inline'",
-          },*/
+        {
+          key: "Cross-Origin-Opener-Policy",
+          value: "same-origin",
+        },
+        {
+          key: "Cross-Origin-Embedder-Policy",
+          value: "unsafe-none",
+        },
+        {
+          key: "Cross-Origin-Resource-Policy",
+          value: "cross-origin",
+        },
+        {
+          key: "Content-Security-Policy",
+          value: `
+            default-src 'self';
+            img-src 'self' https: data: https://holy-rhythm-d59945257b.media.strapiapp.com;
+            media-src 'self' https://holy-rhythm-d59945257b.media.strapiapp.com;
+            connect-src 'self' https://holy-rhythm-d59945257b.media.strapiapp.com https://holy-rhythm-d59945257b.strapiapp.com;
+            script-src 'self' 'unsafe-inline';
+            style-src 'self' 'unsafe-inline';
+          `.replace(/\s{2,}/g, ' ').trim(), 
+        },
         ],
       },
     ];

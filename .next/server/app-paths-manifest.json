@@ -1,7 +1,9 @@
 {
   "/(app)/(home)/(home-1)/page": "app/(app)/(home)/(home-1)/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/admin/page": "app/admin/page.js",
   "/api/login/route": "app/api/login/route.js",
-  "/financials/reports/page": "app/financials/reports/page.js",
+  "/api/logout/route": "app/api/logout/route.js",
+  "/news/page": "app/news/page.js",
   "/portal/page": "app/portal/page.js"
 }

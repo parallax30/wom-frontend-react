@@ -1,5 +1,6 @@
 'use client';
 
+import { encryptPayload } from '@/lib/crypto';
 import type { User } from '@/types/user';
 
 function generateToken(): string {
@@ -30,8 +31,9 @@ export interface SignInWithOAuthParams {
 }
 
 export interface SignInWithPasswordParams {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
+  encrypted?: { iv: string; data: string } | string;
 }
 
 export interface ResetPasswordParams {
@@ -53,16 +55,23 @@ class AuthClient {
     return { error: 'Social authentication not implemented' };
   }
 
-  async  signInWithPassword({
-    email,
-    password,
-  }: SignInWithPasswordParams): Promise<{ error?: string }> 
-  {
+  async signInWithPassword(payload: SignInWithPasswordParams | { iv: string; data: string } | any): Promise<{ error?: string }> {
     try {
+      // Determine if payload is already encrypted (either passed directly or under payload.encrypted)
+      let bodyToSend: any;
+      if (payload && payload.iv && payload.data) {
+        bodyToSend = payload;
+      } else if (payload && payload.encrypted) {
+        bodyToSend = payload.encrypted;
+      } else {
+        const { email, password } = payload as SignInWithPasswordParams;
+        bodyToSend = await encryptPayload({ email, password });
+      }
+
       const res = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(bodyToSend),
         credentials: 'include',
       });
 

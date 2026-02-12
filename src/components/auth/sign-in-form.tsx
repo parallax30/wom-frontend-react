@@ -27,6 +27,7 @@ import {
 
 import { paths } from "@/paths";
 import { authClient } from "@/lib/auth/custom/client";
+import { encryptPayload } from "@/lib/crypto";
 import { ForgotPasswordFlow } from "./ForgotPasswordFlow";
 
 const schema = zod.object({
@@ -81,7 +82,9 @@ export function SignInForm({ cms }: { cms: any }): React.JSX.Element {
       setIsPending(true);
       setIsLoading(true);
 
-      const { error } = await authClient.signInWithPassword(values);
+      // Encrypt credentials here, then call auth client with encrypted payload
+      const encrypted = await encryptPayload({ email: values.email, password: values.password });
+      const { error } = await authClient.signInWithPassword(encrypted as any);
 
       if (error) {
         setError("root", { type: "server", message: error });

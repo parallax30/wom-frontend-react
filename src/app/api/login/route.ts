@@ -1,10 +1,28 @@
 import { cookies } from 'next/headers';
+import { decryptPayload } from '@/lib/crypto';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const identifier = body.identifier ?? body.email;
-    const password = body.password;
+
+    // Support encrypted payloads from the client: { iv, data }
+    let identifier: string | undefined;
+    let password: string | undefined;
+
+    if (body && body.iv && body.data) {
+      try {
+        const dec = await decryptPayload({ iv: body.iv, data: body.data });
+        // decrypted payload expected to contain email/password or identifier/password
+        identifier = (dec as any).identifier ?? (dec as any).email;
+        password = (dec as any).password;
+      } catch (e) {
+        console.error('[app/api/login] decrypt error', e);
+        return new Response(JSON.stringify({ error: 'Invalid encrypted payload' }), { status: 400 });
+      }
+    } else {
+      identifier = body.identifier ?? body.email;
+      password = body.password;
+    }
 
     if (!identifier || !password) {
       return new Response(JSON.stringify({ error: 'Missing credentials' }), { status: 400 });
