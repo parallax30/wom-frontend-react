@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
+
+if (!apiBaseUrl) {
+  throw new Error("Missing required environment variable: NEXT_PUBLIC_API_URL or NEXT_PUBLIC_STRAPI_URL");
+}
+
 const api = axios.create({ 
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
+  baseURL: `${apiBaseUrl.replace(/\/$/, "")}/api`,
 });
 
 // Interceptor para agregar token desde .env
