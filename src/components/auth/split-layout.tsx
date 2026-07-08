@@ -12,16 +12,23 @@ export interface SplitLayoutProps {
   cms?: any;
 }
 
+function appendVersion(url: string, version?: string) {
+  if (!version) return url;
+
+  const separator = url.includes("?") ? "&" : "?";
+  return `${url}${separator}v=${encodeURIComponent(version)}`;
+}
+
 export function SplitLayout({ children, cms }: SplitLayoutProps) {
   const title = cms?.leftTitle ?? "About WOM";
 
   // Imagen del CMS
   const leftImage = cms?.leftImage?.url
-    ? `${cms.leftImage.url}`
+    ? appendVersion(`${cms.leftImage.url}`, cms.leftImage.updatedAt ?? cms.updatedAt)
     : "/assets/about_wom_image.jpg";
 
-  const logoGrande = cms?.leftImage?.url
-    ? `${cms.logoGrande}`
+  const logoGrande = cms?.logoGrande
+    ? appendVersion(`${cms.logoGrande}`, cms.updatedAt)
     : "/assets/wom_empresas_logo.png";
 
 
