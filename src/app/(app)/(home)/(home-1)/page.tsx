@@ -11,6 +11,9 @@ import { get } from 'lodash';
 
 export const metadata: Metadata = { title: `Sign in | Custom | Auth | ${config.site.name}` };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Page(): Promise<React.JSX.Element> {
 
 
